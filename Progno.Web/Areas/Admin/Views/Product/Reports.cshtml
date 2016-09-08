@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">Reports</div>
+    <div class="panel-body">
+        @Html.ActionLink("Get Stock List", "StockList", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Get Activity List", "ActivityList", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Get Payment List", "PaymentList", null, new { @class = "btn btn-primary" })
+
+
+
+
+
+      
+    </div>
+</div>
+

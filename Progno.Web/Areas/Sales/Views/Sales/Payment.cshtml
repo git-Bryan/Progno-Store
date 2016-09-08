@@ -1,0 +1,49 @@
+﻿@model Progno.Web.Areas.Sales.ViewModel.SalesViewModel
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<br /><br /><br /><br />
+<div class="row">
+    <div class="col-md-6 col-md-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>Update Payment</h4>
+            </div>
+            <div class="panel-body">
+
+                <section>
+                    @if (TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+                    }
+                    @using (Html.BeginForm("Payment", "Sales", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                       @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Payment.OrderNo, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(m => m.Payment.OrderNo, new { @class = "form-control", @required="required" })
+                                @Html.ValidationMessageFor(m => m.Payment.OrderNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                      
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Submit" class="btn btn-default" />
+                            </div>
+                        </div>
+
+                    }
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+

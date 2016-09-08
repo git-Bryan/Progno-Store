@@ -1,0 +1,155 @@
+﻿@model Progno.Web.Areas.Sales.ViewModel.SalesViewModel
+
+@{
+    ViewBag.Title = "OrderVoucher";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+@if (Model.Orders != null)
+{
+    <div class="col-md-5 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background: lightskyblue; color: black">
+              <h4><i class="fa fa-cart-arrow-down"></i> Sales Receipt</h4>  
+                <h4 class="text-center">
+                    
+                    @if (@Model.Business != null && @Model.Business.LogoUrl != null && @Model.Business.Name!=null)
+                    {
+                        <img src="@Url.Content(Model.Business.LogoUrl)" height="100" width="200" />
+    <br />
+    <p>@Model.Business.Name</p>
+                    }
+                    
+                </h4>
+
+
+            </div>
+            <div class="panel-body">
+
+                <table class="table table-responsive table-striped" style="width: 300px">
+                    <thead>
+                        <tr class="h5">
+                            <td>@Model.Orders[0].OrderTime</td>
+                            <td></td>
+                            @if (@Model.Staff != null)
+                            {
+                                <td>Sales Officer: @Model.Staff.Person.FullName</td>
+
+                            }
+
+                        </tr>
+                       <tr style="padding-bottom: 40px"></tr>
+                        <tr style="font-weight: bold">
+                            <th>Product Name</th>
+                            <th>Unit Price</th>
+                            <th>Quantity</th>
+
+                            <th>Total</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Orders != null)
+                        {
+                            for (int i = 0; i < Model.Orders.Count; i++)
+                            {
+                                <tr>
+                                    @Html.EditorFor(model => model.Orders[i].Id, new { htmlAttributes = new { @class = "form-control hidden", @id = "var1" } })
+                                    <td>@Model.Orders[i].Product.Name</td>
+                                    <td>@Model.Orders[i].Product.SellingPrice</td>
+                                    <td>@Model.Orders[i].Quantity</td>
+                                    <td>@Model.Orders[i].Amount</td>
+
+
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+
+                </table>
+                <table class="table table-responsive">
+                    <tbody>
+                        <tr>
+                            <td></td>
+
+                            <td>
+                                <h5 style="font-weight: bold">Gross Total</h5>
+                            </td>
+                            <td style="font-weight: bold">
+                                @Html.DisplayFor(model => model.GrossAmount)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+
+                            <td>
+                                <h5 style="font-weight: bold">Net Total</h5>
+                            </td>
+                            <td style="font-weight: bold">
+                                @Html.DisplayFor(model => model.TotalAmount)
+                            </td>
+                        </tr>
+                        @if (@Model.Payment.OutstandingAmount != 0 && @Model.Payment.OutstandingAmount != null)
+                        {
+                           <tr>
+                                <td></td>
+
+                                <td>
+                                    <h5 style="font-weight: bold">Outstanding Payment</h5>
+                                </td>
+                                <td style="font-weight: bold">
+                                    @Html.DisplayFor(model => model.Payment.OutstandingAmount)
+                                </td>
+                            </tr>
+                           <tr>
+        <td></td>
+
+        <td>
+            <h5 style="font-weight: bold">Expected Payment Date</h5>
+        </td>
+        <td style="font-weight: bold">
+            @Html.DisplayFor(model => model.Payment.ExpectedPaymentDate)
+        </td>
+    </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+                <br/><br />
+                <div class="row">
+                    <h4 class="text-center">
+                        @if (Model.Orders[0].barcodeImageUrl != null)
+                        {
+                            <img src="@Model.Orders[0].barcodeImageUrl" height="100" width="500" />
+                        }
+                        <br/>
+                      @*@Model.Orders[0].OrderNo*@
+                    </h4>
+                </div>
+                <br /><br />
+                <div class="row">
+                    
+                    <h4 class="text-left">
+                       Customer Copy 
+                    </h4>
+                </div>
+                <br/><br /><br />
+                <div class="row">
+                    <center>
+                        <p style="font-style: italic" class="text-uppercase">
+                            Powered By Lloydant
+                        </p>
+                    </center>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+

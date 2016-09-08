@@ -1,0 +1,146 @@
+﻿@model  Progno.Web.Areas.Admin.ViewModel.AccountantViewModel
+@{
+    ViewBag.Title = "ModifySalary";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<div class="row">
+    @using (Html.BeginForm("ModifySalary", "Accountant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="panel panel-info">
+                <div class="panel-heading h2">Payment Info</div>
+                <div class="panel-body">
+                    @if (TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+                    }
+                    @Html.HiddenFor(model => model.Salary.Id)
+                    @Html.HiddenFor(model => model.Salary.SalaryScheme)
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Salary.CreditBalance, "Credit Balance")</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Salary.CreditBalance, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Salary.UnauthorisedCredit)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Salary.UnauthorisedCredit, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Salary.StaffCredit)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Salary.StaffCredit, new {htmlAttributes = new {@class = "form-control span7", @required = "required",}})
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Salary.Surcharge)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Salary.Surcharge, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Salary.Attendance)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Salary.Attendance, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Salary.Deduction)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Salary.Deduction, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Salary.Bonus)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Salary.Bonus, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                  
+
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                        Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,91 @@
+﻿@model Progno.Web.Areas.Sales.ViewModel.SalesViewModel
+@using System.Linq
+@using Progno.Model.Model
+
+
+
+<script>
+    function Remove() {
+        var values = [$("#var1").val()]
+        $("#load").show();
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("RemoveOrder", "Sales"))",
+            data: { formDetails: values },
+            success: function (result) {
+                $('#partial').html(result);
+
+            },
+            error: function () {
+                alert("error");
+                //$("#load").hide();
+            }
+        });
+    }
+
+</script>
+
+<br />
+<div class="col-md-12">
+    @if (TempData["Message"] != null)
+    {
+        @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+    }
+</div>
+
+@if (Model!= null && Model.Orders.Count >0)
+{
+    <div class="col-md-12">
+        
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <i class="fa fa-cart-arrow-down"></i> Shopping Cart
+            </div>
+            <div class="panel-body">
+                <table class="table table-responsive table-striped">
+                    <thead >
+                        <tr>
+                            <td>Photo</td>
+                            <td>Product Name</td>
+                            <td>Unit Price</td>
+                            <td>Quantity</td>
+                            <td>Total</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Order order in Model.Orders)
+                        {
+                            <tr>
+                                @Html.EditorFor(model => order.Product.Id, new { htmlAttributes = new { @class = "form-control hidden", @id = "var1" } })
+                                <td>
+                                    @if (order.Product.PhotoUrl != null)
+                                    {
+                                        <img src=@Url.Content(order.Product.PhotoUrl) class="img-responsive img-thumbnail" style="horiz-align: center;height: 100px; width: 100px; text-align: center" />
+
+                                    }
+                                </td>
+                                <td>@order.Product.Name</td>
+                                <td>@order.Product.SellingPrice</td>
+                                <td>@order.Quantity</td>
+                                <td>@order.Amount</td>
+
+
+                                <td>
+                                    <button type="submit" onclick="Remove()" class="btn btn-danger ">
+                                        <i class="fa fa-remove">
+                                            Remove
+                                        </i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                       
+                      
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+}

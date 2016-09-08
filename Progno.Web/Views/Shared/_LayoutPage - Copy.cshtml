@@ -1,0 +1,318 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title - Stores</title>
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    <!-- Tell the browser to be responsive to screen width -->
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+    <link href="~/Content/freelancer.css" rel="stylesheet" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="~/Content/AdminLTE-2.3.0/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/AdminLTE-2.3.0/dist/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/Content/AdminLTE-2.3.0/dist/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/AdminLTE-2.3.0/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/Content/AdminLTE-2.3.0/dist/css/skins/skin-blue.min.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="~/Content/AdminLTE-2.3.0/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <script src="~/Content/AdminLTE-2.3.0/bootstrap/js/html5shiv.min.js"></script>
+    <script src="~/Content/AdminLTE-2.3.0/bootstrap/js/respond.min.js"></script>
+
+    <link href="~/Scripts/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="~/Security/Account/Home" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><i class="fa fa-shopping-bag"></i>@*<img src="~/Content/AdminLTE-2.3.0/dist/img/E_Library_Logo.png" class="img-md img-circle" calt="User Image">*@Stores</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><i class="fa fa-shopping-bag"></i>@*<img src="~/Content/AdminLTE-2.3.0/dist/img/E_Library_Logo.png" class="img-md img-circle" alt="User Image">*@ &nbsp;Stores</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account: style can be found in dropdown.less -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    @*<img src=@ViewBag.UserImage class="user-image" alt="User Image">*@
+                                    <i class="fa fa-user"></i>
+                                    <span class="hidden-xs">Welcome! @User.Identity.Name</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        @*<img src="@Url.Content(@ViewBag.ImageUrl)" class="img-circle" alt="User Image">*@
+                                        <p>
+
+                                            @User.Identity.Name
+                                            <small>@DateTime.Now.ToShortDateString()@*<small id="idTimeField">@DateTime.Now.ToLongTimeString()</small>*@</small>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        @*<div class="pull-left">
+                                            <a href="/Member/Registration/ViewProfile" class="btn btn-default btn-flat">Profile</a>
+                                        </div>*@
+                                        <div class="">
+                                            <form action="/Security/Account/LogOff" method="Post">
+                                                <button type="submit" name="LogOff" class=" btn btn-default btn-flat">Sign out</button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        <!-- Control Sidebar Toggle Button -->
+                        @*<li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>*@
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div style="padding-bottom:100px" class="user-panel">
+                        <div class="pull-left image">
+                            @*<img src="@Url.Content(@ViewBag.ImageUrl)" class="img-rounded" alt="User Image">*@
+                        </div>
+                        <div class="pull-left info">
+                            <p>@User.Identity.Name</p>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <p><i class="fa fa-circle text-green"></i> Online</p>
+                            }
+                            else
+                            {
+                                <p><i class="fa fa-circle text-red"></i> Offline</p>
+                            }
+
+                        </div>
+                    </div>
+                    <br />
+                    <!-- search form -->
+                    @*<form action="/Member/Catalog/Search" method="Post" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control sidebar-open" placeholder="Search..." id="Search1">
+                            <span class="input-group-btn ">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>*@
+
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <li>
+                            <a href="~/Home/Index">
+                                <i class="fa fa-home"></i> <span>Home</span>
+                            </a>
+                        </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                           
+                                <li class="active treeview">
+                                    <a href="#">
+                                        <i class="fa fa-gears"></i> <span>Manage Products</span> <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="/Admin/Product/AddProduct"><i class="fa fa-plus-circle"></i> Create Product</a></li>
+                                        <li><a href="/Admin/Product/EditProductPage"><i class="fa fa-edit"></i> Edit Product</a></li>
+                                        <li><a href="/Admin/Product/StockProduct"><i class="fa fa-stack"></i> Stock Product</a></li>
+                                        <li><a href="/Admin/Product/Reports"><i class="fa fa-bar-chart"></i> Reports</a></li>
+                                        <li><a href="/Admin/Settings/Index"><i class="fa fa-gear"></i> Settings</a></li>
+
+                                    </ul>
+                                </li>
+
+                            @*<li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-users"></i>
+                                    <span>Manage Users</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="~/Admin/User/EditUserRole"><i class="fa fa-user"></i> Edit User Role</a></li>
+                                    <li><a href="~/Admin/User/EditRoleByUserName"><i class="fa fa-user"></i> Edit Role By Username</a></li>
+
+                                </ul>
+                            </li>*@
+                        }
+
+                        <li style="padding-bottom: 20px"></li>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Sales"))
+                        {
+                            <li class="active treeview">
+                                <a href="#">
+                                    <i class="fa fa-shopping-cart"></i> <span>Sales</span> <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li ><a href="/Sales/Sales/CreateOrder"><i class="fa fa-shopping-cart"></i> Create Order</a></li>
+
+                                </ul>
+                                <ul class="treeview-menu">
+                                    <li><a href="/Sales/Sales/Payment"><i class="fa fa-dollar"></i> Update Payment</a></li>
+
+                                </ul>
+
+                            </li>
+
+                        }
+
+
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+        }
+        else
+        {
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+
+                    <div style="padding-bottom:10%" class="user-panel">
+                        <div class="pull-left image">
+                            <img src="~/Content/AdminLTE-2.3.0/dist/img/avatar.png" class="img-rounded" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p>Anonymous</p>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <p><i class="fa fa-circle text-green"></i> Online</p>
+                            }
+                            else
+                            {
+                                <p><i class="fa fa-circle text-red"></i> Offline</p>
+                            }
+
+                        </div>
+                    </div>
+
+                    @*<ul class="sidebar-menu">
+                        <li class="active treeview">
+                            <a href="#">
+                                <i class="fa fa-user"></i> <span>User</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Security/Account/Login"><i class="fa fa-sign-in"></i> Login</a></li>
+                                <li><a href="/Member/Registration/SignUp"><i class="fa fa-registered"></i> Register</a></li>
+                            </ul>
+                        </li>
+                       
+                        
+                    </ul>*@
+                </section>
+            </aside>
+        }
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            @*<section class="content-header">
+                <h1>
+                    User panel
+                    <small><i class="fa fa-user"></i></small>
+                </h1>
+
+            </section>*@
+
+            <!-- Main content -->
+            <section class="content">
+                @RenderBody()
+                <hr />
+                <footer >
+                    <center>
+                        <p style="color: black">.</p>
+
+                    </center>
+                </footer>
+
+            </section><!-- /.content -->
+
+        </div><!-- /.content-wrapper -->
+
+
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="~/Content/AdminLTE-2.3.0/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/morris/raphael-min.js"></script>
+    <script src="~/Content/AdminLTE-2.3.0/plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content/AdminLTE-2.3.0/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/AdminLTE-2.3.0/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/AdminLTE-2.3.0/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/AdminLTE-2.3.0/dist/js/app.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/Content/AdminLTE-2.3.0/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/AdminLTE-2.3.0/dist/js/demo.js"></script>
+
+    <script src="~/Scripts/freelancer.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)*@
+</body>
+</html>

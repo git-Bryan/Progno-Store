@@ -1,0 +1,57 @@
+﻿
+@using System.Linq
+@model Progno.Web.Areas.Admin.ViewModel.ProductViewModel
+
+@if (!Model.StockLists.Any())
+{
+    <p style="text-align: center">No report to display</p>
+}
+else
+{
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Stock List</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive">
+                <thead>
+                    <tr> 
+                        <th>S/N</th>
+                        <th>Product Name</th>
+                       <th>Brand</th>
+                        <th>CostPrice.</th>
+                        <th>Selling Price</th>
+                        <th>Unique Code</th>
+                        <th>Quantity Left</th>
+                        <th>Last Update Time</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int no = 0;}
+                    @for (int i = 0; i < Model.StockLists.Count; i++)
+                    {
+                        no++;
+                        <tr>
+                            <td>@no</td>
+                            <td>@Model.StockLists[i].ProductName</td>
+                            <td>@Model.StockLists[i].Brand</td>
+                            <td>@Model.StockLists[i].CostPrice</td>
+                            <td>@Model.StockLists[i].SellingPrice</td>
+                            <td>@Model.StockLists[i].BarcodeNo</td>
+                            <td>@Model.StockLists[i].QuantityLeft</td>
+                            <td>@Model.StockLists[i].LastUpdateTime</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            @Html.ActionLink("Download List", "DownloadClassList", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+
+
+}
+

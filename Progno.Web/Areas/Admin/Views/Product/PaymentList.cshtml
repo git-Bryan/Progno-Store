@@ -1,0 +1,65 @@
+﻿@model Progno.Web.Areas.Admin.ViewModel.ProductViewModel
+
+@{
+    ViewBag.Title = "PaymentList";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@if (Model== null)
+{
+    <p style="text-align: center">No report to display</p>
+}
+else
+{
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Payment Report</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Sales Officer</th>
+                        <th>Amount</th>
+                        <th>Order No</th>
+                        <th>Paid</th>
+                        <th>Expected Payment Date</th>
+                        <th>Payment Type</th>
+                        <th>Outstanding Amount</th>
+                        <th>Last Update Time</th>
+                        <th>Customer</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int no = 0;}
+                    @for (int i = 0; i < Model.PaymentLists.Count; i++)
+                    {
+                        no++;
+                        <tr>
+                            <td>@no</td>
+                            <td>@Model.PaymentLists[i].SalesFirstName&nbsp;&nbsp; @Model.PaymentLists[i].SalesLastName</td>
+                            <td>@Model.PaymentLists[i].Amount</td>
+                            <td>@Model.PaymentLists[i].OrderNo</td>
+                            <td>@Model.PaymentLists[i].Paid</td>
+                            <td>@Model.PaymentLists[i].ExpectedPaymentDate</td>
+                            <td>@Model.PaymentLists[i].PaymentTypeName</td>
+                            <td>@Model.PaymentLists[i].OutstandingAmount</td>
+                            <td>@Model.PaymentLists[i].LastUpdateTime</td>
+                            <td>@Model.PaymentLists[i].CustomerFirstName &nbsp;&nbsp; @Model.PaymentLists[i].CustomerLastName</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            @Html.ActionLink("Download List", "DownloadStockList", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+
+
+}
+
+

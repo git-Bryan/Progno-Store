@@ -1,0 +1,97 @@
+﻿@model Progno.Web.Areas.Admin.ViewModel.SettingsViewModel
+
+@{
+    ViewBag.Title = "HappyHour";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="col-md-10 col-md-offset-1">
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Happy Hour </h3>
+        </div>
+        <div class="panel-body">
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+            }
+            <br/>
+            <p class="btn btn-primary ">
+                @Html.ActionLink("Add Happy Hour", "AddHappyHour", new {htmlAttributes = new {@class = "btn btn-info"}})
+
+
+            </p>
+
+            @if (Model == null || Model.HappyHours == null)
+            {
+                return;
+            }
+            @if (Model != null)
+            {
+                if (Model.HappyHours != null && Model.HappyHours.Count > 0)
+                {
+                    <table class="table table-responsive table-bordered table-striped table-hover">
+                        <tr>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Start Time
+                            </th>
+                            <th>
+                                End Time
+                            </th>
+                            <th>
+                                Authorized By
+                            </th>
+                            <th>
+                                Active
+                            </th>
+                            <th>
+                                Activate
+                            </th>
+
+                        </tr>
+
+                        @for (int i = 0; i < Model.HappyHours.Count; i++)
+                        {
+                            <tr>
+                                <td class="col-lg-2 col-md-2 col-sm-2">
+                                    @Model.HappyHours[i].Date.ToString("yyyy MMMM dd")
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-2">
+                                    @Model.HappyHours[i].StartTime.ToString("h:mm:ss tt ")
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-2">
+                                    @Model.HappyHours[i].EndTime.ToString("h:mm:ss tt ")
+                                </td>
+                                <td class="col-lg-3 col-md-3 col-sm-3">
+                                    @Model.HappyHours[i].Staff.Person.FullName
+                                </td>
+                                <td class="col-lg-1 col-md-1 col-sm-1">
+                                    @if (@Model.HappyHours[i].Activated == true)
+                                    {
+                                        <img src="~/Images/select.jpg" class="img-tiny img-responsive"/>
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Images/delete_icon.png" class="img-tiny img-responsive"/>
+                                    }
+
+                                </td>
+                                <td class="col-lg-3 col-md-3 col-sm-3">
+                                   @Html.ActionLink("Activate", "ActivateHappyHour", new {id = Model.HappyHours[i].Id})&nbsp; |&nbsp; @Html.ActionLink("Deactivate", "DeActivateHappyHour", new { id = Model.HappyHours[i].Id })
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+
+                }
+            }
+        </div>
+    </div>
+</div>
+

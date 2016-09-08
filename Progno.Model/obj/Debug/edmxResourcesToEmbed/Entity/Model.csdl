@@ -1,0 +1,1092 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="INVENTORYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="INVENTORYEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BLOOD_GROUP" EntityType="INVENTORYModel.BLOOD_GROUP" />
+    <EntitySet Name="BRANCH" EntityType="INVENTORYModel.BRANCH" />
+    <EntitySet Name="BUSINESS" EntityType="INVENTORYModel.BUSINESS" />
+    <EntitySet Name="CATALOG" EntityType="INVENTORYModel.CATALOG" />
+    <EntitySet Name="COUNTRY" EntityType="INVENTORYModel.COUNTRY" />
+    <EntitySet Name="CUSTOMER" EntityType="INVENTORYModel.CUSTOMER" />
+    <EntitySet Name="DISCOUNT" EntityType="INVENTORYModel.DISCOUNT" />
+    <EntitySet Name="HAPPY_HOUR" EntityType="INVENTORYModel.HAPPY_HOUR" />
+    <EntitySet Name="LOCAL_GOVERNMENT" EntityType="INVENTORYModel.LOCAL_GOVERNMENT" />
+    <EntitySet Name="NATIONALITY" EntityType="INVENTORYModel.NATIONALITY" />
+    <EntitySet Name="OCCUPATION" EntityType="INVENTORYModel.OCCUPATION" />
+    <EntitySet Name="ORDER" EntityType="INVENTORYModel.ORDER" />
+    <EntitySet Name="PAYMENT" EntityType="INVENTORYModel.PAYMENT" />
+    <EntitySet Name="PAYMENT_TYPE" EntityType="INVENTORYModel.PAYMENT_TYPE" />
+    <EntitySet Name="PERSON" EntityType="INVENTORYModel.PERSON" />
+    <EntitySet Name="PRODUCT" EntityType="INVENTORYModel.PRODUCT" />
+    <EntitySet Name="PRODUCT_CATEGORY" EntityType="INVENTORYModel.PRODUCT_CATEGORY" />
+    <EntitySet Name="PRODUCT_UNIT" EntityType="INVENTORYModel.PRODUCT_UNIT" />
+    <EntitySet Name="RELIGION" EntityType="INVENTORYModel.RELIGION" />
+    <EntitySet Name="RESERVATION" EntityType="INVENTORYModel.RESERVATION" />
+    <EntitySet Name="RESERVATION_TYPE" EntityType="INVENTORYModel.RESERVATION_TYPE" />
+    <EntitySet Name="ROLE" EntityType="INVENTORYModel.ROLE" />
+    <EntitySet Name="SALARY" EntityType="INVENTORYModel.SALARY" />
+    <EntitySet Name="SALARY_SCHEME" EntityType="INVENTORYModel.SALARY_SCHEME" />
+    <EntitySet Name="SALES" EntityType="INVENTORYModel.SALES" />
+    <EntitySet Name="SALES_TYPE" EntityType="INVENTORYModel.SALES_TYPE" />
+    <EntitySet Name="SEX" EntityType="INVENTORYModel.SEX" />
+    <EntitySet Name="STAFF" EntityType="INVENTORYModel.STAFF" />
+    <EntitySet Name="STATE" EntityType="INVENTORYModel.STATE" />
+    <EntitySet Name="STOCK" EntityType="INVENTORYModel.STOCK" />
+    <EntitySet Name="STOCK_TYPE" EntityType="INVENTORYModel.STOCK_TYPE" />
+    <EntitySet Name="SUPPLIER" EntityType="INVENTORYModel.SUPPLIER" />
+    <EntitySet Name="UNIT" EntityType="INVENTORYModel.UNIT" />
+    <EntitySet Name="USER" EntityType="INVENTORYModel.USER" />
+    <EntitySet Name="VW_ACTIVITY_LOG" EntityType="INVENTORYModel.VW_ACTIVITY_LOG" />
+    <EntitySet Name="VW_PAYMENT" EntityType="INVENTORYModel.VW_PAYMENT" />
+    <EntitySet Name="VW_SALES" EntityType="INVENTORYModel.VW_SALES" />
+    <EntitySet Name="VW_STOCK" EntityType="INVENTORYModel.VW_STOCK" />
+    <AssociationSet Name="FK_BRANCH_BUSINESS" Association="INVENTORYModel.FK_BRANCH_BUSINESS">
+      <End Role="BUSINESS" EntitySet="BUSINESS" />
+      <End Role="BRANCH" EntitySet="BRANCH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CATALOG_PRODUCT" Association="INVENTORYModel.FK_CATALOG_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="CATALOG" EntitySet="CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CATALOG_PRODUCT_UNIT" Association="INVENTORYModel.FK_CATALOG_PRODUCT_UNIT">
+      <End Role="PRODUCT_UNIT" EntitySet="PRODUCT_UNIT" />
+      <End Role="CATALOG" EntitySet="CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CATALOG_STAFF" Association="INVENTORYModel.FK_CATALOG_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="CATALOG" EntitySet="CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CATALOG_STOCK_TYPE" Association="INVENTORYModel.FK_CATALOG_STOCK_TYPE">
+      <End Role="STOCK_TYPE" EntitySet="STOCK_TYPE" />
+      <End Role="CATALOG" EntitySet="CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CATALOG_SUPPLIER" Association="INVENTORYModel.FK_CATALOG_SUPPLIER">
+      <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+      <End Role="CATALOG" EntitySet="CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUSTOMER_PERSON" Association="INVENTORYModel.FK_CUSTOMER_PERSON">
+      <End Role="PERSON" EntitySet="PERSON" />
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAYMENT_CUSTOMER" Association="INVENTORYModel.FK_PAYMENT_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="PAYMENT" EntitySet="PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RESERVATION_CUSTOMER" Association="INVENTORYModel.FK_RESERVATION_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="RESERVATION" EntitySet="RESERVATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HAPPY_HOUR_STAFF" Association="INVENTORYModel.FK_HAPPY_HOUR_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="HAPPY_HOUR" EntitySet="HAPPY_HOUR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LOCAL_GOVERNMENT_STATE" Association="INVENTORYModel.FK_LOCAL_GOVERNMENT_STATE">
+      <End Role="STATE" EntitySet="STATE" />
+      <End Role="LOCAL_GOVERNMENT" EntitySet="LOCAL_GOVERNMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERSON_LOCAL_GOVERNMENT" Association="INVENTORYModel.FK_PERSON_LOCAL_GOVERNMENT">
+      <End Role="LOCAL_GOVERNMENT" EntitySet="LOCAL_GOVERNMENT" />
+      <End Role="PERSON" EntitySet="PERSON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERSON_NATIONALITY" Association="INVENTORYModel.FK_PERSON_NATIONALITY">
+      <End Role="NATIONALITY" EntitySet="NATIONALITY" />
+      <End Role="PERSON" EntitySet="PERSON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STATE_NATIONALITY" Association="INVENTORYModel.FK_STATE_NATIONALITY">
+      <End Role="NATIONALITY" EntitySet="NATIONALITY" />
+      <End Role="STATE" EntitySet="STATE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_PRODUCT" Association="INVENTORYModel.FK_ORDER_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="ORDER" EntitySet="ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_ORDER" Association="INVENTORYModel.FK_SALES_ORDER">
+      <End Role="ORDER" EntitySet="ORDER" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAYMENT_PAYMENT_TYPE" Association="INVENTORYModel.FK_PAYMENT_PAYMENT_TYPE">
+      <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
+      <End Role="PAYMENT" EntitySet="PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAYMENT_STAFF" Association="INVENTORYModel.FK_PAYMENT_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="PAYMENT" EntitySet="PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERSON_RELIGION" Association="INVENTORYModel.FK_PERSON_RELIGION">
+      <End Role="RELIGION" EntitySet="RELIGION" />
+      <End Role="PERSON" EntitySet="PERSON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERSON_SEX" Association="INVENTORYModel.FK_PERSON_SEX">
+      <End Role="SEX" EntitySet="SEX" />
+      <End Role="PERSON" EntitySet="PERSON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERSON_STATE" Association="INVENTORYModel.FK_PERSON_STATE">
+      <End Role="STATE" EntitySet="STATE" />
+      <End Role="PERSON" EntitySet="PERSON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STAFF_PERSON" Association="INVENTORYModel.FK_STAFF_PERSON">
+      <End Role="PERSON" EntitySet="PERSON" />
+      <End Role="STAFF" EntitySet="STAFF" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_PRODUCT_CATEGORY" Association="INVENTORYModel.FK_PRODUCT_PRODUCT_CATEGORY">
+      <End Role="PRODUCT_CATEGORY" EntitySet="PRODUCT_CATEGORY" />
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_UNIT_PRODUCT" Association="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="PRODUCT_UNIT" EntitySet="PRODUCT_UNIT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STOCK_PRODUCT" Association="INVENTORYModel.FK_STOCK_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="STOCK" EntitySet="STOCK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_UNIT_UNIT" Association="INVENTORYModel.FK_PRODUCT_UNIT_UNIT">
+      <End Role="UNIT" EntitySet="UNIT" />
+      <End Role="PRODUCT_UNIT" EntitySet="PRODUCT_UNIT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RESERVATION_RESERVATION_TYPE" Association="INVENTORYModel.FK_RESERVATION_RESERVATION_TYPE">
+      <End Role="RESERVATION_TYPE" EntitySet="RESERVATION_TYPE" />
+      <End Role="RESERVATION" EntitySet="RESERVATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALARY_SCHEME_ROLE" Association="INVENTORYModel.FK_SALARY_SCHEME_ROLE">
+      <End Role="ROLE" EntitySet="ROLE" />
+      <End Role="SALARY_SCHEME" EntitySet="SALARY_SCHEME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ROLE" Association="INVENTORYModel.FK_USER_ROLE">
+      <End Role="ROLE" EntitySet="ROLE" />
+      <End Role="USER" EntitySet="USER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALARY_STAFF" Association="INVENTORYModel.FK_SALARY_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="SALARY" EntitySet="SALARY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_SALES_TYPE" Association="INVENTORYModel.FK_SALES_SALES_TYPE">
+      <End Role="SALES_TYPE" EntitySet="SALES_TYPE" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_STAFF" Association="INVENTORYModel.FK_SALES_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STAFF_USER" Association="INVENTORYModel.FK_STAFF_USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="STAFF" EntitySet="STAFF" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BLOOD_GROUP">
+    <Key>
+      <PropertyRef Name="Blood_Group_Id" />
+    </Key>
+    <Property Name="Blood_Group_Id" Type="Int32" Nullable="false" />
+    <Property Name="Blood_Group_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BRANCH">
+    <Key>
+      <PropertyRef Name="Branch_Id" />
+    </Key>
+    <Property Name="Branch_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Business_Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Email_address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Alternative_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Alternative_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BUSINESS" Relationship="INVENTORYModel.FK_BRANCH_BUSINESS" FromRole="BRANCH" ToRole="BUSINESS" />
+  </EntityType>
+  <EntityType Name="BUSINESS">
+    <Key>
+      <PropertyRef Name="Business_Id" />
+    </Key>
+    <Property Name="Business_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Business_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Logo_Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BRANCH" Relationship="INVENTORYModel.FK_BRANCH_BUSINESS" FromRole="BUSINESS" ToRole="BRANCH" />
+  </EntityType>
+  <EntityType Name="CATALOG">
+    <Key>
+      <PropertyRef Name="Catalog_Id" />
+    </Key>
+    <Property Name="Catalog_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Id" Type="Int64" Nullable="false" />
+    <Property Name="Date_Of_Transaction" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Stock_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Supplier_Id" Type="Int32" />
+    <Property Name="Product_Unit_Id" Type="Int32" />
+    <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT" FromRole="CATALOG" ToRole="PRODUCT" />
+    <NavigationProperty Name="PRODUCT_UNIT" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT_UNIT" FromRole="CATALOG" ToRole="PRODUCT_UNIT" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_CATALOG_STAFF" FromRole="CATALOG" ToRole="STAFF" />
+    <NavigationProperty Name="STOCK_TYPE" Relationship="INVENTORYModel.FK_CATALOG_STOCK_TYPE" FromRole="CATALOG" ToRole="STOCK_TYPE" />
+    <NavigationProperty Name="SUPPLIER" Relationship="INVENTORYModel.FK_CATALOG_SUPPLIER" FromRole="CATALOG" ToRole="SUPPLIER" />
+  </EntityType>
+  <EntityType Name="COUNTRY">
+    <Key>
+      <PropertyRef Name="Country_Id" />
+    </Key>
+    <Property Name="Country_Id" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Country_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="Person_Id" />
+    </Key>
+    <Property Name="Person_Id" Type="Int64" Nullable="false" />
+    <Property Name="Times_Visited" Type="Int32" Nullable="false" />
+    <Property Name="Last_Date_Visited" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Customer_Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Maximum_Allowed_Credit" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_CUSTOMER_PERSON" FromRole="CUSTOMER" ToRole="PERSON" />
+    <NavigationProperty Name="PAYMENT" Relationship="INVENTORYModel.FK_PAYMENT_CUSTOMER" FromRole="CUSTOMER" ToRole="PAYMENT" />
+    <NavigationProperty Name="RESERVATION" Relationship="INVENTORYModel.FK_RESERVATION_CUSTOMER" FromRole="CUSTOMER" ToRole="RESERVATION" />
+  </EntityType>
+  <EntityType Name="DISCOUNT">
+    <Key>
+      <PropertyRef Name="Discount_Id" />
+    </Key>
+    <Property Name="Discount_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Discount_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Percentage_Off" Type="Decimal" Nullable="false" Precision="10" Scale="5" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="HAPPY_HOUR">
+    <Key>
+      <PropertyRef Name="Happy_Hour_Id" />
+    </Key>
+    <Property Name="Happy_Hour_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Start_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="End_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Activated" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_HAPPY_HOUR_STAFF" FromRole="HAPPY_HOUR" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="LOCAL_GOVERNMENT">
+    <Key>
+      <PropertyRef Name="Local_Government_Id" />
+    </Key>
+    <Property Name="Local_Government_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Local_Government_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State_Id" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="STATE" Relationship="INVENTORYModel.FK_LOCAL_GOVERNMENT_STATE" FromRole="LOCAL_GOVERNMENT" ToRole="STATE" />
+    <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_PERSON_LOCAL_GOVERNMENT" FromRole="LOCAL_GOVERNMENT" ToRole="PERSON" />
+  </EntityType>
+  <EntityType Name="NATIONALITY">
+    <Key>
+      <PropertyRef Name="Nationality_Id" />
+    </Key>
+    <Property Name="Nationality_Id" Type="Int32" Nullable="false" />
+    <Property Name="Nationality_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_PERSON_NATIONALITY" FromRole="NATIONALITY" ToRole="PERSON" />
+    <NavigationProperty Name="STATE" Relationship="INVENTORYModel.FK_STATE_NATIONALITY" FromRole="NATIONALITY" ToRole="STATE" />
+  </EntityType>
+  <EntityType Name="OCCUPATION">
+    <Key>
+      <PropertyRef Name="Occupation_Id" />
+    </Key>
+    <Property Name="Occupation_Id" Type="Int32" Nullable="false" />
+    <Property Name="Occupation_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ORDER">
+    <Key>
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Order_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Unit_Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Time_Order" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Checked_Out" Type="Boolean" />
+    <Property Name="Order_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Total_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Product_Id" Type="Int64" />
+    <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_ORDER_PRODUCT" FromRole="ORDER" ToRole="PRODUCT" />
+    <NavigationProperty Name="SALES" Relationship="INVENTORYModel.FK_SALES_ORDER" FromRole="ORDER" ToRole="SALES" />
+  </EntityType>
+  <EntityType Name="PAYMENT">
+    <Key>
+      <PropertyRef Name="Payment_Id" />
+    </Key>
+    <Property Name="Payment_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_Id" Type="Int64" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Payment_Type_id" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Outstanding_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Order_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="Last_Update_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Expected_Payment_Date" Type="DateTime" Precision="3" />
+    <Property Name="Amount_Tendered" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="CUSTOMER" Relationship="INVENTORYModel.FK_PAYMENT_CUSTOMER" FromRole="PAYMENT" ToRole="CUSTOMER" />
+    <NavigationProperty Name="PAYMENT_TYPE" Relationship="INVENTORYModel.FK_PAYMENT_PAYMENT_TYPE" FromRole="PAYMENT" ToRole="PAYMENT_TYPE" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_PAYMENT_STAFF" FromRole="PAYMENT" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="PAYMENT_TYPE">
+    <Key>
+      <PropertyRef Name="Payment_Type_Id" />
+    </Key>
+    <Property Name="Payment_Type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Payment_Type_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PAYMENT" Relationship="INVENTORYModel.FK_PAYMENT_PAYMENT_TYPE" FromRole="PAYMENT_TYPE" ToRole="PAYMENT" />
+  </EntityType>
+  <EntityType Name="PERSON">
+    <Key>
+      <PropertyRef Name="Person_Id" />
+    </Key>
+    <Property Name="Person_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Initial" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Image_File_Url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Address" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile_Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Of_Birth" Type="DateTime" Precision="3" />
+    <Property Name="Home_Town" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Home_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Religion_Id" Type="Int32" />
+    <Property Name="Date_Entered" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Nationality_Id" Type="Int32" />
+    <Property Name="State_Id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Local_Government_Id" Type="Int32" />
+    <Property Name="Sex_Id" Type="Int32" />
+    <NavigationProperty Name="CUSTOMER" Relationship="INVENTORYModel.FK_CUSTOMER_PERSON" FromRole="PERSON" ToRole="CUSTOMER" />
+    <NavigationProperty Name="LOCAL_GOVERNMENT" Relationship="INVENTORYModel.FK_PERSON_LOCAL_GOVERNMENT" FromRole="PERSON" ToRole="LOCAL_GOVERNMENT" />
+    <NavigationProperty Name="NATIONALITY" Relationship="INVENTORYModel.FK_PERSON_NATIONALITY" FromRole="PERSON" ToRole="NATIONALITY" />
+    <NavigationProperty Name="RELIGION" Relationship="INVENTORYModel.FK_PERSON_RELIGION" FromRole="PERSON" ToRole="RELIGION" />
+    <NavigationProperty Name="SEX" Relationship="INVENTORYModel.FK_PERSON_SEX" FromRole="PERSON" ToRole="SEX" />
+    <NavigationProperty Name="STATE" Relationship="INVENTORYModel.FK_PERSON_STATE" FromRole="PERSON" ToRole="STATE" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_STAFF_PERSON" FromRole="PERSON" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="Product_Id" />
+    </Key>
+    <Property Name="Product_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Photo_Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Cost_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Re_Order_Qty" Type="Int32" Nullable="false" />
+    <Property Name="Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Selling_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Barcode_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Happy_Hour_Price" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT" FromRole="PRODUCT" ToRole="CATALOG" />
+    <NavigationProperty Name="ORDER" Relationship="INVENTORYModel.FK_ORDER_PRODUCT" FromRole="PRODUCT" ToRole="ORDER" />
+    <NavigationProperty Name="PRODUCT_CATEGORY" Relationship="INVENTORYModel.FK_PRODUCT_PRODUCT_CATEGORY" FromRole="PRODUCT" ToRole="PRODUCT_CATEGORY" />
+    <NavigationProperty Name="PRODUCT_UNIT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCT_UNIT" />
+    <NavigationProperty Name="STOCK" Relationship="INVENTORYModel.FK_STOCK_PRODUCT" FromRole="PRODUCT" ToRole="STOCK" />
+  </EntityType>
+  <EntityType Name="PRODUCT_CATEGORY">
+    <Key>
+      <PropertyRef Name="Category_Id" />
+    </Key>
+    <Property Name="Category_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_PRODUCT_PRODUCT_CATEGORY" FromRole="PRODUCT_CATEGORY" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="PRODUCT_UNIT">
+    <Key>
+      <PropertyRef Name="Product_Unit_Id" />
+    </Key>
+    <Property Name="Product_Unit_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Id" Type="Int64" Nullable="false" />
+    <Property Name="Items" Type="Int32" Nullable="false" />
+    <Property Name="Unit_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT_UNIT" FromRole="PRODUCT_UNIT" ToRole="CATALOG" />
+    <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT" FromRole="PRODUCT_UNIT" ToRole="PRODUCT" />
+    <NavigationProperty Name="UNIT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_UNIT" FromRole="PRODUCT_UNIT" ToRole="UNIT" />
+  </EntityType>
+  <EntityType Name="RELIGION">
+    <Key>
+      <PropertyRef Name="Religion_Id" />
+    </Key>
+    <Property Name="Religion_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Religion_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_PERSON_RELIGION" FromRole="RELIGION" ToRole="PERSON" />
+  </EntityType>
+  <EntityType Name="RESERVATION">
+    <Key>
+      <PropertyRef Name="Reservation_Id" />
+    </Key>
+    <Property Name="Reservation_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Reservation_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Customer_Id" Type="Int64" />
+    <Property Name="Check_In" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Check_Out" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Is_Checked_Out" Type="Boolean" Nullable="false" />
+    <Property Name="Additional_Information" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Reservation_Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CUSTOMER" Relationship="INVENTORYModel.FK_RESERVATION_CUSTOMER" FromRole="RESERVATION" ToRole="CUSTOMER" />
+    <NavigationProperty Name="RESERVATION_TYPE" Relationship="INVENTORYModel.FK_RESERVATION_RESERVATION_TYPE" FromRole="RESERVATION" ToRole="RESERVATION_TYPE" />
+  </EntityType>
+  <EntityType Name="RESERVATION_TYPE">
+    <Key>
+      <PropertyRef Name="Reservation_Type_Id" />
+    </Key>
+    <Property Name="Reservation_Type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Reservation_Type_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RESERVATION" Relationship="INVENTORYModel.FK_RESERVATION_RESERVATION_TYPE" FromRole="RESERVATION_TYPE" ToRole="RESERVATION" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Role_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role_Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SALARY_SCHEME" Relationship="INVENTORYModel.FK_SALARY_SCHEME_ROLE" FromRole="ROLE" ToRole="SALARY_SCHEME" />
+    <NavigationProperty Name="USER" Relationship="INVENTORYModel.FK_USER_ROLE" FromRole="ROLE" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="SALARY">
+    <Key>
+      <PropertyRef Name="Salary_Id" />
+    </Key>
+    <Property Name="Salary_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Credit_Balance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Unauthorised_Credit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Staff_Credit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Surcharge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Attendance" Type="Int32" />
+    <Property Name="Deduction" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Month" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Bonus" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Final_Balance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Salary1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_SALARY_STAFF" FromRole="SALARY" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="SALARY_SCHEME">
+    <Key>
+      <PropertyRef Name="Salary_Scheme_Id" />
+    </Key>
+    <Property Name="Salary_Scheme_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Role_Id" Type="Int32" Nullable="false" />
+    <Property Name="Basic_Salary_Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="ROLE" Relationship="INVENTORYModel.FK_SALARY_SCHEME_ROLE" FromRole="SALARY_SCHEME" ToRole="ROLE" />
+  </EntityType>
+  <EntityType Name="SALES">
+    <Key>
+      <PropertyRef Name="Sales_Id" />
+    </Key>
+    <Property Name="Sales_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date_Of_Transaction" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sales_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Order_Id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="ORDER" Relationship="INVENTORYModel.FK_SALES_ORDER" FromRole="SALES" ToRole="ORDER" />
+    <NavigationProperty Name="SALES_TYPE" Relationship="INVENTORYModel.FK_SALES_SALES_TYPE" FromRole="SALES" ToRole="SALES_TYPE" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_SALES_STAFF" FromRole="SALES" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="SALES_TYPE">
+    <Key>
+      <PropertyRef Name="Sales_Type_Id" />
+    </Key>
+    <Property Name="Sales_Type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sales_Type_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SALES" Relationship="INVENTORYModel.FK_SALES_SALES_TYPE" FromRole="SALES_TYPE" ToRole="SALES" />
+  </EntityType>
+  <EntityType Name="SEX">
+    <Key>
+      <PropertyRef Name="Sex_Id" />
+    </Key>
+    <Property Name="Sex_Id" Type="Int32" Nullable="false" />
+    <Property Name="Sex_Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_PERSON_SEX" FromRole="SEX" ToRole="PERSON" />
+  </EntityType>
+  <EntityType Name="STAFF">
+    <Key>
+      <PropertyRef Name="Staff_Id" />
+    </Key>
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Id" Type="Int64" Nullable="false" />
+    <Property Name="Account_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Person_Id" Type="Int64" Nullable="false" />
+    <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_STAFF" FromRole="STAFF" ToRole="CATALOG" />
+    <NavigationProperty Name="HAPPY_HOUR" Relationship="INVENTORYModel.FK_HAPPY_HOUR_STAFF" FromRole="STAFF" ToRole="HAPPY_HOUR" />
+    <NavigationProperty Name="PAYMENT" Relationship="INVENTORYModel.FK_PAYMENT_STAFF" FromRole="STAFF" ToRole="PAYMENT" />
+    <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_STAFF_PERSON" FromRole="STAFF" ToRole="PERSON" />
+    <NavigationProperty Name="SALARY1" Relationship="INVENTORYModel.FK_SALARY_STAFF" FromRole="STAFF" ToRole="SALARY" />
+    <NavigationProperty Name="SALES" Relationship="INVENTORYModel.FK_SALES_STAFF" FromRole="STAFF" ToRole="SALES" />
+    <NavigationProperty Name="USER" Relationship="INVENTORYModel.FK_STAFF_USER" FromRole="STAFF" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="STATE">
+    <Key>
+      <PropertyRef Name="State_Id" />
+    </Key>
+    <Property Name="State_Id" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="State_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nationality_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LOCAL_GOVERNMENT" Relationship="INVENTORYModel.FK_LOCAL_GOVERNMENT_STATE" FromRole="STATE" ToRole="LOCAL_GOVERNMENT" />
+    <NavigationProperty Name="NATIONALITY" Relationship="INVENTORYModel.FK_STATE_NATIONALITY" FromRole="STATE" ToRole="NATIONALITY" />
+    <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_PERSON_STATE" FromRole="STATE" ToRole="PERSON" />
+  </EntityType>
+  <EntityType Name="STOCK">
+    <Key>
+      <PropertyRef Name="Stock_Id" />
+    </Key>
+    <Property Name="Stock_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Id" Type="Int64" Nullable="false" />
+    <Property Name="Quantity_Left" Type="Int32" Nullable="false" />
+    <Property Name="Last_Update_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_STOCK_PRODUCT" FromRole="STOCK" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="STOCK_TYPE">
+    <Key>
+      <PropertyRef Name="Stock_Type_Id" />
+    </Key>
+    <Property Name="Stock_Type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Stock_Type_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_STOCK_TYPE" FromRole="STOCK_TYPE" ToRole="CATALOG" />
+  </EntityType>
+  <EntityType Name="SUPPLIER">
+    <Key>
+      <PropertyRef Name="Supplier_Id" />
+    </Key>
+    <Property Name="Supplier_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Supplier_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Company_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Additional_Information" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_SUPPLIER" FromRole="SUPPLIER" ToRole="CATALOG" />
+  </EntityType>
+  <EntityType Name="UNIT">
+    <Key>
+      <PropertyRef Name="Unit_Id" />
+    </Key>
+    <Property Name="Unit_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Unit_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Unit_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCT_UNIT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_UNIT" FromRole="UNIT" ToRole="PRODUCT_UNIT" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Role_Id" Type="Int32" Nullable="false" />
+    <Property Name="Last_Login_Date" Type="DateTime" Precision="3" />
+    <Property Name="Image_File_Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ROLE" Relationship="INVENTORYModel.FK_USER_ROLE" FromRole="USER" ToRole="ROLE" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_STAFF_USER" FromRole="USER" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="VW_ACTIVITY_LOG">
+    <Key>
+      <PropertyRef Name="Product_Id" />
+      <PropertyRef Name="Date_Of_Transaction" />
+      <PropertyRef Name="Stock_Type_Id" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="Staff_Id" />
+      <PropertyRef Name="Product_Name" />
+      <PropertyRef Name="Supplier_Name" />
+      <PropertyRef Name="Company_Name" />
+      <PropertyRef Name="Stock_Type_Name" />
+      <PropertyRef Name="First_Name" />
+      <PropertyRef Name="Last_Name" />
+    </Key>
+    <Property Name="Product_Id" Type="Int64" Nullable="false" />
+    <Property Name="Date_Of_Transaction" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Stock_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Supplier_Id" Type="Int32" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Product_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Company_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Stock_Type_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_PAYMENT">
+    <Key>
+      <PropertyRef Name="Payment_Id" />
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Payment_Type_id" />
+      <PropertyRef Name="Payment_Type_Name" />
+      <PropertyRef Name="Amount" />
+      <PropertyRef Name="Order_No" />
+      <PropertyRef Name="Paid" />
+      <PropertyRef Name="Last_Update_Time" />
+      <PropertyRef Name="Customer_Id" />
+      <PropertyRef Name="First_Name" />
+      <PropertyRef Name="Last_Name" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="Expr2" />
+    </Key>
+    <Property Name="Payment_Id" Type="Int32" Nullable="false" />
+    <Property Name="User_Id" Type="Int64" Nullable="false" />
+    <Property Name="Payment_Type_id" Type="Int32" Nullable="false" />
+    <Property Name="Payment_Type_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Outstanding_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Order_No" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="Last_Update_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Expected_Payment_Date" Type="DateTime" Precision="3" />
+    <Property Name="Customer_Id" Type="Int64" Nullable="false" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Expr1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Expr2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_SALES">
+    <Key>
+      <PropertyRef Name="Date_Of_Transaction" />
+      <PropertyRef Name="Sales_Type_Id" />
+      <PropertyRef Name="Staff_Id" />
+      <PropertyRef Name="Order_Id" />
+      <PropertyRef Name="First_Name" />
+      <PropertyRef Name="Last_Name" />
+      <PropertyRef Name="Amount" />
+      <PropertyRef Name="Product_Name" />
+    </Key>
+    <Property Name="Date_Of_Transaction" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sales_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Order_Id" Type="Int64" Nullable="false" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Total_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Checked_Out" Type="Boolean" />
+    <Property Name="Product_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Happy_Hour_Price" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="VW_STOCK">
+    <Key>
+      <PropertyRef Name="Quantity_Left" />
+      <PropertyRef Name="Last_Update_Time" />
+      <PropertyRef Name="Stock_Id" />
+      <PropertyRef Name="Product_Name" />
+      <PropertyRef Name="Cost_Price" />
+      <PropertyRef Name="Selling_Price" />
+      <PropertyRef Name="Product_Id" />
+    </Key>
+    <Property Name="Quantity_Left" Type="Int32" Nullable="false" />
+    <Property Name="Last_Update_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Stock_Id" Type="Int32" Nullable="false" />
+    <Property Name="Product_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cost_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Selling_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Barcode_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Product_Id" Type="Int64" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BRANCH_BUSINESS">
+    <End Type="INVENTORYModel.BUSINESS" Role="BUSINESS" Multiplicity="1" />
+    <End Type="INVENTORYModel.BRANCH" Role="BRANCH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BUSINESS">
+        <PropertyRef Name="Business_Id" />
+      </Principal>
+      <Dependent Role="BRANCH">
+        <PropertyRef Name="Business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CATALOG_PRODUCT">
+    <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+    <End Type="INVENTORYModel.CATALOG" Role="CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="Product_Id" />
+      </Principal>
+      <Dependent Role="CATALOG">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CATALOG_PRODUCT_UNIT">
+    <End Type="INVENTORYModel.PRODUCT_UNIT" Role="PRODUCT_UNIT" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.CATALOG" Role="CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT_UNIT">
+        <PropertyRef Name="Product_Unit_Id" />
+      </Principal>
+      <Dependent Role="CATALOG">
+        <PropertyRef Name="Product_Unit_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CATALOG_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.CATALOG" Role="CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="CATALOG">
+        <PropertyRef Name="Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CATALOG_STOCK_TYPE">
+    <End Type="INVENTORYModel.STOCK_TYPE" Role="STOCK_TYPE" Multiplicity="1" />
+    <End Type="INVENTORYModel.CATALOG" Role="CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STOCK_TYPE">
+        <PropertyRef Name="Stock_Type_Id" />
+      </Principal>
+      <Dependent Role="CATALOG">
+        <PropertyRef Name="Stock_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CATALOG_SUPPLIER">
+    <End Type="INVENTORYModel.SUPPLIER" Role="SUPPLIER" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.CATALOG" Role="CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUPPLIER">
+        <PropertyRef Name="Supplier_Id" />
+      </Principal>
+      <Dependent Role="CATALOG">
+        <PropertyRef Name="Supplier_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUSTOMER_PERSON">
+    <End Type="INVENTORYModel.PERSON" Role="PERSON" Multiplicity="1" />
+    <End Type="INVENTORYModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PERSON">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="CUSTOMER">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAYMENT_CUSTOMER">
+    <End Type="INVENTORYModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="PAYMENT">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RESERVATION_CUSTOMER">
+    <End Type="INVENTORYModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.RESERVATION" Role="RESERVATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="RESERVATION">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HAPPY_HOUR_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.HAPPY_HOUR" Role="HAPPY_HOUR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="HAPPY_HOUR">
+        <PropertyRef Name="Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LOCAL_GOVERNMENT_STATE">
+    <End Type="INVENTORYModel.STATE" Role="STATE" Multiplicity="1" />
+    <End Type="INVENTORYModel.LOCAL_GOVERNMENT" Role="LOCAL_GOVERNMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STATE">
+        <PropertyRef Name="State_Id" />
+      </Principal>
+      <Dependent Role="LOCAL_GOVERNMENT">
+        <PropertyRef Name="State_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERSON_LOCAL_GOVERNMENT">
+    <End Type="INVENTORYModel.LOCAL_GOVERNMENT" Role="LOCAL_GOVERNMENT" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.PERSON" Role="PERSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOCAL_GOVERNMENT">
+        <PropertyRef Name="Local_Government_Id" />
+      </Principal>
+      <Dependent Role="PERSON">
+        <PropertyRef Name="Local_Government_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERSON_NATIONALITY">
+    <End Type="INVENTORYModel.NATIONALITY" Role="NATIONALITY" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.PERSON" Role="PERSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NATIONALITY">
+        <PropertyRef Name="Nationality_Id" />
+      </Principal>
+      <Dependent Role="PERSON">
+        <PropertyRef Name="Nationality_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STATE_NATIONALITY">
+    <End Type="INVENTORYModel.NATIONALITY" Role="NATIONALITY" Multiplicity="1" />
+    <End Type="INVENTORYModel.STATE" Role="STATE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NATIONALITY">
+        <PropertyRef Name="Nationality_Id" />
+      </Principal>
+      <Dependent Role="STATE">
+        <PropertyRef Name="Nationality_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_PRODUCT">
+    <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.ORDER" Role="ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="Product_Id" />
+      </Principal>
+      <Dependent Role="ORDER">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_ORDER">
+    <End Type="INVENTORYModel.ORDER" Role="ORDER" Multiplicity="1" />
+    <End Type="INVENTORYModel.SALES" Role="SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER">
+        <PropertyRef Name="Order_Id" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAYMENT_PAYMENT_TYPE">
+    <End Type="INVENTORYModel.PAYMENT_TYPE" Role="PAYMENT_TYPE" Multiplicity="1" />
+    <End Type="INVENTORYModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAYMENT_TYPE">
+        <PropertyRef Name="Payment_Type_Id" />
+      </Principal>
+      <Dependent Role="PAYMENT">
+        <PropertyRef Name="Payment_Type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAYMENT_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="PAYMENT">
+        <PropertyRef Name="Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERSON_RELIGION">
+    <End Type="INVENTORYModel.RELIGION" Role="RELIGION" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.PERSON" Role="PERSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RELIGION">
+        <PropertyRef Name="Religion_Id" />
+      </Principal>
+      <Dependent Role="PERSON">
+        <PropertyRef Name="Religion_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERSON_SEX">
+    <End Type="INVENTORYModel.SEX" Role="SEX" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.PERSON" Role="PERSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SEX">
+        <PropertyRef Name="Sex_Id" />
+      </Principal>
+      <Dependent Role="PERSON">
+        <PropertyRef Name="Sex_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERSON_STATE">
+    <End Type="INVENTORYModel.STATE" Role="STATE" Multiplicity="0..1" />
+    <End Type="INVENTORYModel.PERSON" Role="PERSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STATE">
+        <PropertyRef Name="State_Id" />
+      </Principal>
+      <Dependent Role="PERSON">
+        <PropertyRef Name="State_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STAFF_PERSON">
+    <End Type="INVENTORYModel.PERSON" Role="PERSON" Multiplicity="1" />
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSON">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STAFF">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_PRODUCT_CATEGORY">
+    <End Type="INVENTORYModel.PRODUCT_CATEGORY" Role="PRODUCT_CATEGORY" Multiplicity="1" />
+    <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT_CATEGORY">
+        <PropertyRef Name="Category_Id" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_UNIT_PRODUCT">
+    <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+    <End Type="INVENTORYModel.PRODUCT_UNIT" Role="PRODUCT_UNIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="Product_Id" />
+      </Principal>
+      <Dependent Role="PRODUCT_UNIT">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOCK_PRODUCT">
+    <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+    <End Type="INVENTORYModel.STOCK" Role="STOCK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="Product_Id" />
+      </Principal>
+      <Dependent Role="STOCK">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_UNIT_UNIT">
+    <End Type="INVENTORYModel.UNIT" Role="UNIT" Multiplicity="1" />
+    <End Type="INVENTORYModel.PRODUCT_UNIT" Role="PRODUCT_UNIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UNIT">
+        <PropertyRef Name="Unit_Id" />
+      </Principal>
+      <Dependent Role="PRODUCT_UNIT">
+        <PropertyRef Name="Unit_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RESERVATION_RESERVATION_TYPE">
+    <End Type="INVENTORYModel.RESERVATION_TYPE" Role="RESERVATION_TYPE" Multiplicity="1" />
+    <End Type="INVENTORYModel.RESERVATION" Role="RESERVATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESERVATION_TYPE">
+        <PropertyRef Name="Reservation_Type_Id" />
+      </Principal>
+      <Dependent Role="RESERVATION">
+        <PropertyRef Name="Reservation_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALARY_SCHEME_ROLE">
+    <End Type="INVENTORYModel.ROLE" Role="ROLE" Multiplicity="1" />
+    <End Type="INVENTORYModel.SALARY_SCHEME" Role="SALARY_SCHEME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE">
+        <PropertyRef Name="Role_Id" />
+      </Principal>
+      <Dependent Role="SALARY_SCHEME">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ROLE">
+    <End Type="INVENTORYModel.ROLE" Role="ROLE" Multiplicity="1" />
+    <End Type="INVENTORYModel.USER" Role="USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE">
+        <PropertyRef Name="Role_Id" />
+      </Principal>
+      <Dependent Role="USER">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALARY_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.SALARY" Role="SALARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="SALARY">
+        <PropertyRef Name="Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_SALES_TYPE">
+    <End Type="INVENTORYModel.SALES_TYPE" Role="SALES_TYPE" Multiplicity="1" />
+    <End Type="INVENTORYModel.SALES" Role="SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SALES_TYPE">
+        <PropertyRef Name="Sales_Type_Id" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="Sales_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.SALES" Role="SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STAFF_USER">
+    <End Type="INVENTORYModel.USER" Role="USER" Multiplicity="1" />
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="STAFF">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

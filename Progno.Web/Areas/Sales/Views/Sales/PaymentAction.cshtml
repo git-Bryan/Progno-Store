@@ -1,0 +1,159 @@
+﻿@model Progno.Web.Areas.Sales.ViewModel.SalesViewModel
+
+@{
+    ViewBag.Title = "PaymentAction";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="row">
+    @using (Html.BeginForm("PaymentAction", "Sales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="panel panel-info">
+                <div class="panel-heading h2">Payment Info</div>
+                <div class="panel-body">
+                    @if (TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+                    }
+                    @Html.HiddenFor(model=>model.Payment.Id)
+                    @Html.HiddenFor(m=>m.Payment.ExpectedPaymentDate)
+                    @Html.HiddenFor(model => model.Payment.Paid)
+                    @Html.HiddenFor(model => model.Payment.OrderNo)
+
+                    @Html.HiddenFor(model => model.Payment.Customer.Person.Id)
+                    @Html.HiddenFor(model => model.Payment.Staff.Id)
+                    @Html.HiddenFor(model => model.Payment.PaymentType.Id)
+
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.User,"Sales Rep")</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Payment.Staff.Person.FullName, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                        @Html.ValidationMessageFor(model => model.Payment.Staff.Person, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Payment.Customer)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Payment.Customer.Person.FullName, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Payment.PaymentType)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Payment.PaymentType.Name, new { htmlAttributes = new { @class = "form-control span7", @required = "required", @readonly="readonly"} })
+                                        @*@Html.ValidationMessageFor(model => model.Payment.PaymentType, null, new { @class = "text-danger" })*@
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Payment.Amount, "Total Amount")</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Payment.Amount, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                        @Html.ValidationMessageFor(model => model.Payment.Amount, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Payment.AmountTendered, "Amount Paid")</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Payment.AmountTendered, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                        @Html.ValidationMessageFor(model => model.Payment.AmountTendered, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Payment.OutstandingAmount, "Remaining Amount")</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Payment.OutstandingAmount, new { htmlAttributes = new { @class = "form-control span7",} })
+                                        @Html.ValidationMessageFor(model => model.Payment.OutstandingAmount, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.ClearPayment,"Payment to be Paid")</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.ClearPayment, new { htmlAttributes = new { @class = "form-control span7" } })
+                                        @Html.ValidationMessageFor(model => model.ClearPayment, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                   
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                        Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+

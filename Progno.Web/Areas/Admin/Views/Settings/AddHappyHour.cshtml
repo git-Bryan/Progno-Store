@@ -1,0 +1,136 @@
+﻿@model Progno.Web.Areas.Admin.ViewModel.SettingsViewModel
+
+@{
+    ViewBag.Title = "AddHappyHour";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<!-- Prerequisites: jQuery and jQuery UI Stylesheet -->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+<!-- Plugin files below -->
+<link href="~/Content/jquery.ptTimeSelect.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.ptTimeSelect.js"></script>
+
+<div >
+    @using (Html.BeginForm("AddHappyHour", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="panel panel-info">
+                <div class="panel-heading "><h3>Add Happy Hour</h3> </div>
+                <div class="panel-body">
+                    @if (TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+                    }
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.HappyHour.Date)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group ">
+                                        @Html.EditorFor(model => model.HappyHour.Date, new { htmlAttributes = new { @class = "form-control  datepicker", @required = "required", } })
+                                        @Html.ValidationMessageFor(model => model.HappyHour.Date, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.HappyHour.StartTime)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.HappyHour.StartTime, new {htmlAttributes = new {@class = "form-control ", @required = "required",}})
+                                        @Html.ValidationMessageFor(model => model.HappyHour.StartTime, null, new {@class = "text-danger"})
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                  
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.HappyHour.EndTime)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.HappyHour.EndTime, new { htmlAttributes = new { @class = "form-control ", @required = "required", } })
+                                        @Html.ValidationMessageFor(model => model.HappyHour.EndTime, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.HappyHour.Activated)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        @Html.CheckBoxFor(model => model.HappyHour.Activated, new { htmlAttributes = new { @class = ""} })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+
+                    <br />
+                    <br />
+                    <div id="sample2" class="ui-widget-content" style="padding: .5em;">
+                        <p>
+                            <label>Start</label><br />
+                            <input name="s2Time2" value="" />
+                        </p>
+                        <p id="sample2-data">
+                            <div style="font-weight: bold;">Event Data:</div>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                        Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+        $(document).ready(function(){
+            // find the input fields and apply the time select to them.
+            $('#sample2 input').ptTimeSelect({
+                onBeforeShow: function(i){
+                    $('#sample2-data')
+                        .append(
+                            'onBeforeShow(event) Input field: [' +
+                            $(i).attr('name') +
+                            "], value: [" +
+                            $(i).val() +
+                            "]<br>");
+                },
+                onClose: function(i) {
+                    $('#sample2-data')
+                        .append(
+                            'onClose(event)Time selected: ' +
+                            $(i).val() +
+                            "<br>");
+                }
+            }); //end ptTimeSelect()
+        }); // end ready()
+</script>

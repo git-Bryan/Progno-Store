@@ -1,0 +1,223 @@
+﻿@model Progno.Web.Areas.Admin.ViewModel.ProductViewModel
+
+@{
+    ViewBag.Title = "StockProduct";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    function ProductDrop() {
+        if ($('#Category').val() != "") {
+            $("#Product").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CategoryChangeForProduct", "Product")',
+                dataType: 'json',
+                data: { id: $("#Category").val() },
+                success: function (values) {
+                    $("#Product").append('<option value="' + '""' + '">' +
+                        '-- Select Product --' + '</option>');
+                    $.each(values, function (i, values) {
+                        $("#Product").append('<option value="' + values.Value + '">' +
+                            values.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve dropdown' + ex);
+                }
+            });
+        } else {
+            $("#Product").empty();
+        }
+    }
+
+   
+    
+
+    function category() {
+        $("#existingcat").hide();
+        $("#newcat").show();
+        $("#catbutton").hide();
+        $("#existingcatbutton").show();
+        $("#exist").empty();
+
+    }
+    function excategory() {
+        $("#newcat").hide();
+        $("#catbutton").show();
+        $("#existingcatbutton").hide();
+        $("#existingcat").show();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("LoadSupplier", "Product")',
+            dataType: 'json',
+            data: { id: $("#exist").val() },
+            success: function (values) {
+                $("#exist").append('<option value="' + '""' + '">' +
+                    '-- Select --' + '</option>');
+                $.each(values, function (i, values) {
+                    $("#exist").append('<option value="' + values.Value + '">' +
+                        values.Text + '</option>');
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve dropdown' + ex);
+            }
+        });
+    }
+
+</script>
+
+<div class="row">
+    @using (Html.BeginForm("StockProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="panel panel-info">
+                <div class="panel-heading h2">Stock Product</div>
+                <div class="panel-body">
+                    @if (TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+                    }
+                  
+                    
+
+                    <div class="row">
+                        <div  class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.ProductCategory)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.DropDownListFor(f => f.ProductCategory.Id, (IEnumerable<SelectListItem>)ViewBag.ProductCategory, new { @class = "form-control ", @id = "Category", @onchange = "ProductDrop()", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.ProductCategory, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                      
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Stock.Product)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.DropDownListFor(model => model.Stock.Product.Id, (IEnumerable<SelectListItem>)ViewBag.Products, new { @class = "form-control", @id = "Product", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.Stock.Product.Id, "", new { @class = "text-danger" })
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.StockType)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.DropDownListFor(model => model.StockType.Id, (IEnumerable<SelectListItem>) ViewBag.StockType, new {@class = "form-control", @required = "required"})
+                                        @Html.ValidationMessageFor(model => model.StockType.Id, "", new {@class = "text-danger"})
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Stock.QuantityLeft, "Quantity")</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.EditorFor(model => model.Stock.QuantityLeft, new {htmlAttributes = new {@class = "form-control", @placeholder = "Quantity"}})
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="existingcat" class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Catalog.Supplier)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        @Html.DropDownListFor(f => f.Catalog.Supplier.Id, (IEnumerable<SelectListItem>) ViewBag.Supplier, new {@class = "form-control ", @id = "exist",})
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="newcat" style="display: none;">
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Supplier.Name, "Supplier Name")</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                            @Html.EditorFor(model => model.Supplier.Name, new {htmlAttributes = new {@class = "form-control", @placeholder = "Supplier Name", @id = "new"}})
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div><br/>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Supplier.CompanyName, "Company Name")</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                            @Html.EditorFor(model => model.Supplier.CompanyName, new {htmlAttributes = new {@class = "form-control", @placeholder = "Company Name", @id = "new"}})
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div><br/>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Supplier.AdditionalInformation, "Additional Info")</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                            @Html.EditorFor(model => model.Supplier.AdditionalInformation, new {htmlAttributes = new {@class = "form-control",}})
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div><br/>
+
+                            </div>
+                            <div class="row">
+                                <p id="catbutton" onclick="category()" class="btn btn-sm btn-success">New Supplier</p>
+                                <p style="display: none;" id="existingcatbutton" onclick="excategory()" class="btn btn-sm btn-info">existing Category</p>
+  
+                            </div>
+                           
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                        Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

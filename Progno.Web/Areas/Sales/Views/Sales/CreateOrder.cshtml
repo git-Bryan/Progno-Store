@@ -1,0 +1,219 @@
+﻿@using Progno.Model.Model
+@model Progno.Web.Areas.Sales.ViewModel.SalesViewModel
+@{
+    ViewBag.Title = "CreateOrder";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    function ProductDrop() {
+        if ($('#Category').val() != "") {
+            $("#Product").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CategoryChangeForProduct", "Sales")',
+                dataType: 'json',
+                data: { id: $("#Category").val() },
+                success: function (values) {
+                    $("#Product").append('<option value="' + '""' + '">' +
+                        '-- Select Product --' + '</option>');
+                    $.each(values, function (i, values) {
+                        $("#Product").append('<option value="' + values.Value + '">' +
+                            values.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve dropdown' + ex);
+                }
+            });
+        } else {
+            $("#Product").empty();
+        }
+    }
+
+    function GetClass() {
+        var values = [$("#Product").val(), $("#Quantity").val()]
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("CreateOrder", "Sales"))",
+            data: { formDetails: values },
+            success: function (result) {
+                $('#partial').html(result);
+
+            },
+            error: function () {
+                alert("error");
+                //$("#load").hide();
+            }
+        });
+    }
+  
+ 
+    function SearchProduct() {
+
+        var value = [$("#Search1").val()]
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("Search", "Sales"))",
+            data: { p: value },
+            success: function(result) {
+                $('#partial1').html(result);
+
+            },
+            error: function() {
+                alert("error");
+                //$("#load").hide();
+            }
+        });
+    }
+
+    $(document).ready(function() {
+
+        $("#Search1").autocomplete({
+
+            source: "@Url.Action("AutoCompleteSearch", "Sales", new { area = "Sales" })",
+            autoFill: true,
+            selectFirst: true,
+            width: '240px',
+        background:'blue'
+        });
+    });
+</script>
+<div class="col-md-12">
+    @if (Model.HappyHour!= null)
+    {
+       if (Model.HappyHour.Activated == true)
+         {
+
+             <div class="alert alert-block">
+                 <marquee>
+                     <h3>Hurray!!!. Happy hour Moment is ON. Sales within this period is at a Subsidized Price</h3>
+                 </marquee>
+             </div>
+
+         }
+    }
+
+    <div class="panel panel-default">
+        <div class="col-md-6">
+
+            <div class="col-md-12 ">
+                <div method="Post">
+                    <div class="panel panel-default">
+                        <div class="input-group">
+                            <span class="input-group-btn ">
+                                <input type="text" name="q" class="form-control" placeholder="Search Product..." id="Search1" onchange="SearchProduct()">
+
+                                @*<button onclick="SearchProduct()" name="search" class="btn btn-flat"><i class="fa fa-search"></i></button>*@
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="resultlayout" class="col-md-12" style="padding-bottom: 200px; display: none"></div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div id="partial1"></div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <div>
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <div class="panel panel-info">
+                        <h2 class="panel-heading ">
+                            <i class="fa fa-fw fa-shopping-cart"></i>Create Order
+                        </h2>
+                        <div class="panel-body">
+                            @if (TempData["Message"] != null)
+                            {
+                                @Html.Partial("_Message", (Progno.Model.Model.Message) TempData["Message"])
+                            }
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ProductCategory, "Product Category", new {@class = "col-sm-4 control-label "})
+                                <div class="col-sm-8">
+                                    @Html.DropDownListFor(model => model.ProductCategory.Id, (IEnumerable<SelectListItem>) ViewBag.ProductCategory, new {@class = "form-control", @id = "Category", @onchange = "ProductDrop()", @required = "required"})
+                                    @Html.ValidationMessageFor(model => model.ProductCategory.Id, "", new {@class = "text-danger"})
+                                </div>
+
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Product, "Product ", new {@class = "col-sm-4 control-label "})
+                                <div class="col-sm-8">
+                                    @Html.DropDownListFor(model => model.Product.Id, (IEnumerable<SelectListItem>) ViewBag.Products, new {@class = "form-control", @id = "Product", @required = "required"})
+                                    @Html.ValidationMessageFor(model => model.Product.Id, "", new {@class = "text-danger"})
+                                </div>
+
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Quantity, "Quantity ", new {@class = "col-sm-4 control-label "})
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.Quantity, new {htmlAttributes = new {@class = "form-control", @id = "Quantity"}})
+                                    @Html.ValidationMessageFor(model => model.Product.Id, "", new {@class = "text-danger"})
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="form-group">
+                                <button type="submit" onclick="GetClass()" class="btn btn-success " style="float: right">
+                                    <i class="fa fa-cart-arrow-down">
+                                        Add to Cart
+                                    </i>
+                                </button>
+
+                            </div>
+
+
+
+
+
+                            <br/>
+
+                        </div>
+                        <div class="panel-footer">
+
+                            <a href="/Sales/Sales/CheckedOut" class="btn btn-primary" style="color: white">
+                                <i class="fa fa-arrow-circle-right"></i>
+                                Proceed to CheckOut
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    @*}*@
+                </div>
+            </div>
+            <div class="12">
+                <div id="partial"></div> @*Load the Partial View Here*@
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

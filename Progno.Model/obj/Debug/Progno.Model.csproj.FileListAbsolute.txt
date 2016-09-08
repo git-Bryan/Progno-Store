@@ -1,0 +1,10 @@
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\bin\Debug\Progno.Model.dll.config
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\bin\Debug\Progno.Model.dll
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\bin\Debug\Progno.Model.pdb
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\bin\Debug\EntityFramework.dll
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\bin\Debug\EntityFramework.xml
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\obj\Debug\Progno.Model.dll
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\obj\Debug\Progno.Model.pdb
+C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\obj\Debug\Progno.Model.csprojResolveAssemblyReference.cache

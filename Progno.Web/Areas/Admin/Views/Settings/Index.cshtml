@@ -1,0 +1,766 @@
+﻿@model Progno.Web.Areas.Admin.ViewModel.SettingsViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<script>
+    function show(input) {
+
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#user_img').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function business() {
+        $("#Business").show();
+        $("#Branch").hide();
+        $("#Reservation").hide();
+        $("#User").hide();
+        $("#Payment").hide();
+        $("#Discount").hide();
+        $("#New").hide();
+    }
+    function branch() {
+        $("#Business").hide();
+        $("#Branch").show();
+        $("#Reservation").hide();
+        $("#User").hide();
+        $("#Payment").hide();
+        $("#Discount").hide();
+        $("#New").hide();
+    }
+    function reservation() {
+        $("#Business").hide();
+        $("#Branch").hide();
+        $("#Reservation").show();
+        $("#User").hide();
+        $("#Payment").hide();
+        $("#Discount").hide();
+        $("#New").hide();
+    }
+    function user() {
+        $("#Business").hide();
+        $("#Branch").hide();
+        $("#Reservation").hide();
+        $("#User").show();
+        $("#Payment").hide();
+        $("#Discount").hide();
+        $("#New").hide();
+    }
+    function payment() {
+        $("#Business").hide();
+        $("#Branch").hide();
+        $("#Reservation").hide();
+        $("#User").hide();
+        $("#Payment").show();
+        $("#Discount").hide();
+        $("#New").hide();
+    }
+    function discount() {
+        $("#Business").hide();
+        $("#Branch").hide();
+        $("#Reservation").hide();
+        $("#User").hide();
+        $("#Payment").hide();
+        $("#Discount").show();
+        $("#New").hide();
+    }
+    function newcustomer() {
+        $("#Business").hide();
+        $("#Branch").hide();
+        $("#Reservation").hide();
+        $("#User").hide();
+        $("#Payment").hide();
+        $("#Discount").hide();
+        $("#New").show();
+    }
+   
+</script>
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+        <div class="panel-heading "><h3><span class="fa fa-gears"></span>Settings</h3></div>
+        <div class="panel-body">
+            <div class="col-md-8 col-md-offset-4">
+                @if (TempData["Message"] != null)
+            {
+                    @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+            }
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <button id="business" class="btn btn-large btn-info col-md-12" onclick="business()">
+                        <span class="fa fa-gear"></span> Edit Company Detail
+                    </button>
+                    <br /><br /><br />
+                    <button id="branch" class="btn  btn-large btn-info col-md-12" onclick="branch()">
+                        <span class="fa fa-gear"></span>  Add Branches
+                    </button>
+                    <br /><br /><br />
+                    <button id="reservation" class="btn btn-large btn-info col-md-12" onclick="reservation()">
+                        <span class="fa fa-gear"></span> Reservation Setting
+                    </button>
+                    <br /><br /><br />
+                    <button id="user" class="btn btn-large btn-info col-md-12" onclick="user()">
+                        <span class="fa fa-gear"></span> Add Users
+                    </button>
+                    <br /><br /><br />
+                    <button id="newcustomer" class="btn btn-large btn-info col-md-12" onclick="newcustomer()">
+                        <!--Add customers-->
+                        <span class="fa fa-user"></span> Add Customers
+                    </button>
+                    <br /><br /><br />
+                    <button id="payment" class="btn btn-large btn-info col-md-12" onclick="payment()">
+                        <span class="fa fa-gear"></span> Payment Setting
+                    </button>
+                    <br /><br /><br />
+                    <button id="discount" class="btn btn-large btn-info col-md-12" onclick="discount()">
+                        <span class="fa fa-gear"></span>  Discount Setting
+                    </button>
+                </div>
+                <div class="col-md-9">
+                    <div id="Business" style="display: none" class="row">
+                        @using (Html.BeginForm("EditBusiness", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="col-md-12 ">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading h3">Add Company Detail</div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Business.Name)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Business.Name, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Business.Name, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Company Logo</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <input type="file" title="Upload Image" id="file" name="file" onchange="show(this)" class="form-control" />
+                                                            <img id="user_img" height="100" width="100" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-save"></i>
+                                            Submit
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                    }
+                    </div>
+                    <div id="Branch" style="display: none" class="row">
+                        @using (Html.BeginForm("BranchSetUp", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="col-md-12 ">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading h3">Add Branches</div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Branch.Name)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Branch.Name, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Branch.Name, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Branch.Location)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Branch.Location, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Branch.Location, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Branch.EmailAddress)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                                            @Html.EditorFor(model => model.Branch.EmailAddress, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Branch.EmailAddress, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Branch.PhoneNumber)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-phone"></span></span>
+                                                            @Html.EditorFor(model => model.Branch.PhoneNumber, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Branch.PhoneNumber, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Branch.AlternativeEmail)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                                            @Html.EditorFor(model => model.Branch.AlternativeEmail, new { htmlAttributes = new { @class = "form-control span7" } })
+                                                            @Html.ValidationMessageFor(model => model.Branch.AlternativeEmail, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Branch.AlternativePhone)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-phone"></span></span>
+                                                            @Html.EditorFor(model => model.Branch.AlternativePhone, new { htmlAttributes = new { @class = "form-control span7"} })
+                                                            @Html.ValidationMessageFor(model => model.Branch.AlternativePhone, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-save"></i>
+                                            Submit
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                    }
+                    </div>
+                    <div id="Reservation" style="display: none" class="row">
+                        @using (Html.BeginForm("ReservationSetUp", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="col-md-12 ">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading h3">Set Reservations</div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.ReservationType.Name)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.ReservationType.Name, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.ReservationType.Name, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.ReservationType.Description)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.ReservationType.Description, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.ReservationType.Description, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.ReservationType.Amount)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                                            @Html.EditorFor(model => model.ReservationType.Amount, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.ReservationType.Amount, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                      
+
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-save"></i>
+                                            Submit
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="User" style="display: none" class="row">
+                        @using (Html.BeginForm("UserSetUp", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="col-md-12 ">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading h3">Add Staff</div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Person.FirstName)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Person.FirstName, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Person.FirstName, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Person.LastName)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Person.LastName, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Person.LastName, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.User.Email)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                                            @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.User.Email, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.User.Role)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.DropDownListFor(f => f.User.Role.Id, (IEnumerable<SelectListItem>) ViewBag.Role, new {@class = "form-control "})
+                                                            @Html.ValidationMessageFor(model => model.User.Role, null, new {@class = "text-danger"})
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Person.Sex)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.DropDownListFor(f => f.Person.Sex.Id, (IEnumerable<SelectListItem>)ViewBag.Sex, new { @class = "form-control " })
+                                                            @Html.ValidationMessageFor(model => model.Person.Sex, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                       
+                                       
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Staff.AccountNumber)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Staff.AccountNumber, new {htmlAttributes = new {@class = "form-control span7", @required = "required",}})
+                                                            @Html.ValidationMessageFor(model => model.Staff.AccountNumber, null, new {@class = "text-danger"})
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Staff.Salary)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Staff.Salary, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Staff.Salary, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                       
+                                        <br />
+                                       <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Passport</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <input type="file" title="Upload Image" id="file" name="file" onchange="show(this)" class="form-control" />
+                                                            <img id="user_img" height="100" width="100" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           </div>
+
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-save"></i>
+                                            Submit
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="Payment" style="display: none" class="row">
+                        @using (Html.BeginForm("PaymentSetUp", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="col-md-12 ">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading h3">Set Payment</div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.PaymentType.Name)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.PaymentType.Name, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.PaymentType.Name, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.PaymentType.Description)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.PaymentType.Description, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.PaymentType.Description, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
+                                        <br />
+
+
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-save"></i>
+                                            Submit
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="Discount" style="display: none" class="row">
+                        @using (Html.BeginForm("DiscountSetUp", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="col-md-12 ">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading h3">Set Discounts</div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Discount.Name)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Discount.Name, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Discount.Name, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Discount.Description)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            @Html.EditorFor(model => model.Discount.Description, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Discount.Description, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.Discount.PercentageOff)</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                                            @Html.EditorFor(model => model.Discount.PercentageOff, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                                            @Html.ValidationMessageFor(model => model.Discount.PercentageOff, null, new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-save"></i>
+                                            Submit
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="row" id="New" style="display: none">
+                        <div class="panel panel-info">
+                            @using (Html.BeginForm("CustomerSetUp", "Settings", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="panel-heading h3">New Customer</div>
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Customer.FirstName)</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                        @Html.EditorFor(model => model.Customer.FirstName, new {htmlAttributes = new {@class = "form-control span7", @required = "required",}})
+                                                        @Html.ValidationMessageFor(model => model.Customer.FirstName, null, new {@class = "text-danger"})
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Customer.LastName)</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                        @Html.EditorFor(model => model.Customer.LastName, new {htmlAttributes = new {@class = "form-control span7", @required = "required",}})
+                                                        @Html.ValidationMessageFor(model => model.Customer.LastName, null, new {@class = "text-danger"})
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Customer.Email)</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                                        @Html.EditorFor(model => model.Customer.Email, new {htmlAttributes = new {@class = "form-control span7", @required = "required",}})
+                                                        @Html.ValidationMessageFor(model => model.Customer.Email, null, new {@class = "text-danger"})
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Customer.MaximumCredit,"Maximum Credit")</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                                        @Html.EditorFor(model => model.Customer.MaximumCredit, new {htmlAttributes = new {@class = "form-control ", @required = "required",}})
+                                                        @Html.ValidationMessageFor(model => model.Customer.MaximumCredit, null, new {@class = "text-danger"})
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Customer.Sex)</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                                       @Html.DropDownListFor(f => f.Customer.Sex.Id, (IEnumerable<SelectListItem>) ViewBag.Sex, new {@class = "form-control ", @required = "required"})
+                                                        @Html.ValidationMessageFor(model => model.Customer.Sex, null, new {@class = "text-danger"})
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+
+
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-save"></i>
+                                        Submit
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+

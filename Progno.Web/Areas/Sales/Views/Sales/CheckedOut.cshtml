@@ -1,0 +1,264 @@
+﻿@model Progno.Web.Areas.Sales.ViewModel.SalesViewModel
+
+@{
+    ViewBag.Title = "CheckedOut";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@*<script>
+        function Remove() {
+            var values = [$("#var1").val()]
+            $("#load").show();
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("RemoveOrder", "Sales"))",
+                data: { formDetails: values },
+                success: function (result) {
+                    $('#partial').html(result);
+
+                },
+                error: function () {
+                    alert("error");
+                    //$("#load").hide();
+                }
+            });
+        }
+
+    </script>*@
+<script>
+    function old() {
+        $('#New').hide();
+        $('#Old').show();
+    }
+    function newc() {
+        $('#New').show();
+        $('#Old').hide();
+    }
+
+    function AmountTendered() {
+        if ($('#PaymentType').val() != "" && $('#PaymentType').val() != 1) {
+            $('#Amount').show();
+            $('#Old').show();
+            $('#Date').show();
+            //$('#submitbutton').hide();
+        } else {
+            $('#Amount').hide();
+            $('#Date').hide();
+            $('#Old').hide();
+            //$('#submitbutton').show();
+        }
+    }
+</script>
+<br />
+<div class="panel panel-default">
+
+    @if (Model.Orders != null)
+    {
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-cart-arrow-down"></i> Shopping Cart
+                </div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <td>Product Name</td>
+                                <td>Unit Price</td>
+                                <td>Quantity</td>
+                                <td>Total</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Orders != null)
+                            {
+                                for (int i = 0; i < Model.Orders.Count; i++)
+                                {
+                                    <tr>
+                                        @Html.EditorFor(model => model.Orders[i].Id, new { htmlAttributes = new { @class = "form-control hidden", @id = "var1" } })
+                                        <td>@Model.Orders[i].Product.Name</td>
+                                        <td>@Model.Orders[i].Product.SellingPrice</td>
+                                        <td>@Model.Orders[i].Quantity</td>
+                                        <td>@Model.Orders[i].Amount</td>
+
+
+                                        @*<td>
+                                                <button type="submit" onclick="Remove()" class="btn btn-primary col-md-offset-2">
+                                                    <i class="fa fa-remove">
+                                                        Remove
+                                                    </i>
+                                                </button>
+                                            </td>*@
+                                        @*<td><i class="fa fa-cart-arrow-down"> @Html.ActionLink("Remove from Cart", "RemoveOrder", "Sales", new { Area = "Sales", orderId = @Model.Orders[i].Id }, null)</i></td>*@
+
+                                    </tr>
+
+
+                                }
+                            }
+
+                        </tbody>
+
+                    </table>
+                    <a href="/Sales/Sales/CreateOrder">
+                        <button class="btn btn-primary col-md-offset-2">
+                            <i class="fa fa-backward">
+                                Continue Shopping
+                            </i>
+                        </button>
+
+                    </a>
+                    @*<br /><br />
+                    <div class="col-md-offset-2">
+                        <p class="text-center">Please Choose Customer type and Payment Mode</p>
+                        <hr />
+                        <div class="text-center">
+                            <button id="old" class="btn btn-large btn-success" onclick="old()">
+                                <span class="fa fa-user-times"></span> Existing Customer
+                            </button>
+
+                            <button id="newc" class="btn btn-large btn-success" onclick="newc()">
+                                <span class="fa fa-user"></span>  New Customer
+                            </button> 
+                        </div>
+                      
+                    </div>*@
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="col-md-10 col-md-offset-1">
+    @using (Html.BeginForm("OrderVoucher", "Sales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="panel panel-info">
+            <div class="panel-heading"><h4>Payment Mode</h4></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">@Html.LabelFor(model => model.PaymentType)</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                    @Html.DropDownListFor(f => f.PaymentType.Id, (IEnumerable<SelectListItem>)ViewBag.PaymentType, new { @class = "form-control ", @required = "required", @id = "PaymentType", onchange = "AmountTendered()" })
+                                    @Html.ValidationMessageFor(model => model.PaymentType, null, new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div id="Amount" class="row" style="display: none">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">@Html.LabelFor(model => model.Payment.AmountTendered)</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                    @Html.EditorFor(model => model.Payment.AmountTendered, new { htmlAttributes = new { @class = "form-control "} })
+                                    @Html.ValidationMessageFor(model => model.Payment.AmountTendered, null, new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div id="Date" class="row" style="display: none">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">@Html.LabelFor(model => model.Payment.ExpectedPaymentDate)</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                    @Html.EditorFor(model => model.Payment.ExpectedPaymentDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                    @Html.ValidationMessageFor(model => model.Payment.ExpectedPaymentDate, null, new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="Old" style="display: none">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">@Html.LabelFor(model => model.OldCustomer.CustomerId, "Customer Id")</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                    @Html.EditorFor(model => model.OldCustomer.CustomerId, new { htmlAttributes = new { @class = "form-control ",  } })
+                                    @Html.ValidationMessageFor(model => model.OldCustomer.CustomerId, null, new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer" id="submitbutton">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-save"></i>
+                    Submit
+                </button>
+            </div>
+
+        </div>
+        <br />
+    }
+</div>
+
+@*<div id="Old" style="display: none" class="col-md-10 col-md-offset-1">
+    @using (Html.BeginForm("OrderVoucher", "Sales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="col-md-12 ">
+            <div class="panel panel-info">
+                <div class="panel-heading ">Existing Customer</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.OldCustomer.CustomerId, "Customer Id")</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                        @Html.EditorFor(model => model.OldCustomer.CustomerId, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                        @Html.ValidationMessageFor(model => model.OldCustomer.CustomerId, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                        Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>*@
+
+
+
+
+

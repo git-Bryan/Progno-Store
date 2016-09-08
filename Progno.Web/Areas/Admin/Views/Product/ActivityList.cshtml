@@ -1,0 +1,61 @@
+﻿@model Progno.Web.Areas.Admin.ViewModel.ProductViewModel
+
+@{
+    ViewBag.Title = "ActivityList";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@if (Model == null)
+{
+    <p style="text-align: center">No report to display</p>
+}
+else
+{
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Catalog</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Product Name</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Stock Type</th>
+                        <th>Sales Personnel</th>
+                        <th>Quantity Left</th>
+                        <th>Date</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int no = 0;}
+                    @for (int i = 0; i < Model.ActivityLogs.Count; i++)
+                    {
+                        no++;
+                        <tr>
+                            <td>@no</td>
+                            <td>@Model.ActivityLogs[i].ProductName</td>
+                            <td>@Model.ActivityLogs[i].Brand</td>
+                            <td>@Model.ActivityLogs[i].CategoryName</td>
+                            <td>@Model.ActivityLogs[i].StockTypeName</td>
+                            <td>@Model.ActivityLogs[i].FirstName&nbsp;&nbsp; @Model.ActivityLogs[i].LastName</td>
+                            <td>@Model.ActivityLogs[i].QuantityLeft</td>
+                            <td>@Model.ActivityLogs[i].DateOfTransaction</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            @Html.ActionLink("Download List", "DownloadActivityList", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+
+
+}
+
+

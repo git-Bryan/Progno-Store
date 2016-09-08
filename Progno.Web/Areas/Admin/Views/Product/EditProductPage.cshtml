@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "EditProductPage";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Progno.Model.Model
+@model Progno.Web.Areas.Sales.ViewModel.SalesViewModel
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    function ProductDrop() {
+        if ($('#Category').val() != "") {
+            $("#Product").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CategoryChangeForProduct", "Product")',
+                dataType: 'json',
+                data: { id: $("#Category").val() },
+                success: function (values) {
+                    $("#Product").append('<option value="' + '""' + '">' +
+                        '-- Select Product --' + '</option>');
+                    $.each(values, function (i, values) {
+                        $("#Product").append('<option value="' + values.Value + '">' +
+                            values.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve dropdown' + ex);
+                }
+            });
+        } else {
+            $("#Product").empty();
+        }
+    }
+
+    function GetClass() {
+        var values = [$("#Product").val(), $("#Quantity").val()]
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("CreateOrder", "Sales"))",
+            data: { formDetails: values },
+            success: function (result) {
+                $('#partial').html(result);
+
+            },
+            error: function () {
+                alert("error");
+                //$("#load").hide();
+            }
+        });
+    }
+
+</script>
+<div class="col-md-10 col-md-offset-1">
+    <div class=" row">
+        <div class="col-md-8 col-md-offset-2">
+            <div>
+@using (Html.BeginForm("EditProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="panel panel-info">
+                    <h2 class="panel-heading ">
+                        <i class="fa fa-fw fa-cart"></i>Edit Product
+                    </h2>
+                    <div class="panel-body">
+                        @if (TempData["Message"] != null)
+                        {
+                            @Html.Partial("_Message", (Progno.Model.Model.Message)TempData["Message"])
+                        }
+
+                        <table class="table table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <b>
+                                        <td>Category</td>
+                                        <td>Product</td>
+                                    </b>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @*@Html.LabelFor(model => model.ProductCategory, "Product Category", new { @class = "col-sm-2 control-label " })*@
+                                            <div class="col-sm-12">
+                                                @Html.DropDownListFor(model => model.ProductCategory.Id, (IEnumerable<SelectListItem>)ViewBag.ProductCategory, new { @class = "form-control", @id = "Category", @onchange = "ProductDrop()", @required = "required" })
+                                                @Html.ValidationMessageFor(model => model.ProductCategory.Id, "", new { @class = "text-danger" })
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            @*@Html.LabelFor(model => model.Product, "Product ", new { @class = "col-sm-2 control-label " })*@
+                                            <div class="col-sm-12">
+                                                @Html.DropDownListFor(model => model.Product.Id, (IEnumerable<SelectListItem>)ViewBag.Products, new { @class = "form-control", @id = "Product", @required = "required" })
+                                                @Html.ValidationMessageFor(model => model.Product.Id, "", new { @class = "text-danger" })
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+                                    
+
+                                </tr>
+                                @*<tr>
+                                        @Html.EditorFor(model =>product.Id, new { htmlAttributes = new { @class = "form-control hidden", @id = "var1" } })
+                                        <td>@Html.EditorFor(model => product.Name, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                        <td>@Html.EditorFor(model => product.SellingPrice, new { htmlAttributes = new { @class = "form-control" } })</td>
+
+                                    </tr>*@
+
+
+                                @*for (int i = 0, j = 0; i < Model.Products.Count; i++, j++)
+                                    {
+                                        <tr>
+                                            @Html.EditorFor(model => model.Products[i].Id, new { htmlAttributes = new { @class = "form-control hidden", @id = "var1" } })
+                                            <td>@Html.EditorFor(model => model.Products[i].Name, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                            <td>@Html.EditorFor(model => model.Products[i].SellingPrice, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                            <td>@Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @id = "var2" } })</td>
+                                            <td>
+                                                <button type="submit" onclick="GetClass()" class="btn btn-primary col-md-offset-2">
+                                                    <i class="fa fa-cart-arrow-down">
+                                                        Add to Cart
+                                                    </i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                    }*@
+
+
+
+                            </tbody>
+
+                        </table>
+
+
+
+                        <br />
+                        <div class="panel-footer">
+                            <button type="submit" class="btn btn-primary col-md-offset-2">
+                                Submit
+
+                            </button>
+                            @*<input class="btn btn-primary " type="submit" name="submit" id="submit" value="Submit" />*@
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

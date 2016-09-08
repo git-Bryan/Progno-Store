@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E30D7D45-CC5F-4A00-8605-770021B1BD4B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Progno.Model</RootNamespace>
+    <AssemblyName>Progno.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\BLOOD_GROUP.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BRANCH.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BUSINESS.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CATALOG.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\COUNTRY.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CUSTOMER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DISCOUNT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\HAPPY_HOUR.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\LOCAL_GOVERNMENT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\NATIONALITY.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OCCUPATION.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ORDER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PAYMENT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PAYMENT_TYPE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PERSON.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PRODUCT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PRODUCT_CATEGORY.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PRODUCT_UNIT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\RELIGION.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\RESERVATION.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\RESERVATION_TYPE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ROLE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SALARY.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SALARY_SCHEME.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SALES.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SALES_TYPE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SEX.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\STAFF.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\STATE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\STOCK.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\STOCK_TYPE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SUPPLIER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UNIT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\USER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VW_ACTIVITY_LOG.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VW_PAYMENT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VW_SALES.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VW_STOCK.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ActivityLog.cs" />
+    <Compile Include="Model\Branch.cs" />
+    <Compile Include="Model\Business.cs" />
+    <Compile Include="Model\Catalog.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Discount.cs" />
+    <Compile Include="Model\HappyHour.cs" />
+    <Compile Include="Model\LocalGovernment.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\Nationality.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\Payment.cs" />
+    <Compile Include="Model\PaymentList.cs" />
+    <Compile Include="Model\PaymentType.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\ProductCategory.cs" />
+    <Compile Include="Model\ProductUnit.cs" />
+    <Compile Include="Model\Religion.cs" />
+    <Compile Include="Model\Reservation.cs" />
+    <Compile Include="Model\ReservationType.cs" />
+    <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\Salary.cs" />
+    <Compile Include="Model\SalaryScheme.cs" />
+    <Compile Include="Model\Sales.cs" />
+    <Compile Include="Model\SalesType.cs" />
+    <Compile Include="Model\Sex.cs" />
+    <Compile Include="Model\Staff.cs" />
+    <Compile Include="Model\State.cs" />
+    <Compile Include="Model\Stock.cs" />
+    <Compile Include="Model\StockList.cs" />
+    <Compile Include="Model\StockType.cs" />
+    <Compile Include="Model\Supplier.cs" />
+    <Compile Include="Model\Unit.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Translator\BaseTranslator.cs" />
+    <Compile Include="Translator\BranchTranslator.cs" />
+    <Compile Include="Translator\BusinessTranslator.cs" />
+    <Compile Include="Translator\CatalogTranslator.cs" />
+    <Compile Include="Translator\CountryTranslator.cs" />
+    <Compile Include="Translator\CustomerTranslator.cs" />
+    <Compile Include="Translator\DiscountTranslator.cs" />
+    <Compile Include="Translator\HappyHourTranslator.cs" />
+    <Compile Include="Translator\LocalGovernmentTranslator.cs" />
+    <Compile Include="Translator\NationalityTranslator.cs" />
+    <Compile Include="Translator\OrderTranslator.cs" />
+    <Compile Include="Translator\PaymentTranslator.cs" />
+    <Compile Include="Translator\PaymentTypeTranslator.cs" />
+    <Compile Include="Translator\PersonTranslator.cs" />
+    <Compile Include="Translator\ProductCategoryTranslator.cs" />
+    <Compile Include="Translator\ProductTranslator.cs" />
+    <Compile Include="Translator\ProductUnitTranslator.cs" />
+    <Compile Include="Translator\ReligionTranslator.cs" />
+    <Compile Include="Translator\ReservationTranslator.cs" />
+    <Compile Include="Translator\ReservationTypeTranslator.cs" />
+    <Compile Include="Translator\RoleTranslator.cs" />
+    <Compile Include="Translator\SalarySchemeTranslator.cs" />
+    <Compile Include="Translator\SalaryTranslator.cs" />
+    <Compile Include="Translator\SalesTranslator.cs" />
+    <Compile Include="Translator\SalesTypeTranslator.cs" />
+    <Compile Include="Translator\SexTranslator.cs" />
+    <Compile Include="Translator\StaffTranslator.cs" />
+    <Compile Include="Translator\StateTranslator.cs" />
+    <Compile Include="Translator\StockTranslator.cs" />
+    <Compile Include="Translator\StockTypeTranslator.cs" />
+    <Compile Include="Translator\SupplierTranslator.cs" />
+    <Compile Include="Translator\UnitTranslator.cs" />
+    <Compile Include="Translator\UserTranslator.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="Entity\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Entity\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entity\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="Entity\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,97 @@
+﻿@model  Progno.Web.Models.LoginViewModel
+@{
+    ViewBag.Title = "Log In";
+}
+ <br /><br /><br /><br /><br /><br />
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Login</title>
+        <meta name="description" content="Custom Login Form Styling with CSS3" />
+        <meta name="keywords" content="css3, login, form, custom, input, submit, button, html5, placeholder" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/style.css" rel="stylesheet" />
+        <script src="~/Scripts/modernizr.custom.63321.js"></script>
+		<!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+		<style>
+			body {
+				background: #563c55 url(/Images/blurred.jpg) no-repeat center top;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				background-size: cover;
+			}
+			.container > header h1,
+			.container > header h2 {
+				color: #fff;
+				text-shadow: 0 1px 1px rgba(0,0,0,0.7);
+			}
+		</style>
+    </head>
+<body>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="alert " style="background: rgba(0, 0, 0, 0.5); color: red">
+            <center>
+                <marquee>
+                    <h2>Welcome to Extreme Lounge and Sports Bar. Please Login to continue.</h2>
+                </marquee>
+            </center>
+
+        </div>
+
+    </div>
+  
+</div>
+
+<div class="container">
+
+    <!-- Codrops top bar -->
+
+    <section class="main">
+        <form class="form-3" action="../Account/Login" method="post">
+            <p class="clearfix">
+                <label for="login">Username</label>
+                @Html.TextBoxFor(m => m.UserName, new {@placeholder = "Username"})
+            </p>
+            <p class="clearfix">
+                <label for="password">Password</label>
+                @Html.TextBoxFor(m => m.Password, new {@type = "password", @placeholder = "Password"})
+            </p>
+            <p class="clearfix">
+                <input type="checkbox" name="remember" id="remember">
+                <label for="remember">Remember me</label>
+            </p>
+            <p class="clearfix">
+                <input type="submit" name="submit" value="Sign in">
+            </p>
+        </form>
+        <center>
+            <a class="btn btn-default" style="background: black; color: red" href="/Common/HomePage/Homepage">Home</a>
+
+        </center>
+    </section>
+
+</div>
+   
+        <footer class="navbar-fixed-bottom " style="background: transparent">
+            <div class="row " style="color: white">
+                <center class="col-md-10 col-md-offset-1 " >
+                    &copy; @DateTime.Now.Year - Extreme Lounge &amp; Sports Bar
+                    <p class="pull-right text-white"> Powered by &nbsp;&nbsp;&nbsp;&nbsp;<img class="image" style="height: 46px; width: 80px" src="~/Images/lloydant.jpeg" /></p>
+
+
+                </center>
+
+
+            </div>
+
+        </footer>
+    
+</body>
+</html>

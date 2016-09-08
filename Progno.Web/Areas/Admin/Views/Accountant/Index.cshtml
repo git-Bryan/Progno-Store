@@ -1,0 +1,103 @@
+﻿@model Progno.Web.Areas.Admin.ViewModel.AccountantViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="row">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h4>Payment and Schedule</h4></div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                @if (Model == null)
+                {
+                    return;
+                }
+                @if (Model != null)
+                {
+                    if (Model.Salaries.Count > 0)
+                    {
+                        <table class="table table-responsive table-bordered table-striped table-hover">
+                            <tr>
+                                <th>
+                                    Staff Name
+                                </th>
+                                <th>
+                                    Credit Balance
+                                </th>
+                                <th>
+                                    Unauthorized Credit
+                                </th>
+                                <th>
+                                    Staff Credit
+                                </th>
+                                <th>
+                                    Surcharge
+                                </th>
+                                <th>
+                                    Attendance
+                                </th>
+                                <th>
+                                    Deduction
+                                </th>
+                                <th>
+                                    Bonus
+                                </th>
+                                <th>
+                                    Salary
+                                </th>
+                                <th>
+                                    Balance
+                                </th>
+
+                            </tr>
+
+                            @for (int i = 0; i < Model.Salaries.Count; i++)
+                            {
+                                <tr>
+                                    <td class="col-md-2 ">
+                                        @Model.Salaries[i].Staff.Person.FullName
+                                    </td>
+
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].CreditBalance
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].UnauthorisedCredit
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].StaffCredit
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].Surcharge
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].Attendance
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].Deduction
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].Bonus
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].SalaryScheme
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Model.Salaries[i].FinalBalance
+                                    </td>
+                                    <td class="col-md-1 ">
+                                        @Html.ActionLink("Update", "ModifySalary", new { id = Model.Salaries[i].Id })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

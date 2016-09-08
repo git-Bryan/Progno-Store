@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="631b4914c06f4a4595efebc3621d607a" Name="Diagram1" ZoomLevel="59">
+        <EntityTypeShape EntityType="INVENTORYModel.BLOOD_GROUP" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.BRANCH" Width="1.5" PointX="3" PointY="2.375" />
+        <EntityTypeShape EntityType="INVENTORYModel.BUSINESS" Width="1.5" PointX="0.75" PointY="2.875" />
+        <EntityTypeShape EntityType="INVENTORYModel.CATALOG" Width="1.5" PointX="15" PointY="10.875" />
+        <EntityTypeShape EntityType="INVENTORYModel.COUNTRY" Width="1.5" PointX="2.75" PointY="6.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.CUSTOMER" Width="1.5" PointX="9.75" PointY="22.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.DISCOUNT" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.HAPPY_HOUR" Width="1.5" PointX="12" PointY="28" />
+        <EntityTypeShape EntityType="INVENTORYModel.LOCAL_GOVERNMENT" Width="1.5" PointX="5.25" PointY="15.625" />
+        <EntityTypeShape EntityType="INVENTORYModel.NATIONALITY" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.OCCUPATION" Width="1.5" PointX="4.75" PointY="6.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.ORDER" Width="1.5" PointX="12.75" PointY="37.625" />
+        <EntityTypeShape EntityType="INVENTORYModel.PAYMENT" Width="1.5" PointX="12" PointY="18.375" />
+        <EntityTypeShape EntityType="INVENTORYModel.PAYMENT_TYPE" Width="1.5" PointX="9.75" PointY="19.375" />
+        <EntityTypeShape EntityType="INVENTORYModel.PERSON" Width="1.5" PointX="7.5" PointY="13.625" />
+        <EntityTypeShape EntityType="INVENTORYModel.PRODUCT" Width="1.5" PointX="12.75" PointY="6.5" />
+        <EntityTypeShape EntityType="INVENTORYModel.PRODUCT_CATEGORY" Width="1.5" PointX="10.5" PointY="7.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.PRODUCT_UNIT" Width="1.5" PointX="12.75" PointY="3.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.RELIGION" Width="1.5" PointX="5.25" PointY="12.625" />
+        <EntityTypeShape EntityType="INVENTORYModel.RESERVATION" Width="1.5" PointX="12" PointY="23.375" />
+        <EntityTypeShape EntityType="INVENTORYModel.RESERVATION_TYPE" Width="1.5" PointX="9.75" PointY="27.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.ROLE" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="INVENTORYModel.SALARY" Width="1.5" PointX="12" PointY="13.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.SALARY_SCHEME" Width="1.5" PointX="7.5" PointY="4.625" />
+        <EntityTypeShape EntityType="INVENTORYModel.SALES" Width="1.5" PointX="15" PointY="15.375" />
+        <EntityTypeShape EntityType="INVENTORYModel.SALES_TYPE" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.SEX" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="INVENTORYModel.STAFF" Width="1.5" PointX="9.75" PointY="15" />
+        <EntityTypeShape EntityType="INVENTORYModel.STATE" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="INVENTORYModel.STOCK" Width="1.5" PointX="15" PointY="7.5" />
+        <EntityTypeShape EntityType="INVENTORYModel.STOCK_TYPE" Width="1.5" PointX="12.75" PointY="31.375" />
+        <EntityTypeShape EntityType="INVENTORYModel.SUPPLIER" Width="1.5" PointX="12.75" PointY="34.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.UNIT" Width="1.5" PointX="10.5" PointY="3.625" />
+        <EntityTypeShape EntityType="INVENTORYModel.USER" Width="1.5" PointX="7.5" PointY="8.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.VW_ACTIVITY_LOG" Width="1.5" PointX="14.75" PointY="2.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.VW_PAYMENT" Width="1.5" PointX="16.75" PointY="2.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.VW_SALES" Width="1.5" PointX="18.75" PointY="2.375" />
+        <EntityTypeShape EntityType="INVENTORYModel.VW_STOCK" Width="1.5" PointX="17.75" PointY="7.25" />
+        <AssociationConnector Association="INVENTORYModel.FK_BRANCH_BUSINESS" />
+        <AssociationConnector Association="INVENTORYModel.FK_CATALOG_PRODUCT" />
+        <AssociationConnector Association="INVENTORYModel.FK_CATALOG_PRODUCT_UNIT" />
+        <AssociationConnector Association="INVENTORYModel.FK_CATALOG_STAFF" />
+        <AssociationConnector Association="INVENTORYModel.FK_CATALOG_STOCK_TYPE" />
+        <AssociationConnector Association="INVENTORYModel.FK_CATALOG_SUPPLIER" />
+        <AssociationConnector Association="INVENTORYModel.FK_CUSTOMER_PERSON" />
+        <AssociationConnector Association="INVENTORYModel.FK_PAYMENT_CUSTOMER" />
+        <AssociationConnector Association="INVENTORYModel.FK_RESERVATION_CUSTOMER" />
+        <AssociationConnector Association="INVENTORYModel.FK_HAPPY_HOUR_STAFF" />
+        <AssociationConnector Association="INVENTORYModel.FK_LOCAL_GOVERNMENT_STATE" />
+        <AssociationConnector Association="INVENTORYModel.FK_PERSON_LOCAL_GOVERNMENT" />
+        <AssociationConnector Association="INVENTORYModel.FK_PERSON_NATIONALITY" />
+        <AssociationConnector Association="INVENTORYModel.FK_STATE_NATIONALITY" />
+        <AssociationConnector Association="INVENTORYModel.FK_ORDER_PRODUCT" />
+        <AssociationConnector Association="INVENTORYModel.FK_SALES_ORDER" />
+        <AssociationConnector Association="INVENTORYModel.FK_PAYMENT_PAYMENT_TYPE" />
+        <AssociationConnector Association="INVENTORYModel.FK_PAYMENT_STAFF" />
+        <AssociationConnector Association="INVENTORYModel.FK_PERSON_RELIGION" />
+        <AssociationConnector Association="INVENTORYModel.FK_PERSON_SEX" />
+        <AssociationConnector Association="INVENTORYModel.FK_PERSON_STATE" />
+        <AssociationConnector Association="INVENTORYModel.FK_STAFF_PERSON" />
+        <AssociationConnector Association="INVENTORYModel.FK_PRODUCT_PRODUCT_CATEGORY" />
+        <AssociationConnector Association="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT" />
+        <AssociationConnector Association="INVENTORYModel.FK_STOCK_PRODUCT" />
+        <AssociationConnector Association="INVENTORYModel.FK_PRODUCT_UNIT_UNIT" />
+        <AssociationConnector Association="INVENTORYModel.FK_RESERVATION_RESERVATION_TYPE" />
+        <AssociationConnector Association="INVENTORYModel.FK_SALARY_SCHEME_ROLE" />
+        <AssociationConnector Association="INVENTORYModel.FK_USER_ROLE" />
+        <AssociationConnector Association="INVENTORYModel.FK_SALARY_STAFF" />
+        <AssociationConnector Association="INVENTORYModel.FK_SALES_SALES_TYPE" />
+        <AssociationConnector Association="INVENTORYModel.FK_SALES_STAFF" />
+        <AssociationConnector Association="INVENTORYModel.FK_STAFF_USER" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

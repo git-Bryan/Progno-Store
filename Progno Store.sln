@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLayer", "BusinessLayer", "{DE1D8647-9DB3-4ED0-AF5A-92D61E62055E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{09DD0571-7E77-4257-9DFF-EE8D25BB024B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{89E35A73-AC12-4315-81E3-E888E56140C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModelLayer", "ModelLayer", "{656CAF8A-4900-4305-B662-FFE3E6DF4976}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progno.Web", "Progno.Web\Progno.Web.csproj", "{DBA3EE27-3E31-47CE-8AFD-72E332539ED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progno.Business", "Progno.Business\Progno.Business.csproj", "{D62F4DAD-E50D-429F-AE66-1A936EF28F50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progno.Model", "Progno.Model\Progno.Model.csproj", "{E30D7D45-CC5F-4A00-8605-770021B1BD4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progno.Data", "Progno.Data\Progno.Data.csproj", "{3A1FACD8-AD8E-44BC-8BF4-4847FA824BCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBA3EE27-3E31-47CE-8AFD-72E332539ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBA3EE27-3E31-47CE-8AFD-72E332539ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBA3EE27-3E31-47CE-8AFD-72E332539ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBA3EE27-3E31-47CE-8AFD-72E332539ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62F4DAD-E50D-429F-AE66-1A936EF28F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62F4DAD-E50D-429F-AE66-1A936EF28F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62F4DAD-E50D-429F-AE66-1A936EF28F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62F4DAD-E50D-429F-AE66-1A936EF28F50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30D7D45-CC5F-4A00-8605-770021B1BD4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30D7D45-CC5F-4A00-8605-770021B1BD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30D7D45-CC5F-4A00-8605-770021B1BD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30D7D45-CC5F-4A00-8605-770021B1BD4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A1FACD8-AD8E-44BC-8BF4-4847FA824BCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1FACD8-AD8E-44BC-8BF4-4847FA824BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1FACD8-AD8E-44BC-8BF4-4847FA824BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1FACD8-AD8E-44BC-8BF4-4847FA824BCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DBA3EE27-3E31-47CE-8AFD-72E332539ED4} = {89E35A73-AC12-4315-81E3-E888E56140C0}
+		{D62F4DAD-E50D-429F-AE66-1A936EF28F50} = {DE1D8647-9DB3-4ED0-AF5A-92D61E62055E}
+		{E30D7D45-CC5F-4A00-8605-770021B1BD4B} = {656CAF8A-4900-4305-B662-FFE3E6DF4976}
+		{3A1FACD8-AD8E-44BC-8BF4-4847FA824BCB} = {09DD0571-7E77-4257-9DFF-EE8D25BB024B}
+	EndGlobalSection
+EndGlobal
