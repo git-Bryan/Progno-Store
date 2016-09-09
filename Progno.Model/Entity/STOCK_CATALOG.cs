@@ -12,24 +12,19 @@ namespace Progno.Model.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class CATALOG
+    public partial class STOCK_CATALOG
     {
-        public int Catalog_Id { get; set; }
-        public long Product_Id { get; set; }
-        public System.DateTime Date_Of_Transaction { get; set; }
-        public int Stock_Type_Id { get; set; }
-        public int Quantity { get; set; }
+        public int Stock_Catlog_Id { get; set; }
         public long Staff_Id { get; set; }
-        public Nullable<int> Supplier_Id { get; set; }
-        public Nullable<int> Product_Unit_Id { get; set; }
-        public string Batch_No { get; set; }
-        public Nullable<bool> Active { get; set; }
-        public Nullable<bool> Finished { get; set; }
+        public System.DateTime Date { get; set; }
+        public int Supplier_Id { get; set; }
+        public int Batch_Id { get; set; }
+        public long Product_Id { get; set; }
+        public string Receipt_number { get; set; }
     
+        public virtual BATCH BATCH { get; set; }
         public virtual PRODUCT PRODUCT { get; set; }
-        public virtual PRODUCT_UNIT PRODUCT_UNIT { get; set; }
         public virtual STAFF STAFF { get; set; }
-        public virtual STOCK_TYPE STOCK_TYPE { get; set; }
         public virtual SUPPLIER SUPPLIER { get; set; }
     }
 }

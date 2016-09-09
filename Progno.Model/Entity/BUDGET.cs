@@ -12,15 +12,18 @@ namespace Progno.Model.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class STOCK
+    public partial class BUDGET
     {
-        public int Stock_Id { get; set; }
-        public int Batch_Id { get; set; }
-        public bool Exhausted { get; set; }
-        public bool Active { get; set; }
-        public long Product_Id { get; set; }
+        public int Budget_Id { get; set; }
+        public int Budget_No { get; set; }
+        public string Budget_Item { get; set; }
+        public bool Signed { get; set; }
+        public System.DateTime Date { get; set; }
+        public bool Delivered { get; set; }
+        public long Generated_By_Staff_Id { get; set; }
+        public long Signed_By_Staff_Id { get; set; }
     
-        public virtual BATCH BATCH { get; set; }
-        public virtual PRODUCT PRODUCT { get; set; }
+        public virtual STAFF STAFF { get; set; }
+        public virtual STAFF STAFF1 { get; set; }
     }
 }

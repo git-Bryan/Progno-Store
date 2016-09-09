@@ -16,11 +16,17 @@ namespace Progno.Model.Entity
     {
         public STAFF()
         {
+            this.BAR_SUPPLY_CATALOG = new HashSet<BAR_SUPPLY_CATALOG>();
+            this.BAR_SUPPLY_CATALOG1 = new HashSet<BAR_SUPPLY_CATALOG>();
+            this.BUDGET = new HashSet<BUDGET>();
+            this.BUDGET1 = new HashSet<BUDGET>();
             this.CATALOG = new HashSet<CATALOG>();
             this.HAPPY_HOUR = new HashSet<HAPPY_HOUR>();
             this.PAYMENT = new HashSet<PAYMENT>();
+            this.PROCUREMENT = new HashSet<PROCUREMENT>();
             this.SALARY1 = new HashSet<SALARY>();
             this.SALES = new HashSet<SALES>();
+            this.STOCK_CATALOG = new HashSet<STOCK_CATALOG>();
         }
     
         public long Staff_Id { get; set; }
@@ -29,12 +35,18 @@ namespace Progno.Model.Entity
         public long Person_Id { get; set; }
         public Nullable<decimal> Salary { get; set; }
     
+        public virtual ICollection<BAR_SUPPLY_CATALOG> BAR_SUPPLY_CATALOG { get; set; }
+        public virtual ICollection<BAR_SUPPLY_CATALOG> BAR_SUPPLY_CATALOG1 { get; set; }
+        public virtual ICollection<BUDGET> BUDGET { get; set; }
+        public virtual ICollection<BUDGET> BUDGET1 { get; set; }
         public virtual ICollection<CATALOG> CATALOG { get; set; }
         public virtual ICollection<HAPPY_HOUR> HAPPY_HOUR { get; set; }
         public virtual ICollection<PAYMENT> PAYMENT { get; set; }
         public virtual PERSON PERSON { get; set; }
+        public virtual ICollection<PROCUREMENT> PROCUREMENT { get; set; }
         public virtual ICollection<SALARY> SALARY1 { get; set; }
         public virtual ICollection<SALES> SALES { get; set; }
         public virtual USER USER { get; set; }
+        public virtual ICollection<STOCK_CATALOG> STOCK_CATALOG { get; set; }
     }
 }

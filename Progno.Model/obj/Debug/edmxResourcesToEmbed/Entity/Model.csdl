@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="INVENTORYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="INVENTORYEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BAR" EntityType="INVENTORYModel.BAR" />
+    <EntitySet Name="BAR_PRODUCT" EntityType="INVENTORYModel.BAR_PRODUCT" />
+    <EntitySet Name="BAR_SUPPLY_CATALOG" EntityType="INVENTORYModel.BAR_SUPPLY_CATALOG" />
+    <EntitySet Name="BATCH" EntityType="INVENTORYModel.BATCH" />
     <EntitySet Name="BLOOD_GROUP" EntityType="INVENTORYModel.BLOOD_GROUP" />
     <EntitySet Name="BRANCH" EntityType="INVENTORYModel.BRANCH" />
+    <EntitySet Name="BUDGET" EntityType="INVENTORYModel.BUDGET" />
     <EntitySet Name="BUSINESS" EntityType="INVENTORYModel.BUSINESS" />
     <EntitySet Name="CATALOG" EntityType="INVENTORYModel.CATALOG" />
     <EntitySet Name="COUNTRY" EntityType="INVENTORYModel.COUNTRY" />
@@ -16,6 +21,8 @@
     <EntitySet Name="PAYMENT" EntityType="INVENTORYModel.PAYMENT" />
     <EntitySet Name="PAYMENT_TYPE" EntityType="INVENTORYModel.PAYMENT_TYPE" />
     <EntitySet Name="PERSON" EntityType="INVENTORYModel.PERSON" />
+    <EntitySet Name="PRICE_LIST" EntityType="INVENTORYModel.PRICE_LIST" />
+    <EntitySet Name="PROCUREMENT" EntityType="INVENTORYModel.PROCUREMENT" />
     <EntitySet Name="PRODUCT" EntityType="INVENTORYModel.PRODUCT" />
     <EntitySet Name="PRODUCT_CATEGORY" EntityType="INVENTORYModel.PRODUCT_CATEGORY" />
     <EntitySet Name="PRODUCT_UNIT" EntityType="INVENTORYModel.PRODUCT_UNIT" />
@@ -31,6 +38,7 @@
     <EntitySet Name="STAFF" EntityType="INVENTORYModel.STAFF" />
     <EntitySet Name="STATE" EntityType="INVENTORYModel.STATE" />
     <EntitySet Name="STOCK" EntityType="INVENTORYModel.STOCK" />
+    <EntitySet Name="STOCK_CATALOG" EntityType="INVENTORYModel.STOCK_CATALOG" />
     <EntitySet Name="STOCK_TYPE" EntityType="INVENTORYModel.STOCK_TYPE" />
     <EntitySet Name="SUPPLIER" EntityType="INVENTORYModel.SUPPLIER" />
     <EntitySet Name="UNIT" EntityType="INVENTORYModel.UNIT" />
@@ -39,9 +47,61 @@
     <EntitySet Name="VW_PAYMENT" EntityType="INVENTORYModel.VW_PAYMENT" />
     <EntitySet Name="VW_SALES" EntityType="INVENTORYModel.VW_SALES" />
     <EntitySet Name="VW_STOCK" EntityType="INVENTORYModel.VW_STOCK" />
+    <AssociationSet Name="FK_BAR_PRODUCT_BAR" Association="INVENTORYModel.FK_BAR_PRODUCT_BAR">
+      <End Role="BAR" EntitySet="BAR" />
+      <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRICE_LIST_BAR" Association="INVENTORYModel.FK_PRICE_LIST_BAR">
+      <End Role="BAR" EntitySet="BAR" />
+      <End Role="PRICE_LIST" EntitySet="PRICE_LIST" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BAR_PRODUCT_BATCH" Association="INVENTORYModel.FK_BAR_PRODUCT_BATCH">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BAR_PRODUCT_PRODUCT" Association="INVENTORYModel.FK_BAR_PRODUCT_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_BATCH" Association="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_BATCH">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_PRODUCT" Association="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_STAFF" Association="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_STAFF1" Association="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF1">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BATCH_PRICE_LIST" Association="INVENTORYModel.FK_BATCH_PRICE_LIST">
+      <End Role="PRICE_LIST" EntitySet="PRICE_LIST" />
+      <End Role="BATCH" EntitySet="BATCH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STOCK_BATCH" Association="INVENTORYModel.FK_STOCK_BATCH">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="STOCK" EntitySet="STOCK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STOCK_CATALOG_BATCH" Association="INVENTORYModel.FK_STOCK_CATALOG_BATCH">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+    </AssociationSet>
     <AssociationSet Name="FK_BRANCH_BUSINESS" Association="INVENTORYModel.FK_BRANCH_BUSINESS">
       <End Role="BUSINESS" EntitySet="BUSINESS" />
       <End Role="BRANCH" EntitySet="BRANCH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BUDGET_BUDGET" Association="INVENTORYModel.FK_BUDGET_BUDGET">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="BUDGET" EntitySet="BUDGET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BUDGET_STAFF" Association="INVENTORYModel.FK_BUDGET_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="BUDGET" EntitySet="BUDGET" />
     </AssociationSet>
     <AssociationSet Name="FK_CATALOG_PRODUCT" Association="INVENTORYModel.FK_CATALOG_PRODUCT">
       <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -127,6 +187,14 @@
       <End Role="PERSON" EntitySet="PERSON" />
       <End Role="STAFF" EntitySet="STAFF" />
     </AssociationSet>
+    <AssociationSet Name="FK_Table_1_STAFF" Association="INVENTORYModel.FK_Table_1_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="PROCUREMENT" EntitySet="PROCUREMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_1_SUPPLIER" Association="INVENTORYModel.FK_Table_1_SUPPLIER">
+      <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+      <End Role="PROCUREMENT" EntitySet="PROCUREMENT" />
+    </AssociationSet>
     <AssociationSet Name="FK_PRODUCT_PRODUCT_CATEGORY" Association="INVENTORYModel.FK_PRODUCT_PRODUCT_CATEGORY">
       <End Role="PRODUCT_CATEGORY" EntitySet="PRODUCT_CATEGORY" />
       <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -134,6 +202,10 @@
     <AssociationSet Name="FK_PRODUCT_UNIT_PRODUCT" Association="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT">
       <End Role="PRODUCT" EntitySet="PRODUCT" />
       <End Role="PRODUCT_UNIT" EntitySet="PRODUCT_UNIT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STOCK_CATALOG_PRODUCT" Association="INVENTORYModel.FK_STOCK_CATALOG_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
     </AssociationSet>
     <AssociationSet Name="FK_STOCK_PRODUCT" Association="INVENTORYModel.FK_STOCK_PRODUCT">
       <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -171,7 +243,68 @@
       <End Role="USER" EntitySet="USER" />
       <End Role="STAFF" EntitySet="STAFF" />
     </AssociationSet>
+    <AssociationSet Name="FK_STOCK_CATALOG_STAFF" Association="INVENTORYModel.FK_STOCK_CATALOG_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STOCK_CATALOG_SUPPLIER" Association="INVENTORYModel.FK_STOCK_CATALOG_SUPPLIER">
+      <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+      <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="BAR">
+    <Key>
+      <PropertyRef Name="Bar_Id" />
+    </Key>
+    <Property Name="Bar_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bar_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BAR_PRODUCT" Relationship="INVENTORYModel.FK_BAR_PRODUCT_BAR" FromRole="BAR" ToRole="BAR_PRODUCT" />
+    <NavigationProperty Name="PRICE_LIST" Relationship="INVENTORYModel.FK_PRICE_LIST_BAR" FromRole="BAR" ToRole="PRICE_LIST" />
+  </EntityType>
+  <EntityType Name="BAR_PRODUCT">
+    <Key>
+      <PropertyRef Name="Bar_Product_Id" />
+    </Key>
+    <Property Name="Bar_Product_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Id" Type="Int64" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Batch_Id" Type="Int32" Nullable="false" />
+    <Property Name="Bar_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BAR" Relationship="INVENTORYModel.FK_BAR_PRODUCT_BAR" FromRole="BAR_PRODUCT" ToRole="BAR" />
+    <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_BAR_PRODUCT_BATCH" FromRole="BAR_PRODUCT" ToRole="BATCH" />
+    <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_BAR_PRODUCT_PRODUCT" FromRole="BAR_PRODUCT" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="BAR_SUPPLY_CATALOG">
+    <Key>
+      <PropertyRef Name="Bar_Supply_Catalog_Id" />
+    </Key>
+    <Property Name="Bar_Supply_Catalog_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Store_Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Bar_Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Product_Id" Type="Int64" Nullable="false" />
+    <Property Name="Batch_Id" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_BATCH" FromRole="BAR_SUPPLY_CATALOG" ToRole="BATCH" />
+    <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_PRODUCT" FromRole="BAR_SUPPLY_CATALOG" ToRole="PRODUCT" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF" FromRole="BAR_SUPPLY_CATALOG" ToRole="STAFF" />
+    <NavigationProperty Name="STAFF1" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF1" FromRole="BAR_SUPPLY_CATALOG" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="BATCH">
+    <Key>
+      <PropertyRef Name="Batch_Id" />
+    </Key>
+    <Property Name="Batch_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Batch_Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="Price_List_Id" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BAR_PRODUCT" Relationship="INVENTORYModel.FK_BAR_PRODUCT_BATCH" FromRole="BATCH" ToRole="BAR_PRODUCT" />
+    <NavigationProperty Name="BAR_SUPPLY_CATALOG" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_BATCH" FromRole="BATCH" ToRole="BAR_SUPPLY_CATALOG" />
+    <NavigationProperty Name="PRICE_LIST" Relationship="INVENTORYModel.FK_BATCH_PRICE_LIST" FromRole="BATCH" ToRole="PRICE_LIST" />
+    <NavigationProperty Name="STOCK" Relationship="INVENTORYModel.FK_STOCK_BATCH" FromRole="BATCH" ToRole="STOCK" />
+    <NavigationProperty Name="STOCK_CATALOG" Relationship="INVENTORYModel.FK_STOCK_CATALOG_BATCH" FromRole="BATCH" ToRole="STOCK_CATALOG" />
+  </EntityType>
   <EntityType Name="BLOOD_GROUP">
     <Key>
       <PropertyRef Name="Blood_Group_Id" />
@@ -192,6 +325,21 @@
     <Property Name="Alternative_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Alternative_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="BUSINESS" Relationship="INVENTORYModel.FK_BRANCH_BUSINESS" FromRole="BRANCH" ToRole="BUSINESS" />
+  </EntityType>
+  <EntityType Name="BUDGET">
+    <Key>
+      <PropertyRef Name="Budget_Id" />
+    </Key>
+    <Property Name="Budget_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Budget_No" Type="Int32" Nullable="false" />
+    <Property Name="Budget_Item" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Signed" Type="Boolean" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Delivered" Type="Boolean" Nullable="false" />
+    <Property Name="Generated_By_Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Signed_By_Staff_Id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_BUDGET_BUDGET" FromRole="BUDGET" ToRole="STAFF" />
+    <NavigationProperty Name="STAFF1" Relationship="INVENTORYModel.FK_BUDGET_STAFF" FromRole="BUDGET" ToRole="STAFF" />
   </EntityType>
   <EntityType Name="BUSINESS">
     <Key>
@@ -214,6 +362,9 @@
     <Property Name="Staff_Id" Type="Int64" Nullable="false" />
     <Property Name="Supplier_Id" Type="Int32" />
     <Property Name="Product_Unit_Id" Type="Int32" />
+    <Property Name="Batch_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Finished" Type="Boolean" />
     <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT" FromRole="CATALOG" ToRole="PRODUCT" />
     <NavigationProperty Name="PRODUCT_UNIT" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT_UNIT" FromRole="CATALOG" ToRole="PRODUCT_UNIT" />
     <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_CATALOG_STAFF" FromRole="CATALOG" ToRole="STAFF" />
@@ -364,6 +515,34 @@
     <NavigationProperty Name="STATE" Relationship="INVENTORYModel.FK_PERSON_STATE" FromRole="PERSON" ToRole="STATE" />
     <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_STAFF_PERSON" FromRole="PERSON" ToRole="STAFF" />
   </EntityType>
+  <EntityType Name="PRICE_LIST">
+    <Key>
+      <PropertyRef Name="Price_List_Id" />
+    </Key>
+    <Property Name="Price_List_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bar_Id" Type="Int32" Nullable="false" />
+    <Property Name="Normal_Price" Type="Decimal" Nullable="false" Precision="18" Scale="12" />
+    <Property Name="Happy_Hour_Price" Type="Decimal" Nullable="false" Precision="18" Scale="12" />
+    <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="12" />
+    <NavigationProperty Name="BAR" Relationship="INVENTORYModel.FK_PRICE_LIST_BAR" FromRole="PRICE_LIST" ToRole="BAR" />
+    <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_BATCH_PRICE_LIST" FromRole="PRICE_LIST" ToRole="BATCH" />
+  </EntityType>
+  <EntityType Name="PROCUREMENT">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Amount_Paid" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Oustanding" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Transaction_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Last_Update_Date" Type="DateTime" Precision="3" />
+    <Property Name="Receipt_Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cleared" Type="Boolean" />
+    <Property Name="Supplier_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_Table_1_STAFF" FromRole="PROCUREMENT" ToRole="STAFF" />
+    <NavigationProperty Name="SUPPLIER" Relationship="INVENTORYModel.FK_Table_1_SUPPLIER" FromRole="PROCUREMENT" ToRole="SUPPLIER" />
+  </EntityType>
   <EntityType Name="PRODUCT">
     <Key>
       <PropertyRef Name="Product_Id" />
@@ -371,18 +550,18 @@
     <Property Name="Product_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Product_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Photo_Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Cost_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="Re_Order_Qty" Type="Int32" Nullable="false" />
     <Property Name="Category_Id" Type="Int32" Nullable="false" />
-    <Property Name="Selling_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="Barcode_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Happy_Hour_Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BAR_PRODUCT" Relationship="INVENTORYModel.FK_BAR_PRODUCT_PRODUCT" FromRole="PRODUCT" ToRole="BAR_PRODUCT" />
+    <NavigationProperty Name="BAR_SUPPLY_CATALOG" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_PRODUCT" FromRole="PRODUCT" ToRole="BAR_SUPPLY_CATALOG" />
     <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT" FromRole="PRODUCT" ToRole="CATALOG" />
     <NavigationProperty Name="ORDER" Relationship="INVENTORYModel.FK_ORDER_PRODUCT" FromRole="PRODUCT" ToRole="ORDER" />
     <NavigationProperty Name="PRODUCT_CATEGORY" Relationship="INVENTORYModel.FK_PRODUCT_PRODUCT_CATEGORY" FromRole="PRODUCT" ToRole="PRODUCT_CATEGORY" />
     <NavigationProperty Name="PRODUCT_UNIT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCT_UNIT" />
+    <NavigationProperty Name="STOCK_CATALOG" Relationship="INVENTORYModel.FK_STOCK_CATALOG_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_CATALOG" />
     <NavigationProperty Name="STOCK" Relationship="INVENTORYModel.FK_STOCK_PRODUCT" FromRole="PRODUCT" ToRole="STOCK" />
   </EntityType>
   <EntityType Name="PRODUCT_CATEGORY">
@@ -401,6 +580,8 @@
     <Property Name="Product_Id" Type="Int64" Nullable="false" />
     <Property Name="Items" Type="Int32" Nullable="false" />
     <Property Name="Unit_Id" Type="Int32" Nullable="false" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT_UNIT" FromRole="PRODUCT_UNIT" ToRole="CATALOG" />
     <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT" FromRole="PRODUCT_UNIT" ToRole="PRODUCT" />
     <NavigationProperty Name="UNIT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_UNIT" FromRole="PRODUCT_UNIT" ToRole="UNIT" />
@@ -519,13 +700,19 @@
     <Property Name="Account_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Person_Id" Type="Int64" Nullable="false" />
     <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="BAR_SUPPLY_CATALOG" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF" FromRole="STAFF" ToRole="BAR_SUPPLY_CATALOG" />
+    <NavigationProperty Name="BAR_SUPPLY_CATALOG1" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF1" FromRole="STAFF" ToRole="BAR_SUPPLY_CATALOG" />
+    <NavigationProperty Name="BUDGET" Relationship="INVENTORYModel.FK_BUDGET_BUDGET" FromRole="STAFF" ToRole="BUDGET" />
+    <NavigationProperty Name="BUDGET1" Relationship="INVENTORYModel.FK_BUDGET_STAFF" FromRole="STAFF" ToRole="BUDGET" />
     <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_STAFF" FromRole="STAFF" ToRole="CATALOG" />
     <NavigationProperty Name="HAPPY_HOUR" Relationship="INVENTORYModel.FK_HAPPY_HOUR_STAFF" FromRole="STAFF" ToRole="HAPPY_HOUR" />
     <NavigationProperty Name="PAYMENT" Relationship="INVENTORYModel.FK_PAYMENT_STAFF" FromRole="STAFF" ToRole="PAYMENT" />
     <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_STAFF_PERSON" FromRole="STAFF" ToRole="PERSON" />
+    <NavigationProperty Name="PROCUREMENT" Relationship="INVENTORYModel.FK_Table_1_STAFF" FromRole="STAFF" ToRole="PROCUREMENT" />
     <NavigationProperty Name="SALARY1" Relationship="INVENTORYModel.FK_SALARY_STAFF" FromRole="STAFF" ToRole="SALARY" />
     <NavigationProperty Name="SALES" Relationship="INVENTORYModel.FK_SALES_STAFF" FromRole="STAFF" ToRole="SALES" />
     <NavigationProperty Name="USER" Relationship="INVENTORYModel.FK_STAFF_USER" FromRole="STAFF" ToRole="USER" />
+    <NavigationProperty Name="STOCK_CATALOG" Relationship="INVENTORYModel.FK_STOCK_CATALOG_STAFF" FromRole="STAFF" ToRole="STOCK_CATALOG" />
   </EntityType>
   <EntityType Name="STATE">
     <Key>
@@ -543,10 +730,28 @@
       <PropertyRef Name="Stock_Id" />
     </Key>
     <Property Name="Stock_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Batch_Id" Type="Int32" Nullable="false" />
+    <Property Name="Exhausted" Type="Boolean" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <Property Name="Product_Id" Type="Int64" Nullable="false" />
-    <Property Name="Quantity_Left" Type="Int32" Nullable="false" />
-    <Property Name="Last_Update_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_STOCK_BATCH" FromRole="STOCK" ToRole="BATCH" />
     <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_STOCK_PRODUCT" FromRole="STOCK" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="STOCK_CATALOG">
+    <Key>
+      <PropertyRef Name="Stock_Catlog_Id" />
+    </Key>
+    <Property Name="Stock_Catlog_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Supplier_Id" Type="Int32" Nullable="false" />
+    <Property Name="Batch_Id" Type="Int32" Nullable="false" />
+    <Property Name="Product_Id" Type="Int64" Nullable="false" />
+    <Property Name="Receipt_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_STOCK_CATALOG_BATCH" FromRole="STOCK_CATALOG" ToRole="BATCH" />
+    <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_STOCK_CATALOG_PRODUCT" FromRole="STOCK_CATALOG" ToRole="PRODUCT" />
+    <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_STOCK_CATALOG_STAFF" FromRole="STOCK_CATALOG" ToRole="STAFF" />
+    <NavigationProperty Name="SUPPLIER" Relationship="INVENTORYModel.FK_STOCK_CATALOG_SUPPLIER" FromRole="STOCK_CATALOG" ToRole="SUPPLIER" />
   </EntityType>
   <EntityType Name="STOCK_TYPE">
     <Key>
@@ -558,13 +763,15 @@
   </EntityType>
   <EntityType Name="SUPPLIER">
     <Key>
-      <PropertyRef Name="Supplier_Id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Supplier_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Supplier_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Company_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Additional_Information" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_SUPPLIER" FromRole="SUPPLIER" ToRole="CATALOG" />
+    <NavigationProperty Name="PROCUREMENT" Relationship="INVENTORYModel.FK_Table_1_SUPPLIER" FromRole="SUPPLIER" ToRole="PROCUREMENT" />
+    <NavigationProperty Name="STOCK_CATALOG" Relationship="INVENTORYModel.FK_STOCK_CATALOG_SUPPLIER" FromRole="SUPPLIER" ToRole="STOCK_CATALOG" />
   </EntityType>
   <EntityType Name="UNIT">
     <Key>
@@ -693,6 +900,138 @@
     <Property Name="Barcode_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Product_Id" Type="Int64" Nullable="false" />
   </EntityType>
+  <Association Name="FK_BAR_PRODUCT_BAR">
+    <End Type="INVENTORYModel.BAR" Role="BAR" Multiplicity="1" />
+    <End Type="INVENTORYModel.BAR_PRODUCT" Role="BAR_PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAR">
+        <PropertyRef Name="Bar_Id" />
+      </Principal>
+      <Dependent Role="BAR_PRODUCT">
+        <PropertyRef Name="Bar_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRICE_LIST_BAR">
+    <End Type="INVENTORYModel.BAR" Role="BAR" Multiplicity="1" />
+    <End Type="INVENTORYModel.PRICE_LIST" Role="PRICE_LIST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAR">
+        <PropertyRef Name="Bar_Id" />
+      </Principal>
+      <Dependent Role="PRICE_LIST">
+        <PropertyRef Name="Bar_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BAR_PRODUCT_BATCH">
+    <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="1" />
+    <End Type="INVENTORYModel.BAR_PRODUCT" Role="BAR_PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="Batch_Id" />
+      </Principal>
+      <Dependent Role="BAR_PRODUCT">
+        <PropertyRef Name="Batch_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BAR_PRODUCT_PRODUCT">
+    <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+    <End Type="INVENTORYModel.BAR_PRODUCT" Role="BAR_PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="Product_Id" />
+      </Principal>
+      <Dependent Role="BAR_PRODUCT">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BAR_SUPPLY_CATALOG_BATCH">
+    <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="1" />
+    <End Type="INVENTORYModel.BAR_SUPPLY_CATALOG" Role="BAR_SUPPLY_CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="Batch_Id" />
+      </Principal>
+      <Dependent Role="BAR_SUPPLY_CATALOG">
+        <PropertyRef Name="Batch_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BAR_SUPPLY_CATALOG_PRODUCT">
+    <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+    <End Type="INVENTORYModel.BAR_SUPPLY_CATALOG" Role="BAR_SUPPLY_CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="Product_Id" />
+      </Principal>
+      <Dependent Role="BAR_SUPPLY_CATALOG">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BAR_SUPPLY_CATALOG_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.BAR_SUPPLY_CATALOG" Role="BAR_SUPPLY_CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="BAR_SUPPLY_CATALOG">
+        <PropertyRef Name="Store_Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BAR_SUPPLY_CATALOG_STAFF1">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.BAR_SUPPLY_CATALOG" Role="BAR_SUPPLY_CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="BAR_SUPPLY_CATALOG">
+        <PropertyRef Name="Bar_Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BATCH_PRICE_LIST">
+    <End Type="INVENTORYModel.PRICE_LIST" Role="PRICE_LIST" Multiplicity="1" />
+    <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRICE_LIST">
+        <PropertyRef Name="Price_List_Id" />
+      </Principal>
+      <Dependent Role="BATCH">
+        <PropertyRef Name="Price_List_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOCK_BATCH">
+    <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="1" />
+    <End Type="INVENTORYModel.STOCK" Role="STOCK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="Batch_Id" />
+      </Principal>
+      <Dependent Role="STOCK">
+        <PropertyRef Name="Batch_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOCK_CATALOG_BATCH">
+    <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="1" />
+    <End Type="INVENTORYModel.STOCK_CATALOG" Role="STOCK_CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="Batch_Id" />
+      </Principal>
+      <Dependent Role="STOCK_CATALOG">
+        <PropertyRef Name="Batch_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BRANCH_BUSINESS">
     <End Type="INVENTORYModel.BUSINESS" Role="BUSINESS" Multiplicity="1" />
     <End Type="INVENTORYModel.BRANCH" Role="BRANCH" Multiplicity="*" />
@@ -702,6 +1041,30 @@
       </Principal>
       <Dependent Role="BRANCH">
         <PropertyRef Name="Business_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BUDGET_BUDGET">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.BUDGET" Role="BUDGET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="BUDGET">
+        <PropertyRef Name="Generated_By_Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BUDGET_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.BUDGET" Role="BUDGET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="BUDGET">
+        <PropertyRef Name="Signed_By_Staff_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -758,7 +1121,7 @@
     <End Type="INVENTORYModel.CATALOG" Role="CATALOG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SUPPLIER">
-        <PropertyRef Name="Supplier_Id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="CATALOG">
         <PropertyRef Name="Supplier_Id" />
@@ -957,6 +1320,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Table_1_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.PROCUREMENT" Role="PROCUREMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="PROCUREMENT">
+        <PropertyRef Name="Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_1_SUPPLIER">
+    <End Type="INVENTORYModel.SUPPLIER" Role="SUPPLIER" Multiplicity="1" />
+    <End Type="INVENTORYModel.PROCUREMENT" Role="PROCUREMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUPPLIER">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PROCUREMENT">
+        <PropertyRef Name="Supplier_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PRODUCT_PRODUCT_CATEGORY">
     <End Type="INVENTORYModel.PRODUCT_CATEGORY" Role="PRODUCT_CATEGORY" Multiplicity="1" />
     <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
@@ -977,6 +1364,18 @@
         <PropertyRef Name="Product_Id" />
       </Principal>
       <Dependent Role="PRODUCT_UNIT">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOCK_CATALOG_PRODUCT">
+    <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+    <End Type="INVENTORYModel.STOCK_CATALOG" Role="STOCK_CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="Product_Id" />
+      </Principal>
+      <Dependent Role="STOCK_CATALOG">
         <PropertyRef Name="Product_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -1086,6 +1485,30 @@
       </Principal>
       <Dependent Role="STAFF">
         <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOCK_CATALOG_STAFF">
+    <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+    <End Type="INVENTORYModel.STOCK_CATALOG" Role="STOCK_CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="Staff_Id" />
+      </Principal>
+      <Dependent Role="STOCK_CATALOG">
+        <PropertyRef Name="Staff_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOCK_CATALOG_SUPPLIER">
+    <End Type="INVENTORYModel.SUPPLIER" Role="SUPPLIER" Multiplicity="1" />
+    <End Type="INVENTORYModel.STOCK_CATALOG" Role="STOCK_CATALOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUPPLIER">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="STOCK_CATALOG">
+        <PropertyRef Name="Supplier_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

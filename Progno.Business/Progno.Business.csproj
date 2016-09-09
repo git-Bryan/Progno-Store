@@ -45,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BarLogic.cs" />
+    <Compile Include="BarProductLogic.cs" />
+    <Compile Include="BarSupplyCatalogLogic.cs" />
+    <Compile Include="BatchLogic.cs" />
     <Compile Include="BranchLogic.cs" />
     <Compile Include="BusinessBaseLogic.cs" />
     <Compile Include="BusinessLogic.cs" />
@@ -54,6 +58,7 @@
     <Compile Include="HappyHourLogic.cs" />
     <Compile Include="PaymentLogic.cs" />
     <Compile Include="PaymentTypeLogic.cs" />
+    <Compile Include="PriceListLogic.cs" />
     <Compile Include="ProductCategoryLogic.cs" />
     <Compile Include="CountryLogic.cs" />
     <Compile Include="LocalGovernmentLogic.cs" />
@@ -74,6 +79,7 @@
     <Compile Include="SexLogic.cs" />
     <Compile Include="StaffLogic.cs" />
     <Compile Include="StateLogic.cs" />
+    <Compile Include="StockCatalogLogic.cs" />
     <Compile Include="StockLogic.cs" />
     <Compile Include="StockTypeLogic.cs" />
     <Compile Include="SupplierLogic.cs" />
