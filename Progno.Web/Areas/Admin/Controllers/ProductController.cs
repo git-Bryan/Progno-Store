@@ -70,7 +70,7 @@ namespace Progno.Web.Areas.Admin.Controllers
                         }
                         viewModel.ProductCategory.Name = viewModel.ProductCategory.Name.Replace(" ", "");
                        ProductCategory category = productCategoryLogic.Create(viewModel.ProductCategory);
-                        viewModel.Product.ProductCategory = category;
+                        viewModel.Product.Category = category;
                     }
                     
                     if (existingProducts.Count>0)
@@ -201,106 +201,106 @@ SetMessage("Error Occured!"+ex.Message, Message.Category.Error);
             return View();
         }
         [HttpPost]
-        public ActionResult StockProduct(ProductViewModel viewModel)
-        {
-            try
-            {
-            StockLogic stockLogic = new StockLogic();
-            Stock stock = new Stock();
-            CatalogLogic catalogLogic = new CatalogLogic();
-            Catalog catalog = new Catalog();
-            UserLogic userLogic = new UserLogic();
-                Supplier supplier = new Supplier();
-                SupplierLogic supplierLogic = new SupplierLogic();
-            Staff staff = new Staff();
-                StaffLogic staffLogic = new StaffLogic();
-                Model.Model.User loggedInUser = userLogic.GetModelBy(x => x.User_Name == User.Identity.Name);
-                staff = staffLogic.GetModelBy(x => x.User_Id == loggedInUser.Id);
-            bool ismodified = false;
+        //public ActionResult StockProduct(ProductViewModel viewModel)
+        //{
+        //    try
+        //    {
+        //    StockLogic stockLogic = new StockLogic();
+        //    Stock stock = new Stock();
+        //    CatalogLogic catalogLogic = new CatalogLogic();
+        //    Catalog catalog = new Catalog();
+        //    UserLogic userLogic = new UserLogic();
+        //        Supplier supplier = new Supplier();
+        //        SupplierLogic supplierLogic = new SupplierLogic();
+        //    Staff staff = new Staff();
+        //        StaffLogic staffLogic = new StaffLogic();
+        //        Model.Model.User loggedInUser = userLogic.GetModelBy(x => x.User_Name == User.Identity.Name);
+        //        staff = staffLogic.GetModelBy(x => x.User_Id == loggedInUser.Id);
+        //    bool ismodified = false;
 
-                using (TransactionScope trans = new TransactionScope())
-                {
-                    if (viewModel.Catalog == null)
-                    {
-                        supplier = supplierLogic.Create(viewModel.Supplier);
-                        catalog.Supplier = supplier;
-                    }
-                    stock = stockLogic.GetModelBy(x => x.Product_Id == viewModel.Stock.Product.Id);
-                    if (stock!= null)
-                    {
-                        viewModel.Stock.Id = stock.Id;
-                        int Quantity = viewModel.Stock.QuantityLeft;
-                        if (viewModel.StockType.Id == 1)
-                        {
-                            viewModel.Stock.QuantityLeft = viewModel.Stock.QuantityLeft + stock.QuantityLeft;
-                        }
-                        if (viewModel.StockType.Id == 2)
-                        {
-                            if (stock.QuantityLeft==0 || viewModel.Stock.QuantityLeft > stock.QuantityLeft)
-                            {
-                                SetMessage("Quantity is more than stock remaining." +"STOCK REMAINING:" +stock.QuantityLeft, Message.Category.Warning);
-                                return RedirectToAction("StockProduct");
+        //        using (TransactionScope trans = new TransactionScope())
+        //        {
+        //            if (viewModel.Catalog == null)
+        //            {
+        //                supplier = supplierLogic.Create(viewModel.Supplier);
+        //                catalog.Supplier = supplier;
+        //            }
+        //            stock = stockLogic.GetModelBy(x => x.Product_Id == viewModel.Stock.Product.Id);
+        //            if (stock!= null)
+        //            {
+        //                viewModel.Stock.Id = stock.Id;
+        //                int Quantity = viewModel.Stock.QuantityLeft;
+        //                if (viewModel.StockType.Id == 1)
+        //                {
+        //                    viewModel.Stock.QuantityLeft = viewModel.Stock.QuantityLeft + stock.QuantityLeft;
+        //                }
+        //                if (viewModel.StockType.Id == 2)
+        //                {
+        //                    if (stock.QuantityLeft==0 || viewModel.Stock.QuantityLeft > stock.QuantityLeft)
+        //                    {
+        //                        SetMessage("Quantity is more than stock remaining." +"STOCK REMAINING:" +stock.QuantityLeft, Message.Category.Warning);
+        //                        return RedirectToAction("StockProduct");
 
-                            }
-                            viewModel.Stock.QuantityLeft = stock.QuantityLeft - viewModel.Stock.QuantityLeft;
-                        }
-                        viewModel.Stock.LastUpdate = DateTime.Now.Date;
-                        ismodified = stockLogic.Modify(viewModel.Stock);
-                        // create catalog register
-                        catalog.Product = viewModel.Stock.Product;
-                        catalog.TransactionDate = DateTime.Now;
-                        catalog.StockType = viewModel.StockType;
-                        catalog.Quantity = Quantity;
-                        catalog.Staff = staff;
-                        catalogLogic.Create(catalog);
-                        if (ismodified == true)
-                        {
-                            SetMessage("Stock Successfully Updated", Message.Category.Information);
-                        }
-                        else if (ismodified == false)
-                        {
-                            SetMessage("Error occured", Message.Category.Error);
+        //                    }
+        //                    viewModel.Stock.QuantityLeft = stock.QuantityLeft - viewModel.Stock.QuantityLeft;
+        //                }
+        //                viewModel.Stock.LastUpdate = DateTime.Now.Date;
+        //                ismodified = stockLogic.Modify(viewModel.Stock);
+        //                // create catalog register
+        //                catalog.Product = viewModel.Stock.Product;
+        //                catalog.TransactionDate = DateTime.Now;
+        //                catalog.StockType = viewModel.StockType;
+        //                catalog.Quantity = Quantity;
+        //                catalog.Staff = staff;
+        //                catalogLogic.Create(catalog);
+        //                if (ismodified == true)
+        //                {
+        //                    SetMessage("Stock Successfully Updated", Message.Category.Information);
+        //                }
+        //                else if (ismodified == false)
+        //                {
+        //                    SetMessage("Error occured", Message.Category.Error);
 
-                        }
-                    }
-                    else if(stock == null)
-                    {
+        //                }
+        //            }
+        //            else if(stock == null)
+        //            {
                         
-                        if (viewModel.StockType.Id == 2)
-                        {
-                            SetMessage("Product does not exist in stock!", Message.Category.Warning);
-                            return RedirectToAction("StockProduct");
+        //                if (viewModel.StockType.Id == 2)
+        //                {
+        //                    SetMessage("Product does not exist in stock!", Message.Category.Warning);
+        //                    return RedirectToAction("StockProduct");
 
-                        }
-                        else if (viewModel.StockType.Id == 1)
-                        {
-                            viewModel.Stock.LastUpdate = DateTime.Now.Date;
-                            stockLogic.Create(viewModel.Stock);
-                            // create catalog register
-                            catalog.Product = viewModel.Stock.Product;
-                            catalog.TransactionDate = DateTime.Now;
-                            catalog.StockType = viewModel.StockType;
-                            catalog.Quantity = viewModel.Stock.QuantityLeft;
-                            catalog.Staff = staff;
-                            catalogLogic.Create(catalog);
+        //                }
+        //                else if (viewModel.StockType.Id == 1)
+        //                {
+        //                    viewModel.Stock.LastUpdate = DateTime.Now.Date;
+        //                    stockLogic.Create(viewModel.Stock);
+        //                    // create catalog register
+        //                    catalog.Product = viewModel.Stock.Product;
+        //                    catalog.TransactionDate = DateTime.Now;
+        //                    catalog.StockType = viewModel.StockType;
+        //                    catalog.Quantity = viewModel.Stock.QuantityLeft;
+        //                    catalog.Staff = staff;
+        //                    catalogLogic.Create(catalog);
 
-                            SetMessage("Stock Created Successfully!", Message.Category.Information);
+        //                    SetMessage("Stock Created Successfully!", Message.Category.Information);
 
-                        }
+        //                }
                          
-                    }
+        //            }
 
-                    trans.Complete();
+        //            trans.Complete();
                     
-                }
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-             SetMessage("Error Occured! "+ ex.Message,Message.Category.Error);
-            }
-            return RedirectToAction("StockProduct");
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //     SetMessage("Error Occured! "+ ex.Message,Message.Category.Error);
+        //    }
+        //    return RedirectToAction("StockProduct");
+        //}
         private void PopulateDropDowns()
         {
             viewModel = new ProductViewModel();

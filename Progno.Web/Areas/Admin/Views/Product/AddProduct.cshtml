@@ -70,11 +70,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.Name)</label>
-                                <div class="col-md-9">
+                                <label class="col-md-12 control-label">@Html.LabelFor(model => model.Product.Name)</label>
+                                <div class="col-md-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                        @Html.EditorFor(model => model.Product.Name, new { htmlAttributes = new { @class = "form-control span7", @required = "required", } })
+                                        @Html.EditorFor(model => model.Product.Name, new { htmlAttributes = new { @class = "form-control col-md-12", @required = "required", } })
                                         @Html.ValidationMessageFor(model => model.Product.Name, null, new { @class = "text-danger" })
                                     </div>
 
@@ -83,11 +82,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.Description)</label>
-                                <div class="col-md-9">
+                                <label class="col-md-12 control-label">@Html.LabelFor(model => model.Product.Description)</label>
+                                <div class="col-md-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                        @Html.EditorFor(model => model.Product.Description, new { htmlAttributes = new { @class = "form-control span7",@rows =3, @placeholder = "Description" } })
+                                        @Html.EditorFor(model => model.Product.Description, new { htmlAttributes = new { @class = "",@rows =3, @placeholder = "Description" } })
                                         @Html.ValidationMessageFor(model => model.Product.Description, null, new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -95,81 +93,23 @@
                         </div>
                     </div>
                     <br />
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.Brand)</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                        @Html.EditorFor(model => model.Product.Brand, new { htmlAttributes = new { @class = "form-control ",  @placeholder = "Brand Name" } })
-                                        @Html.ValidationMessageFor(model => model.Product.Brand, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.CostPrice)</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                        @Html.EditorFor(model => model.Product.CostPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "Cost Price", @required = "required" } })
-                                        @Html.ValidationMessageFor(model => model.Product.CostPrice, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.SellingPrice)</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                        @Html.EditorFor(model => model.Product.SellingPrice, new {htmlAttributes = new {@class = "form-control", @required = "required"}})
-                                        @Html.ValidationMessageFor(model => model.Product.SellingPrice, null, new {@class = "text-danger"})
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.HappyHourPrice)</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                        @Html.EditorFor(model => model.Product.HappyHourPrice, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-                                        @Html.ValidationMessageFor(model => model.Product.HappyHourPrice, null, new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                           
-                    <br/>
+                   
                     <div class="row">
                         <div  class="col-md-6">
                             <div id="existingcat" class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.ProductCategory)</label>
-                                <div class="col-md-9">
+                                <label class="col-md-12 control-label">@Html.LabelFor(model => model.Product.Category)</label>
+                                <div class="col-md-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                        @Html.DropDownListFor(f => f.Product.ProductCategory.Id, (IEnumerable<SelectListItem>) ViewBag.ProductCategory, new {@class = "form-control ", @id = "exist",})
-                                        @Html.ValidationMessageFor(model => model.Product.ProductCategory, null, new {@class = "text-danger"})
+                                        @Html.DropDownListFor(f => f.Product.Category.Id, (IEnumerable<SelectListItem>)ViewBag.ProductCategory, new { @class = "form-control ", @id = "exist", })
+                                        @Html.ValidationMessageFor(model => model.Product.Category, null, new { @class = "text-danger" })
                                     </div>
 
                                 </div>
                             </div>
                             <div id="newcat" style="display: none;" class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.ProductCategory, "Category Name")</label>
-                                <div class="col-md-9">
+                                <label class="col-md-12 control-label">@Html.LabelFor(model => model.ProductCategory, "Category Name")</label>
+                                <div class="col-md-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                         @Html.EditorFor(model => model.ProductCategory.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Category Name", @id = "new" } })
                                         <p class="help-block text-danger"></p>
                                     </div>
@@ -183,10 +123,9 @@
                         
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.ReOrderQty)</label>
-                                <div class="col-md-9">
+                                <label class="col-md-12 control-label">@Html.LabelFor(model => model.Product.ReOrderQty)</label>
+                                <div class="col-md-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                         @Html.EditorFor(model => model.Product.ReOrderQty, new { htmlAttributes = new { @class = "form-control", @placeholder = "Re-Order Quantity", @required = "required" } })
                                         <p class="help-block text-danger"></p>
                                     </div>
@@ -211,14 +150,7 @@
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-
-                    <br />
-                    <div class="row">
-
-                       
-                        <div class="col-md-6" >
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">@Html.LabelFor(model => model.Product.BarCode, "Barcode")</label>
                                 <div class="col-md-9">
@@ -231,8 +163,9 @@
                             </div>
                         </div>
 
-                     
                     </div>
+
+                    <br />
                 </div>
                 <div class="panel-footer">
                     <button type="submit" class="btn btn-primary">
