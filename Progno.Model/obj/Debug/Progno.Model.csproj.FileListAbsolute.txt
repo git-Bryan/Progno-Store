@@ -8,3 +8,6 @@ C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\bin\Debug\EntityFra
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\obj\Debug\Progno.Model.dll
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\obj\Debug\Progno.Model.pdb
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Model\obj\Debug\Progno.Model.csprojResolveAssemblyReference.cache
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Model\obj\Debug\Progno.Model.csprojResolveAssemblyReference.cache
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Model\obj\Debug\Progno.Model.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Model\obj\Debug\Progno.Model.pdb

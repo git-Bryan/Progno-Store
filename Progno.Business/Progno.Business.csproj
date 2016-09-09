@@ -59,6 +59,7 @@
     <Compile Include="PaymentLogic.cs" />
     <Compile Include="PaymentTypeLogic.cs" />
     <Compile Include="PriceListLogic.cs" />
+    <Compile Include="ProcurementLogic.cs" />
     <Compile Include="ProductCategoryLogic.cs" />
     <Compile Include="CountryLogic.cs" />
     <Compile Include="LocalGovernmentLogic.cs" />
