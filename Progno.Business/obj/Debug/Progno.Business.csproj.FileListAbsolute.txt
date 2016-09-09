@@ -9,3 +9,14 @@ C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Business\bin\Debug\Progno
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Business\bin\Debug\EntityFramework.xml
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Business\obj\Debug\Progno.Business.dll
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Business\obj\Debug\Progno.Business.pdb
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\bin\Debug\Progno.Business.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\bin\Debug\Progno.Business.pdb
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\bin\Debug\EntityFramework.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\bin\Debug\Progno.Data.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\bin\Debug\Progno.Model.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\bin\Debug\Progno.Data.pdb
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\bin\Debug\Progno.Model.pdb
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\bin\Debug\EntityFramework.xml
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\obj\Debug\Progno.Business.csprojResolveAssemblyReference.cache
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\obj\Debug\Progno.Business.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Business\obj\Debug\Progno.Business.pdb

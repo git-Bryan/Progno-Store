@@ -7,3 +7,11 @@ C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Data\bin\Debug\Progno.Mod
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Data\bin\Debug\EntityFramework.xml
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Data\obj\Debug\Progno.Data.dll
 C:\Users\Ai-FEX\Documents\Lloydant\Progno Store\Progno.Data\obj\Debug\Progno.Data.pdb
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Data\bin\Debug\Progno.Data.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Data\bin\Debug\Progno.Data.pdb
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Data\bin\Debug\Progno.Model.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Data\bin\Debug\Progno.Model.pdb
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Data\bin\Debug\EntityFramework.xml
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Data\obj\Debug\Progno.Data.csprojResolveAssemblyReference.cache
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Data\obj\Debug\Progno.Data.dll
+C:\Users\Onyedika\Documents\WorkStation\Git\Progno-Store\Progno.Data\obj\Debug\Progno.Data.pdb
