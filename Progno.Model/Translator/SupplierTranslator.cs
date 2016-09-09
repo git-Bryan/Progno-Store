@@ -18,7 +18,7 @@ namespace Progno.Model.Translator
                 if (entity!= null)
                 {
                     model = new Supplier();
-                    model.Id = entity.Supplier_Id;
+                    model.Id = entity.Id;
                     model.Name = entity.Supplier_Name;
                     model.CompanyName = entity.Company_Name;
                     model.AdditionalInformation = entity.Additional_Information;
@@ -40,7 +40,7 @@ namespace Progno.Model.Translator
                 if (model != null)
                 {
                   entity = new SUPPLIER();
-                    entity.Supplier_Id = model.Id;
+                    entity.Id = model.Id;
                     entity.Supplier_Name = model.Name;
                     entity.Company_Name = model.CompanyName;
                     entity.Additional_Information = model.AdditionalInformation;

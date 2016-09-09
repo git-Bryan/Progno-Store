@@ -223,6 +223,7 @@
     <Compile Include="Model\PaymentType.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\PriceList.cs" />
+    <Compile Include="Model\Procurement.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCategory.cs" />
     <Compile Include="Model\ProductUnit.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Translator\PaymentTypeTranslator.cs" />
     <Compile Include="Translator\PersonTranslator.cs" />
     <Compile Include="Translator\PriceListTranslator.cs" />
+    <Compile Include="Translator\ProcurementTranslator.cs" />
     <Compile Include="Translator\ProductCategoryTranslator.cs" />
     <Compile Include="Translator\ProductTranslator.cs" />
     <Compile Include="Translator\ProductUnitTranslator.cs" />

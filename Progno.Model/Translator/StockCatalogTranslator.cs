@@ -33,6 +33,7 @@ namespace Progno.Model.Translator
                     model.Id = entity.Stock_Catlog_Id;
                     model.Staff = staffTranslator.Translate(entity.STAFF);
                     model.Date = entity.Date;
+                    model.ReceiptNumber = entity.Receipt_number;
                     model.Supplier = supplierTranslator.Translate(entity.SUPPLIER);
                     model.Batch = batchTranslator.Translate(entity.BATCH);
                     model.Product = productTranslator.Translate(entity.PRODUCT);
@@ -57,6 +58,7 @@ namespace Progno.Model.Translator
                     entity.Stock_Catlog_Id = model.Id;
                     entity.Staff_Id = model.Staff.Id;
                     entity.Date = model.Date;
+                    entity.Receipt_number = model.ReceiptNumber;
                     entity.Supplier_Id = model.Supplier.Id;
                     entity.Batch_Id = model.Batch.Id;
                     entity.Product_Id = model.Product.Id;
