@@ -12,22 +12,19 @@ namespace Progno.Model.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCT_UNIT
+    public partial class BAR
     {
-        public PRODUCT_UNIT()
+        public BAR()
         {
-            this.CATALOG = new HashSet<CATALOG>();
+            this.BAR_PRODUCT = new HashSet<BAR_PRODUCT>();
+            this.PRICE_LIST = new HashSet<PRICE_LIST>();
         }
     
-        public int Product_Unit_Id { get; set; }
-        public long Product_Id { get; set; }
-        public int Items { get; set; }
-        public int Unit_Id { get; set; }
-        public bool active { get; set; }
-        public string Name { get; set; }
+        public int Bar_Id { get; set; }
+        public string Bar_name { get; set; }
+        public bool Active { get; set; }
     
-        public virtual ICollection<CATALOG> CATALOG { get; set; }
-        public virtual PRODUCT PRODUCT { get; set; }
-        public virtual UNIT UNIT { get; set; }
+        public virtual ICollection<BAR_PRODUCT> BAR_PRODUCT { get; set; }
+        public virtual ICollection<PRICE_LIST> PRICE_LIST { get; set; }
     }
 }

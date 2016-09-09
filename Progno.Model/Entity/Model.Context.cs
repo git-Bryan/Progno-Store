@@ -25,8 +25,13 @@ namespace Progno.Model.Entity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BAR> BAR { get; set; }
+        public virtual DbSet<BAR_PRODUCT> BAR_PRODUCT { get; set; }
+        public virtual DbSet<BAR_SUPPLY_CATALOG> BAR_SUPPLY_CATALOG { get; set; }
+        public virtual DbSet<BATCH> BATCH { get; set; }
         public virtual DbSet<BLOOD_GROUP> BLOOD_GROUP { get; set; }
         public virtual DbSet<BRANCH> BRANCH { get; set; }
+        public virtual DbSet<BUDGET> BUDGET { get; set; }
         public virtual DbSet<BUSINESS> BUSINESS { get; set; }
         public virtual DbSet<CATALOG> CATALOG { get; set; }
         public virtual DbSet<COUNTRY> COUNTRY { get; set; }
@@ -40,6 +45,8 @@ namespace Progno.Model.Entity
         public virtual DbSet<PAYMENT> PAYMENT { get; set; }
         public virtual DbSet<PAYMENT_TYPE> PAYMENT_TYPE { get; set; }
         public virtual DbSet<PERSON> PERSON { get; set; }
+        public virtual DbSet<PRICE_LIST> PRICE_LIST { get; set; }
+        public virtual DbSet<PROCUREMENT> PROCUREMENT { get; set; }
         public virtual DbSet<PRODUCT> PRODUCT { get; set; }
         public virtual DbSet<PRODUCT_CATEGORY> PRODUCT_CATEGORY { get; set; }
         public virtual DbSet<PRODUCT_UNIT> PRODUCT_UNIT { get; set; }
@@ -55,6 +62,7 @@ namespace Progno.Model.Entity
         public virtual DbSet<STAFF> STAFF { get; set; }
         public virtual DbSet<STATE> STATE { get; set; }
         public virtual DbSet<STOCK> STOCK { get; set; }
+        public virtual DbSet<STOCK_CATALOG> STOCK_CATALOG { get; set; }
         public virtual DbSet<STOCK_TYPE> STOCK_TYPE { get; set; }
         public virtual DbSet<SUPPLIER> SUPPLIER { get; set; }
         public virtual DbSet<UNIT> UNIT { get; set; }

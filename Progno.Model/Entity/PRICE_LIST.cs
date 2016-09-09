@@ -12,22 +12,20 @@ namespace Progno.Model.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCT_UNIT
+    public partial class PRICE_LIST
     {
-        public PRODUCT_UNIT()
+        public PRICE_LIST()
         {
-            this.CATALOG = new HashSet<CATALOG>();
+            this.BATCH = new HashSet<BATCH>();
         }
     
-        public int Product_Unit_Id { get; set; }
-        public long Product_Id { get; set; }
-        public int Items { get; set; }
-        public int Unit_Id { get; set; }
-        public bool active { get; set; }
-        public string Name { get; set; }
+        public int Price_List_Id { get; set; }
+        public int Bar_Id { get; set; }
+        public decimal Normal_Price { get; set; }
+        public decimal Happy_Hour_Price { get; set; }
+        public decimal Cost { get; set; }
     
-        public virtual ICollection<CATALOG> CATALOG { get; set; }
-        public virtual PRODUCT PRODUCT { get; set; }
-        public virtual UNIT UNIT { get; set; }
+        public virtual BAR BAR { get; set; }
+        public virtual ICollection<BATCH> BATCH { get; set; }
     }
 }

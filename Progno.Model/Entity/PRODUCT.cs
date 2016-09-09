@@ -16,28 +16,31 @@ namespace Progno.Model.Entity
     {
         public PRODUCT()
         {
+            this.BAR_PRODUCT = new HashSet<BAR_PRODUCT>();
+            this.BAR_SUPPLY_CATALOG = new HashSet<BAR_SUPPLY_CATALOG>();
             this.CATALOG = new HashSet<CATALOG>();
             this.ORDER = new HashSet<ORDER>();
             this.PRODUCT_UNIT = new HashSet<PRODUCT_UNIT>();
+            this.STOCK_CATALOG = new HashSet<STOCK_CATALOG>();
             this.STOCK = new HashSet<STOCK>();
         }
     
         public long Product_Id { get; set; }
         public string Product_Name { get; set; }
         public string Description { get; set; }
-        public string Brand { get; set; }
         public string Photo_Url { get; set; }
-        public decimal Cost_Price { get; set; }
         public int Re_Order_Qty { get; set; }
         public int Category_Id { get; set; }
-        public decimal Selling_Price { get; set; }
         public string Barcode_No { get; set; }
-        public Nullable<decimal> Happy_Hour_Price { get; set; }
+        public bool Active { get; set; }
     
+        public virtual ICollection<BAR_PRODUCT> BAR_PRODUCT { get; set; }
+        public virtual ICollection<BAR_SUPPLY_CATALOG> BAR_SUPPLY_CATALOG { get; set; }
         public virtual ICollection<CATALOG> CATALOG { get; set; }
         public virtual ICollection<ORDER> ORDER { get; set; }
         public virtual PRODUCT_CATEGORY PRODUCT_CATEGORY { get; set; }
         public virtual ICollection<PRODUCT_UNIT> PRODUCT_UNIT { get; set; }
+        public virtual ICollection<STOCK_CATALOG> STOCK_CATALOG { get; set; }
         public virtual ICollection<STOCK> STOCK { get; set; }
     }
 }

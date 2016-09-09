@@ -5,6 +5,45 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="INVENTORYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BAR">
+          <Key>
+            <PropertyRef Name="Bar_Id" />
+          </Key>
+          <Property Name="Bar_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bar_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BAR_PRODUCT">
+          <Key>
+            <PropertyRef Name="Bar_Product_Id" />
+          </Key>
+          <Property Name="Bar_Product_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Id" Type="bigint" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Batch_Id" Type="int" Nullable="false" />
+          <Property Name="Bar_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BAR_SUPPLY_CATALOG">
+          <Key>
+            <PropertyRef Name="Bar_Supply_Catalog_Id" />
+          </Key>
+          <Property Name="Bar_Supply_Catalog_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Store_Staff_Id" Type="bigint" Nullable="false" />
+          <Property Name="Bar_Staff_Id" Type="bigint" Nullable="false" />
+          <Property Name="Product_Id" Type="bigint" Nullable="false" />
+          <Property Name="Batch_Id" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BATCH">
+          <Key>
+            <PropertyRef Name="Batch_Id" />
+          </Key>
+          <Property Name="Batch_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Batch_Description" Type="varchar" MaxLength="400" />
+          <Property Name="Price_List_Id" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="BLOOD_GROUP">
           <Key>
             <PropertyRef Name="Blood_Group_Id" />
@@ -24,6 +63,19 @@
           <Property Name="Phone_number" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Alternative_Phone" Type="varchar" MaxLength="50" />
           <Property Name="Alternative_Email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BUDGET">
+          <Key>
+            <PropertyRef Name="Budget_Id" />
+          </Key>
+          <Property Name="Budget_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Budget_No" Type="int" Nullable="false" />
+          <Property Name="Budget_Item" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Signed" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Delivered" Type="bit" Nullable="false" />
+          <Property Name="Generated_By_Staff_Id" Type="bigint" Nullable="false" />
+          <Property Name="Signed_By_Staff_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="BUSINESS">
           <Key>
@@ -45,6 +97,9 @@
           <Property Name="Staff_Id" Type="bigint" Nullable="false" />
           <Property Name="Supplier_Id" Type="int" />
           <Property Name="Product_Unit_Id" Type="int" />
+          <Property Name="Batch_No" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Finished" Type="bit" />
         </EntityType>
         <EntityType Name="COUNTRY">
           <Key>
@@ -169,6 +224,30 @@
           <Property Name="Local_Government_Id" Type="int" />
           <Property Name="Sex_Id" Type="int" />
         </EntityType>
+        <EntityType Name="PRICE_LIST">
+          <Key>
+            <PropertyRef Name="Price_List_Id" />
+          </Key>
+          <Property Name="Price_List_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bar_Id" Type="int" Nullable="false" />
+          <Property Name="Normal_Price" Type="decimal" Precision="18" Scale="12" Nullable="false" />
+          <Property Name="Happy_Hour_Price" Type="decimal" Precision="18" Scale="12" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROCUREMENT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Staff_Id" Type="bigint" Nullable="false" />
+          <Property Name="Amount_Paid" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Oustanding" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Transaction_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Update_Date" Type="datetime" />
+          <Property Name="Receipt_Number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cleared" Type="bit" />
+          <Property Name="Supplier_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
             <PropertyRef Name="Product_Id" />
@@ -176,14 +255,11 @@
           <Property Name="Product_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Product_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="200" />
-          <Property Name="Brand" Type="varchar" MaxLength="50" />
           <Property Name="Photo_Url" Type="varchar" MaxLength="100" />
-          <Property Name="Cost_Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Re_Order_Qty" Type="int" Nullable="false" />
           <Property Name="Category_Id" Type="int" Nullable="false" />
-          <Property Name="Selling_Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Barcode_No" Type="varchar" MaxLength="50" />
-          <Property Name="Happy_Hour_Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PRODUCT_CATEGORY">
           <Key>
@@ -200,6 +276,8 @@
           <Property Name="Product_Id" Type="bigint" Nullable="false" />
           <Property Name="Items" Type="int" Nullable="false" />
           <Property Name="Unit_Id" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="RELIGION">
           <Key>
@@ -316,9 +394,22 @@
             <PropertyRef Name="Stock_Id" />
           </Key>
           <Property Name="Stock_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Batch_Id" Type="int" Nullable="false" />
+          <Property Name="Exhausted" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="Product_Id" Type="bigint" Nullable="false" />
-          <Property Name="Quantity_Left" Type="int" Nullable="false" />
-          <Property Name="Last_Update_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STOCK_CATALOG">
+          <Key>
+            <PropertyRef Name="Stock_Catlog_Id" />
+          </Key>
+          <Property Name="Stock_Catlog_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Staff_Id" Type="bigint" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Supplier_Id" Type="int" Nullable="false" />
+          <Property Name="Batch_Id" Type="int" Nullable="false" />
+          <Property Name="Product_Id" Type="bigint" Nullable="false" />
+          <Property Name="Receipt_number" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="STOCK_TYPE">
           <Key>
@@ -329,9 +420,9 @@
         </EntityType>
         <EntityType Name="SUPPLIER">
           <Key>
-            <PropertyRef Name="Supplier_Id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Supplier_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Supplier_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Company_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Additional_Information" Type="varchar" MaxLength="300" />
@@ -468,6 +559,102 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <Property Name="Barcode_No" Type="varchar" MaxLength="50" />
           <Property Name="Product_Id" Type="bigint" Nullable="false" />
         </EntityType>
+        <Association Name="FK_BAR_PRODUCT_BAR">
+          <End Role="BAR" Type="Self.BAR" Multiplicity="1" />
+          <End Role="BAR_PRODUCT" Type="Self.BAR_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAR">
+              <PropertyRef Name="Bar_Id" />
+            </Principal>
+            <Dependent Role="BAR_PRODUCT">
+              <PropertyRef Name="Bar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_PRODUCT_BATCH">
+          <End Role="BATCH" Type="Self.BATCH" Multiplicity="1" />
+          <End Role="BAR_PRODUCT" Type="Self.BAR_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCH">
+              <PropertyRef Name="Batch_Id" />
+            </Principal>
+            <Dependent Role="BAR_PRODUCT">
+              <PropertyRef Name="Batch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_PRODUCT_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="BAR_PRODUCT" Type="Self.BAR_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="BAR_PRODUCT">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_SUPPLY_CATALOG_BATCH">
+          <End Role="BATCH" Type="Self.BATCH" Multiplicity="1" />
+          <End Role="BAR_SUPPLY_CATALOG" Type="Self.BAR_SUPPLY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCH">
+              <PropertyRef Name="Batch_Id" />
+            </Principal>
+            <Dependent Role="BAR_SUPPLY_CATALOG">
+              <PropertyRef Name="Batch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_SUPPLY_CATALOG_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="BAR_SUPPLY_CATALOG" Type="Self.BAR_SUPPLY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="BAR_SUPPLY_CATALOG">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_SUPPLY_CATALOG_STAFF">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="BAR_SUPPLY_CATALOG" Type="Self.BAR_SUPPLY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="BAR_SUPPLY_CATALOG">
+              <PropertyRef Name="Store_Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_SUPPLY_CATALOG_STAFF1">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="BAR_SUPPLY_CATALOG" Type="Self.BAR_SUPPLY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="BAR_SUPPLY_CATALOG">
+              <PropertyRef Name="Bar_Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BATCH_PRICE_LIST">
+          <End Role="PRICE_LIST" Type="Self.PRICE_LIST" Multiplicity="1" />
+          <End Role="BATCH" Type="Self.BATCH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRICE_LIST">
+              <PropertyRef Name="Price_List_Id" />
+            </Principal>
+            <Dependent Role="BATCH">
+              <PropertyRef Name="Price_List_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BRANCH_BUSINESS">
           <End Role="BUSINESS" Type="Self.BUSINESS" Multiplicity="1" />
           <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="*" />
@@ -477,6 +664,30 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             </Principal>
             <Dependent Role="BRANCH">
               <PropertyRef Name="Business_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BUDGET_BUDGET">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="BUDGET" Type="Self.BUDGET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="BUDGET">
+              <PropertyRef Name="Generated_By_Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BUDGET_STAFF">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="BUDGET" Type="Self.BUDGET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="BUDGET">
+              <PropertyRef Name="Signed_By_Staff_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -533,7 +744,7 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <End Role="CATALOG" Type="Self.CATALOG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SUPPLIER">
-              <PropertyRef Name="Supplier_Id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CATALOG">
               <PropertyRef Name="Supplier_Id" />
@@ -681,6 +892,18 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             </Principal>
             <Dependent Role="PERSON">
               <PropertyRef Name="State_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRICE_LIST_BAR">
+          <End Role="BAR" Type="Self.BAR" Multiplicity="1" />
+          <End Role="PRICE_LIST" Type="Self.PRICE_LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAR">
+              <PropertyRef Name="Bar_Id" />
+            </Principal>
+            <Dependent Role="PRICE_LIST">
+              <PropertyRef Name="Bar_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -840,6 +1063,66 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STOCK_BATCH">
+          <End Role="BATCH" Type="Self.BATCH" Multiplicity="1" />
+          <End Role="STOCK" Type="Self.STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCH">
+              <PropertyRef Name="Batch_Id" />
+            </Principal>
+            <Dependent Role="STOCK">
+              <PropertyRef Name="Batch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_CATALOG_BATCH">
+          <End Role="BATCH" Type="Self.BATCH" Multiplicity="1" />
+          <End Role="STOCK_CATALOG" Type="Self.STOCK_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCH">
+              <PropertyRef Name="Batch_Id" />
+            </Principal>
+            <Dependent Role="STOCK_CATALOG">
+              <PropertyRef Name="Batch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_CATALOG_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="STOCK_CATALOG" Type="Self.STOCK_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="STOCK_CATALOG">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_CATALOG_STAFF">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="STOCK_CATALOG" Type="Self.STOCK_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="STOCK_CATALOG">
+              <PropertyRef Name="Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_CATALOG_SUPPLIER">
+          <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="1" />
+          <End Role="STOCK_CATALOG" Type="Self.STOCK_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUPPLIER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STOCK_CATALOG">
+              <PropertyRef Name="Supplier_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STOCK_PRODUCT">
           <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
           <End Role="STOCK" Type="Self.STOCK" Multiplicity="*" />
@@ -849,6 +1132,30 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             </Principal>
             <Dependent Role="STOCK">
               <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_STAFF">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="PROCUREMENT" Type="Self.PROCUREMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="PROCUREMENT">
+              <PropertyRef Name="Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_SUPPLIER">
+          <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="1" />
+          <End Role="PROCUREMENT" Type="Self.PROCUREMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUPPLIER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PROCUREMENT">
+              <PropertyRef Name="Supplier_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -865,8 +1172,13 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="INVENTORYModelStoreContainer">
+          <EntitySet Name="BAR" EntityType="Self.BAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BAR_PRODUCT" EntityType="Self.BAR_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BAR_SUPPLY_CATALOG" EntityType="Self.BAR_SUPPLY_CATALOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BATCH" EntityType="Self.BATCH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BLOOD_GROUP" EntityType="Self.BLOOD_GROUP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BRANCH" EntityType="Self.BRANCH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BUDGET" EntityType="Self.BUDGET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BUSINESS" EntityType="Self.BUSINESS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATALOG" EntityType="Self.CATALOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
@@ -880,6 +1192,8 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <EntitySet Name="PAYMENT" EntityType="Self.PAYMENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAYMENT_TYPE" EntityType="Self.PAYMENT_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERSON" EntityType="Self.PERSON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRICE_LIST" EntityType="Self.PRICE_LIST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROCUREMENT" EntityType="Self.PROCUREMENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT_CATEGORY" EntityType="Self.PRODUCT_CATEGORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT_UNIT" EntityType="Self.PRODUCT_UNIT" Schema="dbo" store:Type="Tables" />
@@ -895,6 +1209,7 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <EntitySet Name="STAFF" EntityType="Self.STAFF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STATE" EntityType="Self.STATE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STOCK" EntityType="Self.STOCK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STOCK_CATALOG" EntityType="Self.STOCK_CATALOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STOCK_TYPE" EntityType="Self.STOCK_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNIT" EntityType="Self.UNIT" Schema="dbo" store:Type="Tables" />
@@ -964,9 +1279,49 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
     [VW_STOCK].[Product_Id] AS [Product_Id]
     FROM [dbo].[VW_STOCK] AS [VW_STOCK]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_BAR_PRODUCT_BAR" Association="Self.FK_BAR_PRODUCT_BAR">
+            <End Role="BAR" EntitySet="BAR" />
+            <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_PRODUCT_BATCH" Association="Self.FK_BAR_PRODUCT_BATCH">
+            <End Role="BATCH" EntitySet="BATCH" />
+            <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_PRODUCT_PRODUCT" Association="Self.FK_BAR_PRODUCT_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_BATCH" Association="Self.FK_BAR_SUPPLY_CATALOG_BATCH">
+            <End Role="BATCH" EntitySet="BATCH" />
+            <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_PRODUCT" Association="Self.FK_BAR_SUPPLY_CATALOG_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_STAFF" Association="Self.FK_BAR_SUPPLY_CATALOG_STAFF">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_STAFF1" Association="Self.FK_BAR_SUPPLY_CATALOG_STAFF1">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BATCH_PRICE_LIST" Association="Self.FK_BATCH_PRICE_LIST">
+            <End Role="PRICE_LIST" EntitySet="PRICE_LIST" />
+            <End Role="BATCH" EntitySet="BATCH" />
+          </AssociationSet>
           <AssociationSet Name="FK_BRANCH_BUSINESS" Association="Self.FK_BRANCH_BUSINESS">
             <End Role="BUSINESS" EntitySet="BUSINESS" />
             <End Role="BRANCH" EntitySet="BRANCH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BUDGET_BUDGET" Association="Self.FK_BUDGET_BUDGET">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="BUDGET" EntitySet="BUDGET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BUDGET_STAFF" Association="Self.FK_BUDGET_STAFF">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="BUDGET" EntitySet="BUDGET" />
           </AssociationSet>
           <AssociationSet Name="FK_CATALOG_PRODUCT" Association="Self.FK_CATALOG_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -1036,6 +1391,10 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             <End Role="STATE" EntitySet="STATE" />
             <End Role="PERSON" EntitySet="PERSON" />
           </AssociationSet>
+          <AssociationSet Name="FK_PRICE_LIST_BAR" Association="Self.FK_PRICE_LIST_BAR">
+            <End Role="BAR" EntitySet="BAR" />
+            <End Role="PRICE_LIST" EntitySet="PRICE_LIST" />
+          </AssociationSet>
           <AssociationSet Name="FK_PRODUCT_PRODUCT_CATEGORY" Association="Self.FK_PRODUCT_PRODUCT_CATEGORY">
             <End Role="PRODUCT_CATEGORY" EntitySet="PRODUCT_CATEGORY" />
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -1088,9 +1447,37 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             <End Role="NATIONALITY" EntitySet="NATIONALITY" />
             <End Role="STATE" EntitySet="STATE" />
           </AssociationSet>
+          <AssociationSet Name="FK_STOCK_BATCH" Association="Self.FK_STOCK_BATCH">
+            <End Role="BATCH" EntitySet="BATCH" />
+            <End Role="STOCK" EntitySet="STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_CATALOG_BATCH" Association="Self.FK_STOCK_CATALOG_BATCH">
+            <End Role="BATCH" EntitySet="BATCH" />
+            <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_CATALOG_PRODUCT" Association="Self.FK_STOCK_CATALOG_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_CATALOG_STAFF" Association="Self.FK_STOCK_CATALOG_STAFF">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_CATALOG_SUPPLIER" Association="Self.FK_STOCK_CATALOG_SUPPLIER">
+            <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+            <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+          </AssociationSet>
           <AssociationSet Name="FK_STOCK_PRODUCT" Association="Self.FK_STOCK_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="STOCK" EntitySet="STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_1_STAFF" Association="Self.FK_Table_1_STAFF">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="PROCUREMENT" EntitySet="PROCUREMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_1_SUPPLIER" Association="Self.FK_Table_1_SUPPLIER">
+            <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+            <End Role="PROCUREMENT" EntitySet="PROCUREMENT" />
           </AssociationSet>
           <AssociationSet Name="FK_USER_ROLE" Association="Self.FK_USER_ROLE">
             <End Role="ROLE" EntitySet="ROLE" />
@@ -1102,8 +1489,13 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
     <edmx:ConceptualModels>
       <Schema Namespace="INVENTORYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="INVENTORYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BAR" EntityType="INVENTORYModel.BAR" />
+          <EntitySet Name="BAR_PRODUCT" EntityType="INVENTORYModel.BAR_PRODUCT" />
+          <EntitySet Name="BAR_SUPPLY_CATALOG" EntityType="INVENTORYModel.BAR_SUPPLY_CATALOG" />
+          <EntitySet Name="BATCH" EntityType="INVENTORYModel.BATCH" />
           <EntitySet Name="BLOOD_GROUP" EntityType="INVENTORYModel.BLOOD_GROUP" />
           <EntitySet Name="BRANCH" EntityType="INVENTORYModel.BRANCH" />
+          <EntitySet Name="BUDGET" EntityType="INVENTORYModel.BUDGET" />
           <EntitySet Name="BUSINESS" EntityType="INVENTORYModel.BUSINESS" />
           <EntitySet Name="CATALOG" EntityType="INVENTORYModel.CATALOG" />
           <EntitySet Name="COUNTRY" EntityType="INVENTORYModel.COUNTRY" />
@@ -1117,6 +1509,8 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <EntitySet Name="PAYMENT" EntityType="INVENTORYModel.PAYMENT" />
           <EntitySet Name="PAYMENT_TYPE" EntityType="INVENTORYModel.PAYMENT_TYPE" />
           <EntitySet Name="PERSON" EntityType="INVENTORYModel.PERSON" />
+          <EntitySet Name="PRICE_LIST" EntityType="INVENTORYModel.PRICE_LIST" />
+          <EntitySet Name="PROCUREMENT" EntityType="INVENTORYModel.PROCUREMENT" />
           <EntitySet Name="PRODUCT" EntityType="INVENTORYModel.PRODUCT" />
           <EntitySet Name="PRODUCT_CATEGORY" EntityType="INVENTORYModel.PRODUCT_CATEGORY" />
           <EntitySet Name="PRODUCT_UNIT" EntityType="INVENTORYModel.PRODUCT_UNIT" />
@@ -1132,6 +1526,7 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <EntitySet Name="STAFF" EntityType="INVENTORYModel.STAFF" />
           <EntitySet Name="STATE" EntityType="INVENTORYModel.STATE" />
           <EntitySet Name="STOCK" EntityType="INVENTORYModel.STOCK" />
+          <EntitySet Name="STOCK_CATALOG" EntityType="INVENTORYModel.STOCK_CATALOG" />
           <EntitySet Name="STOCK_TYPE" EntityType="INVENTORYModel.STOCK_TYPE" />
           <EntitySet Name="SUPPLIER" EntityType="INVENTORYModel.SUPPLIER" />
           <EntitySet Name="UNIT" EntityType="INVENTORYModel.UNIT" />
@@ -1140,9 +1535,61 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <EntitySet Name="VW_PAYMENT" EntityType="INVENTORYModel.VW_PAYMENT" />
           <EntitySet Name="VW_SALES" EntityType="INVENTORYModel.VW_SALES" />
           <EntitySet Name="VW_STOCK" EntityType="INVENTORYModel.VW_STOCK" />
+          <AssociationSet Name="FK_BAR_PRODUCT_BAR" Association="INVENTORYModel.FK_BAR_PRODUCT_BAR">
+            <End Role="BAR" EntitySet="BAR" />
+            <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRICE_LIST_BAR" Association="INVENTORYModel.FK_PRICE_LIST_BAR">
+            <End Role="BAR" EntitySet="BAR" />
+            <End Role="PRICE_LIST" EntitySet="PRICE_LIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_PRODUCT_BATCH" Association="INVENTORYModel.FK_BAR_PRODUCT_BATCH">
+            <End Role="BATCH" EntitySet="BATCH" />
+            <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_PRODUCT_PRODUCT" Association="INVENTORYModel.FK_BAR_PRODUCT_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="BAR_PRODUCT" EntitySet="BAR_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_BATCH" Association="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_BATCH">
+            <End Role="BATCH" EntitySet="BATCH" />
+            <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_PRODUCT" Association="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_STAFF" Association="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAR_SUPPLY_CATALOG_STAFF1" Association="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF1">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="BAR_SUPPLY_CATALOG" EntitySet="BAR_SUPPLY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BATCH_PRICE_LIST" Association="INVENTORYModel.FK_BATCH_PRICE_LIST">
+            <End Role="PRICE_LIST" EntitySet="PRICE_LIST" />
+            <End Role="BATCH" EntitySet="BATCH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_BATCH" Association="INVENTORYModel.FK_STOCK_BATCH">
+            <End Role="BATCH" EntitySet="BATCH" />
+            <End Role="STOCK" EntitySet="STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_CATALOG_BATCH" Association="INVENTORYModel.FK_STOCK_CATALOG_BATCH">
+            <End Role="BATCH" EntitySet="BATCH" />
+            <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+          </AssociationSet>
           <AssociationSet Name="FK_BRANCH_BUSINESS" Association="INVENTORYModel.FK_BRANCH_BUSINESS">
             <End Role="BUSINESS" EntitySet="BUSINESS" />
             <End Role="BRANCH" EntitySet="BRANCH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BUDGET_BUDGET" Association="INVENTORYModel.FK_BUDGET_BUDGET">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="BUDGET" EntitySet="BUDGET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BUDGET_STAFF" Association="INVENTORYModel.FK_BUDGET_STAFF">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="BUDGET" EntitySet="BUDGET" />
           </AssociationSet>
           <AssociationSet Name="FK_CATALOG_PRODUCT" Association="INVENTORYModel.FK_CATALOG_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -1228,6 +1675,14 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             <End Role="PERSON" EntitySet="PERSON" />
             <End Role="STAFF" EntitySet="STAFF" />
           </AssociationSet>
+          <AssociationSet Name="FK_Table_1_STAFF" Association="INVENTORYModel.FK_Table_1_STAFF">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="PROCUREMENT" EntitySet="PROCUREMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_1_SUPPLIER" Association="INVENTORYModel.FK_Table_1_SUPPLIER">
+            <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+            <End Role="PROCUREMENT" EntitySet="PROCUREMENT" />
+          </AssociationSet>
           <AssociationSet Name="FK_PRODUCT_PRODUCT_CATEGORY" Association="INVENTORYModel.FK_PRODUCT_PRODUCT_CATEGORY">
             <End Role="PRODUCT_CATEGORY" EntitySet="PRODUCT_CATEGORY" />
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -1235,6 +1690,10 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <AssociationSet Name="FK_PRODUCT_UNIT_PRODUCT" Association="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="PRODUCT_UNIT" EntitySet="PRODUCT_UNIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_CATALOG_PRODUCT" Association="INVENTORYModel.FK_STOCK_CATALOG_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
           </AssociationSet>
           <AssociationSet Name="FK_STOCK_PRODUCT" Association="INVENTORYModel.FK_STOCK_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -1272,7 +1731,68 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             <End Role="USER" EntitySet="USER" />
             <End Role="STAFF" EntitySet="STAFF" />
           </AssociationSet>
+          <AssociationSet Name="FK_STOCK_CATALOG_STAFF" Association="INVENTORYModel.FK_STOCK_CATALOG_STAFF">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_CATALOG_SUPPLIER" Association="INVENTORYModel.FK_STOCK_CATALOG_SUPPLIER">
+            <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+            <End Role="STOCK_CATALOG" EntitySet="STOCK_CATALOG" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="BAR">
+          <Key>
+            <PropertyRef Name="Bar_Id" />
+          </Key>
+          <Property Name="Bar_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bar_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BAR_PRODUCT" Relationship="INVENTORYModel.FK_BAR_PRODUCT_BAR" FromRole="BAR" ToRole="BAR_PRODUCT" />
+          <NavigationProperty Name="PRICE_LIST" Relationship="INVENTORYModel.FK_PRICE_LIST_BAR" FromRole="BAR" ToRole="PRICE_LIST" />
+        </EntityType>
+        <EntityType Name="BAR_PRODUCT">
+          <Key>
+            <PropertyRef Name="Bar_Product_Id" />
+          </Key>
+          <Property Name="Bar_Product_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Id" Type="Int64" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Batch_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bar_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BAR" Relationship="INVENTORYModel.FK_BAR_PRODUCT_BAR" FromRole="BAR_PRODUCT" ToRole="BAR" />
+          <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_BAR_PRODUCT_BATCH" FromRole="BAR_PRODUCT" ToRole="BATCH" />
+          <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_BAR_PRODUCT_PRODUCT" FromRole="BAR_PRODUCT" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="BAR_SUPPLY_CATALOG">
+          <Key>
+            <PropertyRef Name="Bar_Supply_Catalog_Id" />
+          </Key>
+          <Property Name="Bar_Supply_Catalog_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Store_Staff_Id" Type="Int64" Nullable="false" />
+          <Property Name="Bar_Staff_Id" Type="Int64" Nullable="false" />
+          <Property Name="Product_Id" Type="Int64" Nullable="false" />
+          <Property Name="Batch_Id" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_BATCH" FromRole="BAR_SUPPLY_CATALOG" ToRole="BATCH" />
+          <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_PRODUCT" FromRole="BAR_SUPPLY_CATALOG" ToRole="PRODUCT" />
+          <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF" FromRole="BAR_SUPPLY_CATALOG" ToRole="STAFF" />
+          <NavigationProperty Name="STAFF1" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF1" FromRole="BAR_SUPPLY_CATALOG" ToRole="STAFF" />
+        </EntityType>
+        <EntityType Name="BATCH">
+          <Key>
+            <PropertyRef Name="Batch_Id" />
+          </Key>
+          <Property Name="Batch_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Batch_Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Price_List_Id" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BAR_PRODUCT" Relationship="INVENTORYModel.FK_BAR_PRODUCT_BATCH" FromRole="BATCH" ToRole="BAR_PRODUCT" />
+          <NavigationProperty Name="BAR_SUPPLY_CATALOG" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_BATCH" FromRole="BATCH" ToRole="BAR_SUPPLY_CATALOG" />
+          <NavigationProperty Name="PRICE_LIST" Relationship="INVENTORYModel.FK_BATCH_PRICE_LIST" FromRole="BATCH" ToRole="PRICE_LIST" />
+          <NavigationProperty Name="STOCK" Relationship="INVENTORYModel.FK_STOCK_BATCH" FromRole="BATCH" ToRole="STOCK" />
+          <NavigationProperty Name="STOCK_CATALOG" Relationship="INVENTORYModel.FK_STOCK_CATALOG_BATCH" FromRole="BATCH" ToRole="STOCK_CATALOG" />
+        </EntityType>
         <EntityType Name="BLOOD_GROUP">
           <Key>
             <PropertyRef Name="Blood_Group_Id" />
@@ -1293,6 +1813,21 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <Property Name="Alternative_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Alternative_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BUSINESS" Relationship="INVENTORYModel.FK_BRANCH_BUSINESS" FromRole="BRANCH" ToRole="BUSINESS" />
+        </EntityType>
+        <EntityType Name="BUDGET">
+          <Key>
+            <PropertyRef Name="Budget_Id" />
+          </Key>
+          <Property Name="Budget_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Budget_No" Type="Int32" Nullable="false" />
+          <Property Name="Budget_Item" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Signed" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Delivered" Type="Boolean" Nullable="false" />
+          <Property Name="Generated_By_Staff_Id" Type="Int64" Nullable="false" />
+          <Property Name="Signed_By_Staff_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_BUDGET_BUDGET" FromRole="BUDGET" ToRole="STAFF" />
+          <NavigationProperty Name="STAFF1" Relationship="INVENTORYModel.FK_BUDGET_STAFF" FromRole="BUDGET" ToRole="STAFF" />
         </EntityType>
         <EntityType Name="BUSINESS">
           <Key>
@@ -1315,6 +1850,9 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <Property Name="Staff_Id" Type="Int64" Nullable="false" />
           <Property Name="Supplier_Id" Type="Int32" />
           <Property Name="Product_Unit_Id" Type="Int32" />
+          <Property Name="Batch_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Finished" Type="Boolean" />
           <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT" FromRole="CATALOG" ToRole="PRODUCT" />
           <NavigationProperty Name="PRODUCT_UNIT" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT_UNIT" FromRole="CATALOG" ToRole="PRODUCT_UNIT" />
           <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_CATALOG_STAFF" FromRole="CATALOG" ToRole="STAFF" />
@@ -1465,6 +2003,34 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <NavigationProperty Name="STATE" Relationship="INVENTORYModel.FK_PERSON_STATE" FromRole="PERSON" ToRole="STATE" />
           <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_STAFF_PERSON" FromRole="PERSON" ToRole="STAFF" />
         </EntityType>
+        <EntityType Name="PRICE_LIST">
+          <Key>
+            <PropertyRef Name="Price_List_Id" />
+          </Key>
+          <Property Name="Price_List_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bar_Id" Type="Int32" Nullable="false" />
+          <Property Name="Normal_Price" Type="Decimal" Nullable="false" Precision="18" Scale="12" />
+          <Property Name="Happy_Hour_Price" Type="Decimal" Nullable="false" Precision="18" Scale="12" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="12" />
+          <NavigationProperty Name="BAR" Relationship="INVENTORYModel.FK_PRICE_LIST_BAR" FromRole="PRICE_LIST" ToRole="BAR" />
+          <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_BATCH_PRICE_LIST" FromRole="PRICE_LIST" ToRole="BATCH" />
+        </EntityType>
+        <EntityType Name="PROCUREMENT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+          <Property Name="Amount_Paid" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Oustanding" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Transaction_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="Receipt_Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cleared" Type="Boolean" />
+          <Property Name="Supplier_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_Table_1_STAFF" FromRole="PROCUREMENT" ToRole="STAFF" />
+          <NavigationProperty Name="SUPPLIER" Relationship="INVENTORYModel.FK_Table_1_SUPPLIER" FromRole="PROCUREMENT" ToRole="SUPPLIER" />
+        </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
             <PropertyRef Name="Product_Id" />
@@ -1472,18 +2038,18 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <Property Name="Product_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Product_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Photo_Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Cost_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Re_Order_Qty" Type="Int32" Nullable="false" />
           <Property Name="Category_Id" Type="Int32" Nullable="false" />
-          <Property Name="Selling_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Barcode_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Happy_Hour_Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BAR_PRODUCT" Relationship="INVENTORYModel.FK_BAR_PRODUCT_PRODUCT" FromRole="PRODUCT" ToRole="BAR_PRODUCT" />
+          <NavigationProperty Name="BAR_SUPPLY_CATALOG" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_PRODUCT" FromRole="PRODUCT" ToRole="BAR_SUPPLY_CATALOG" />
           <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT" FromRole="PRODUCT" ToRole="CATALOG" />
           <NavigationProperty Name="ORDER" Relationship="INVENTORYModel.FK_ORDER_PRODUCT" FromRole="PRODUCT" ToRole="ORDER" />
           <NavigationProperty Name="PRODUCT_CATEGORY" Relationship="INVENTORYModel.FK_PRODUCT_PRODUCT_CATEGORY" FromRole="PRODUCT" ToRole="PRODUCT_CATEGORY" />
           <NavigationProperty Name="PRODUCT_UNIT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCT_UNIT" />
+          <NavigationProperty Name="STOCK_CATALOG" Relationship="INVENTORYModel.FK_STOCK_CATALOG_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_CATALOG" />
           <NavigationProperty Name="STOCK" Relationship="INVENTORYModel.FK_STOCK_PRODUCT" FromRole="PRODUCT" ToRole="STOCK" />
         </EntityType>
         <EntityType Name="PRODUCT_CATEGORY">
@@ -1502,6 +2068,8 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <Property Name="Product_Id" Type="Int64" Nullable="false" />
           <Property Name="Items" Type="Int32" Nullable="false" />
           <Property Name="Unit_Id" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_PRODUCT_UNIT" FromRole="PRODUCT_UNIT" ToRole="CATALOG" />
           <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_PRODUCT" FromRole="PRODUCT_UNIT" ToRole="PRODUCT" />
           <NavigationProperty Name="UNIT" Relationship="INVENTORYModel.FK_PRODUCT_UNIT_UNIT" FromRole="PRODUCT_UNIT" ToRole="UNIT" />
@@ -1620,13 +2188,19 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <Property Name="Account_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Person_Id" Type="Int64" Nullable="false" />
           <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="BAR_SUPPLY_CATALOG" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF" FromRole="STAFF" ToRole="BAR_SUPPLY_CATALOG" />
+          <NavigationProperty Name="BAR_SUPPLY_CATALOG1" Relationship="INVENTORYModel.FK_BAR_SUPPLY_CATALOG_STAFF1" FromRole="STAFF" ToRole="BAR_SUPPLY_CATALOG" />
+          <NavigationProperty Name="BUDGET" Relationship="INVENTORYModel.FK_BUDGET_BUDGET" FromRole="STAFF" ToRole="BUDGET" />
+          <NavigationProperty Name="BUDGET1" Relationship="INVENTORYModel.FK_BUDGET_STAFF" FromRole="STAFF" ToRole="BUDGET" />
           <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_STAFF" FromRole="STAFF" ToRole="CATALOG" />
           <NavigationProperty Name="HAPPY_HOUR" Relationship="INVENTORYModel.FK_HAPPY_HOUR_STAFF" FromRole="STAFF" ToRole="HAPPY_HOUR" />
           <NavigationProperty Name="PAYMENT" Relationship="INVENTORYModel.FK_PAYMENT_STAFF" FromRole="STAFF" ToRole="PAYMENT" />
           <NavigationProperty Name="PERSON" Relationship="INVENTORYModel.FK_STAFF_PERSON" FromRole="STAFF" ToRole="PERSON" />
+          <NavigationProperty Name="PROCUREMENT" Relationship="INVENTORYModel.FK_Table_1_STAFF" FromRole="STAFF" ToRole="PROCUREMENT" />
           <NavigationProperty Name="SALARY1" Relationship="INVENTORYModel.FK_SALARY_STAFF" FromRole="STAFF" ToRole="SALARY" />
           <NavigationProperty Name="SALES" Relationship="INVENTORYModel.FK_SALES_STAFF" FromRole="STAFF" ToRole="SALES" />
           <NavigationProperty Name="USER" Relationship="INVENTORYModel.FK_STAFF_USER" FromRole="STAFF" ToRole="USER" />
+          <NavigationProperty Name="STOCK_CATALOG" Relationship="INVENTORYModel.FK_STOCK_CATALOG_STAFF" FromRole="STAFF" ToRole="STOCK_CATALOG" />
         </EntityType>
         <EntityType Name="STATE">
           <Key>
@@ -1644,10 +2218,28 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             <PropertyRef Name="Stock_Id" />
           </Key>
           <Property Name="Stock_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Batch_Id" Type="Int32" Nullable="false" />
+          <Property Name="Exhausted" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="Product_Id" Type="Int64" Nullable="false" />
-          <Property Name="Quantity_Left" Type="Int32" Nullable="false" />
-          <Property Name="Last_Update_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_STOCK_BATCH" FromRole="STOCK" ToRole="BATCH" />
           <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_STOCK_PRODUCT" FromRole="STOCK" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="STOCK_CATALOG">
+          <Key>
+            <PropertyRef Name="Stock_Catlog_Id" />
+          </Key>
+          <Property Name="Stock_Catlog_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Staff_Id" Type="Int64" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Supplier_Id" Type="Int32" Nullable="false" />
+          <Property Name="Batch_Id" Type="Int32" Nullable="false" />
+          <Property Name="Product_Id" Type="Int64" Nullable="false" />
+          <Property Name="Receipt_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BATCH" Relationship="INVENTORYModel.FK_STOCK_CATALOG_BATCH" FromRole="STOCK_CATALOG" ToRole="BATCH" />
+          <NavigationProperty Name="PRODUCT" Relationship="INVENTORYModel.FK_STOCK_CATALOG_PRODUCT" FromRole="STOCK_CATALOG" ToRole="PRODUCT" />
+          <NavigationProperty Name="STAFF" Relationship="INVENTORYModel.FK_STOCK_CATALOG_STAFF" FromRole="STOCK_CATALOG" ToRole="STAFF" />
+          <NavigationProperty Name="SUPPLIER" Relationship="INVENTORYModel.FK_STOCK_CATALOG_SUPPLIER" FromRole="STOCK_CATALOG" ToRole="SUPPLIER" />
         </EntityType>
         <EntityType Name="STOCK_TYPE">
           <Key>
@@ -1659,13 +2251,15 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
         </EntityType>
         <EntityType Name="SUPPLIER">
           <Key>
-            <PropertyRef Name="Supplier_Id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Supplier_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Supplier_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Company_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Additional_Information" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CATALOG" Relationship="INVENTORYModel.FK_CATALOG_SUPPLIER" FromRole="SUPPLIER" ToRole="CATALOG" />
+          <NavigationProperty Name="PROCUREMENT" Relationship="INVENTORYModel.FK_Table_1_SUPPLIER" FromRole="SUPPLIER" ToRole="PROCUREMENT" />
+          <NavigationProperty Name="STOCK_CATALOG" Relationship="INVENTORYModel.FK_STOCK_CATALOG_SUPPLIER" FromRole="SUPPLIER" ToRole="STOCK_CATALOG" />
         </EntityType>
         <EntityType Name="UNIT">
           <Key>
@@ -1794,6 +2388,138 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <Property Name="Barcode_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Product_Id" Type="Int64" Nullable="false" />
         </EntityType>
+        <Association Name="FK_BAR_PRODUCT_BAR">
+          <End Type="INVENTORYModel.BAR" Role="BAR" Multiplicity="1" />
+          <End Type="INVENTORYModel.BAR_PRODUCT" Role="BAR_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAR">
+              <PropertyRef Name="Bar_Id" />
+            </Principal>
+            <Dependent Role="BAR_PRODUCT">
+              <PropertyRef Name="Bar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRICE_LIST_BAR">
+          <End Type="INVENTORYModel.BAR" Role="BAR" Multiplicity="1" />
+          <End Type="INVENTORYModel.PRICE_LIST" Role="PRICE_LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAR">
+              <PropertyRef Name="Bar_Id" />
+            </Principal>
+            <Dependent Role="PRICE_LIST">
+              <PropertyRef Name="Bar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_PRODUCT_BATCH">
+          <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="1" />
+          <End Type="INVENTORYModel.BAR_PRODUCT" Role="BAR_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCH">
+              <PropertyRef Name="Batch_Id" />
+            </Principal>
+            <Dependent Role="BAR_PRODUCT">
+              <PropertyRef Name="Batch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_PRODUCT_PRODUCT">
+          <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="INVENTORYModel.BAR_PRODUCT" Role="BAR_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="BAR_PRODUCT">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_SUPPLY_CATALOG_BATCH">
+          <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="1" />
+          <End Type="INVENTORYModel.BAR_SUPPLY_CATALOG" Role="BAR_SUPPLY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCH">
+              <PropertyRef Name="Batch_Id" />
+            </Principal>
+            <Dependent Role="BAR_SUPPLY_CATALOG">
+              <PropertyRef Name="Batch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_SUPPLY_CATALOG_PRODUCT">
+          <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="INVENTORYModel.BAR_SUPPLY_CATALOG" Role="BAR_SUPPLY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="BAR_SUPPLY_CATALOG">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_SUPPLY_CATALOG_STAFF">
+          <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+          <End Type="INVENTORYModel.BAR_SUPPLY_CATALOG" Role="BAR_SUPPLY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="BAR_SUPPLY_CATALOG">
+              <PropertyRef Name="Store_Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAR_SUPPLY_CATALOG_STAFF1">
+          <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+          <End Type="INVENTORYModel.BAR_SUPPLY_CATALOG" Role="BAR_SUPPLY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="BAR_SUPPLY_CATALOG">
+              <PropertyRef Name="Bar_Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BATCH_PRICE_LIST">
+          <End Type="INVENTORYModel.PRICE_LIST" Role="PRICE_LIST" Multiplicity="1" />
+          <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRICE_LIST">
+              <PropertyRef Name="Price_List_Id" />
+            </Principal>
+            <Dependent Role="BATCH">
+              <PropertyRef Name="Price_List_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_BATCH">
+          <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="1" />
+          <End Type="INVENTORYModel.STOCK" Role="STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCH">
+              <PropertyRef Name="Batch_Id" />
+            </Principal>
+            <Dependent Role="STOCK">
+              <PropertyRef Name="Batch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_CATALOG_BATCH">
+          <End Type="INVENTORYModel.BATCH" Role="BATCH" Multiplicity="1" />
+          <End Type="INVENTORYModel.STOCK_CATALOG" Role="STOCK_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCH">
+              <PropertyRef Name="Batch_Id" />
+            </Principal>
+            <Dependent Role="STOCK_CATALOG">
+              <PropertyRef Name="Batch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BRANCH_BUSINESS">
           <End Type="INVENTORYModel.BUSINESS" Role="BUSINESS" Multiplicity="1" />
           <End Type="INVENTORYModel.BRANCH" Role="BRANCH" Multiplicity="*" />
@@ -1803,6 +2529,30 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             </Principal>
             <Dependent Role="BRANCH">
               <PropertyRef Name="Business_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BUDGET_BUDGET">
+          <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+          <End Type="INVENTORYModel.BUDGET" Role="BUDGET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="BUDGET">
+              <PropertyRef Name="Generated_By_Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BUDGET_STAFF">
+          <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+          <End Type="INVENTORYModel.BUDGET" Role="BUDGET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="BUDGET">
+              <PropertyRef Name="Signed_By_Staff_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1859,7 +2609,7 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <End Type="INVENTORYModel.CATALOG" Role="CATALOG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SUPPLIER">
-              <PropertyRef Name="Supplier_Id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CATALOG">
               <PropertyRef Name="Supplier_Id" />
@@ -2058,6 +2808,30 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Table_1_STAFF">
+          <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+          <End Type="INVENTORYModel.PROCUREMENT" Role="PROCUREMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="PROCUREMENT">
+              <PropertyRef Name="Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_SUPPLIER">
+          <End Type="INVENTORYModel.SUPPLIER" Role="SUPPLIER" Multiplicity="1" />
+          <End Type="INVENTORYModel.PROCUREMENT" Role="PROCUREMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUPPLIER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PROCUREMENT">
+              <PropertyRef Name="Supplier_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRODUCT_PRODUCT_CATEGORY">
           <End Type="INVENTORYModel.PRODUCT_CATEGORY" Role="PRODUCT_CATEGORY" Multiplicity="1" />
           <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
@@ -2078,6 +2852,18 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
               <PropertyRef Name="Product_Id" />
             </Principal>
             <Dependent Role="PRODUCT_UNIT">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_CATALOG_PRODUCT">
+          <End Type="INVENTORYModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="INVENTORYModel.STOCK_CATALOG" Role="STOCK_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="STOCK_CATALOG">
               <PropertyRef Name="Product_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -2190,12 +2976,79 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STOCK_CATALOG_STAFF">
+          <End Type="INVENTORYModel.STAFF" Role="STAFF" Multiplicity="1" />
+          <End Type="INVENTORYModel.STOCK_CATALOG" Role="STOCK_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="Staff_Id" />
+            </Principal>
+            <Dependent Role="STOCK_CATALOG">
+              <PropertyRef Name="Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_CATALOG_SUPPLIER">
+          <End Type="INVENTORYModel.SUPPLIER" Role="SUPPLIER" Multiplicity="1" />
+          <End Type="INVENTORYModel.STOCK_CATALOG" Role="STOCK_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUPPLIER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STOCK_CATALOG">
+              <PropertyRef Name="Supplier_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="INVENTORYModelStoreContainer" CdmEntityContainer="INVENTORYEntities">
+          <EntitySetMapping Name="BAR">
+            <EntityTypeMapping TypeName="INVENTORYModel.BAR">
+              <MappingFragment StoreEntitySet="BAR">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Bar_name" ColumnName="Bar_name" />
+                <ScalarProperty Name="Bar_Id" ColumnName="Bar_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BAR_PRODUCT">
+            <EntityTypeMapping TypeName="INVENTORYModel.BAR_PRODUCT">
+              <MappingFragment StoreEntitySet="BAR_PRODUCT">
+                <ScalarProperty Name="Bar_Id" ColumnName="Bar_Id" />
+                <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Bar_Product_Id" ColumnName="Bar_Product_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BAR_SUPPLY_CATALOG">
+            <EntityTypeMapping TypeName="INVENTORYModel.BAR_SUPPLY_CATALOG">
+              <MappingFragment StoreEntitySet="BAR_SUPPLY_CATALOG">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Bar_Staff_Id" ColumnName="Bar_Staff_Id" />
+                <ScalarProperty Name="Store_Staff_Id" ColumnName="Store_Staff_Id" />
+                <ScalarProperty Name="Bar_Supply_Catalog_Id" ColumnName="Bar_Supply_Catalog_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BATCH">
+            <EntityTypeMapping TypeName="INVENTORYModel.BATCH">
+              <MappingFragment StoreEntitySet="BATCH">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price_List_Id" ColumnName="Price_List_Id" />
+                <ScalarProperty Name="Batch_Description" ColumnName="Batch_Description" />
+                <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BLOOD_GROUP">
             <EntityTypeMapping TypeName="INVENTORYModel.BLOOD_GROUP">
               <MappingFragment StoreEntitySet="BLOOD_GROUP">
@@ -2218,6 +3071,20 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BUDGET">
+            <EntityTypeMapping TypeName="INVENTORYModel.BUDGET">
+              <MappingFragment StoreEntitySet="BUDGET">
+                <ScalarProperty Name="Signed_By_Staff_Id" ColumnName="Signed_By_Staff_Id" />
+                <ScalarProperty Name="Generated_By_Staff_Id" ColumnName="Generated_By_Staff_Id" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Signed" ColumnName="Signed" />
+                <ScalarProperty Name="Budget_Item" ColumnName="Budget_Item" />
+                <ScalarProperty Name="Budget_No" ColumnName="Budget_No" />
+                <ScalarProperty Name="Budget_Id" ColumnName="Budget_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BUSINESS">
             <EntityTypeMapping TypeName="INVENTORYModel.BUSINESS">
               <MappingFragment StoreEntitySet="BUSINESS">
@@ -2230,6 +3097,9 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <EntitySetMapping Name="CATALOG">
             <EntityTypeMapping TypeName="INVENTORYModel.CATALOG">
               <MappingFragment StoreEntitySet="CATALOG">
+                <ScalarProperty Name="Finished" ColumnName="Finished" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Batch_No" ColumnName="Batch_No" />
                 <ScalarProperty Name="Product_Unit_Id" ColumnName="Product_Unit_Id" />
                 <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
                 <ScalarProperty Name="Staff_Id" ColumnName="Staff_Id" />
@@ -2375,17 +3245,40 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PRICE_LIST">
+            <EntityTypeMapping TypeName="INVENTORYModel.PRICE_LIST">
+              <MappingFragment StoreEntitySet="PRICE_LIST">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Happy_Hour_Price" ColumnName="Happy_Hour_Price" />
+                <ScalarProperty Name="Normal_Price" ColumnName="Normal_Price" />
+                <ScalarProperty Name="Bar_Id" ColumnName="Bar_Id" />
+                <ScalarProperty Name="Price_List_Id" ColumnName="Price_List_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROCUREMENT">
+            <EntityTypeMapping TypeName="INVENTORYModel.PROCUREMENT">
+              <MappingFragment StoreEntitySet="PROCUREMENT">
+                <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
+                <ScalarProperty Name="Cleared" ColumnName="Cleared" />
+                <ScalarProperty Name="Receipt_Number" ColumnName="Receipt_Number" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="Oustanding" ColumnName="Oustanding" />
+                <ScalarProperty Name="Amount_Paid" ColumnName="Amount_Paid" />
+                <ScalarProperty Name="Staff_Id" ColumnName="Staff_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PRODUCT">
             <EntityTypeMapping TypeName="INVENTORYModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
-                <ScalarProperty Name="Happy_Hour_Price" ColumnName="Happy_Hour_Price" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Barcode_No" ColumnName="Barcode_No" />
-                <ScalarProperty Name="Selling_Price" ColumnName="Selling_Price" />
                 <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
                 <ScalarProperty Name="Re_Order_Qty" ColumnName="Re_Order_Qty" />
-                <ScalarProperty Name="Cost_Price" ColumnName="Cost_Price" />
                 <ScalarProperty Name="Photo_Url" ColumnName="Photo_Url" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
                 <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
@@ -2403,6 +3296,8 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <EntitySetMapping Name="PRODUCT_UNIT">
             <EntityTypeMapping TypeName="INVENTORYModel.PRODUCT_UNIT">
               <MappingFragment StoreEntitySet="PRODUCT_UNIT">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="Unit_Id" ColumnName="Unit_Id" />
                 <ScalarProperty Name="Items" ColumnName="Items" />
                 <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
@@ -2534,10 +3429,24 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
           <EntitySetMapping Name="STOCK">
             <EntityTypeMapping TypeName="INVENTORYModel.STOCK">
               <MappingFragment StoreEntitySet="STOCK">
-                <ScalarProperty Name="Last_Update_Time" ColumnName="Last_Update_Time" />
-                <ScalarProperty Name="Quantity_Left" ColumnName="Quantity_Left" />
                 <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Exhausted" ColumnName="Exhausted" />
+                <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
                 <ScalarProperty Name="Stock_Id" ColumnName="Stock_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOCK_CATALOG">
+            <EntityTypeMapping TypeName="INVENTORYModel.STOCK_CATALOG">
+              <MappingFragment StoreEntitySet="STOCK_CATALOG">
+                <ScalarProperty Name="Receipt_number" ColumnName="Receipt_number" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
+                <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Staff_Id" ColumnName="Staff_Id" />
+                <ScalarProperty Name="Stock_Catlog_Id" ColumnName="Stock_Catlog_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2555,7 +3464,7 @@ warning 6002: The table/view 'INVENTORY.dbo.VW_STOCK' does not have a primary ke
                 <ScalarProperty Name="Additional_Information" ColumnName="Additional_Information" />
                 <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
                 <ScalarProperty Name="Supplier_Name" ColumnName="Supplier_Name" />
-                <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

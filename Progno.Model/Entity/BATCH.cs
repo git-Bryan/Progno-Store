@@ -12,22 +12,25 @@ namespace Progno.Model.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class SUPPLIER
+    public partial class BATCH
     {
-        public SUPPLIER()
+        public BATCH()
         {
-            this.CATALOG = new HashSet<CATALOG>();
-            this.PROCUREMENT = new HashSet<PROCUREMENT>();
+            this.BAR_PRODUCT = new HashSet<BAR_PRODUCT>();
+            this.BAR_SUPPLY_CATALOG = new HashSet<BAR_SUPPLY_CATALOG>();
+            this.STOCK = new HashSet<STOCK>();
             this.STOCK_CATALOG = new HashSet<STOCK_CATALOG>();
         }
     
-        public int Id { get; set; }
-        public string Supplier_Name { get; set; }
-        public string Company_Name { get; set; }
-        public string Additional_Information { get; set; }
+        public int Batch_Id { get; set; }
+        public string Batch_Description { get; set; }
+        public int Price_List_Id { get; set; }
+        public int Qty { get; set; }
     
-        public virtual ICollection<CATALOG> CATALOG { get; set; }
-        public virtual ICollection<PROCUREMENT> PROCUREMENT { get; set; }
+        public virtual ICollection<BAR_PRODUCT> BAR_PRODUCT { get; set; }
+        public virtual ICollection<BAR_SUPPLY_CATALOG> BAR_SUPPLY_CATALOG { get; set; }
+        public virtual PRICE_LIST PRICE_LIST { get; set; }
+        public virtual ICollection<STOCK> STOCK { get; set; }
         public virtual ICollection<STOCK_CATALOG> STOCK_CATALOG { get; set; }
     }
 }

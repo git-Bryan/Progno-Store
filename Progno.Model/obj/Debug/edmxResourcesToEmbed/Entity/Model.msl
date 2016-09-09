@@ -1,6 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="INVENTORYModelStoreContainer" CdmEntityContainer="INVENTORYEntities">
+    <EntitySetMapping Name="BAR">
+      <EntityTypeMapping TypeName="INVENTORYModel.BAR">
+        <MappingFragment StoreEntitySet="BAR">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Bar_name" ColumnName="Bar_name" />
+          <ScalarProperty Name="Bar_Id" ColumnName="Bar_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAR_PRODUCT">
+      <EntityTypeMapping TypeName="INVENTORYModel.BAR_PRODUCT">
+        <MappingFragment StoreEntitySet="BAR_PRODUCT">
+          <ScalarProperty Name="Bar_Id" ColumnName="Bar_Id" />
+          <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Bar_Product_Id" ColumnName="Bar_Product_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAR_SUPPLY_CATALOG">
+      <EntityTypeMapping TypeName="INVENTORYModel.BAR_SUPPLY_CATALOG">
+        <MappingFragment StoreEntitySet="BAR_SUPPLY_CATALOG">
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Bar_Staff_Id" ColumnName="Bar_Staff_Id" />
+          <ScalarProperty Name="Store_Staff_Id" ColumnName="Store_Staff_Id" />
+          <ScalarProperty Name="Bar_Supply_Catalog_Id" ColumnName="Bar_Supply_Catalog_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BATCH">
+      <EntityTypeMapping TypeName="INVENTORYModel.BATCH">
+        <MappingFragment StoreEntitySet="BATCH">
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Price_List_Id" ColumnName="Price_List_Id" />
+          <ScalarProperty Name="Batch_Description" ColumnName="Batch_Description" />
+          <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BLOOD_GROUP">
       <EntityTypeMapping TypeName="INVENTORYModel.BLOOD_GROUP">
         <MappingFragment StoreEntitySet="BLOOD_GROUP">
@@ -23,6 +66,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BUDGET">
+      <EntityTypeMapping TypeName="INVENTORYModel.BUDGET">
+        <MappingFragment StoreEntitySet="BUDGET">
+          <ScalarProperty Name="Signed_By_Staff_Id" ColumnName="Signed_By_Staff_Id" />
+          <ScalarProperty Name="Generated_By_Staff_Id" ColumnName="Generated_By_Staff_Id" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Signed" ColumnName="Signed" />
+          <ScalarProperty Name="Budget_Item" ColumnName="Budget_Item" />
+          <ScalarProperty Name="Budget_No" ColumnName="Budget_No" />
+          <ScalarProperty Name="Budget_Id" ColumnName="Budget_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BUSINESS">
       <EntityTypeMapping TypeName="INVENTORYModel.BUSINESS">
         <MappingFragment StoreEntitySet="BUSINESS">
@@ -35,6 +92,9 @@
     <EntitySetMapping Name="CATALOG">
       <EntityTypeMapping TypeName="INVENTORYModel.CATALOG">
         <MappingFragment StoreEntitySet="CATALOG">
+          <ScalarProperty Name="Finished" ColumnName="Finished" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Batch_No" ColumnName="Batch_No" />
           <ScalarProperty Name="Product_Unit_Id" ColumnName="Product_Unit_Id" />
           <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
           <ScalarProperty Name="Staff_Id" ColumnName="Staff_Id" />
@@ -180,17 +240,40 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PRICE_LIST">
+      <EntityTypeMapping TypeName="INVENTORYModel.PRICE_LIST">
+        <MappingFragment StoreEntitySet="PRICE_LIST">
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Happy_Hour_Price" ColumnName="Happy_Hour_Price" />
+          <ScalarProperty Name="Normal_Price" ColumnName="Normal_Price" />
+          <ScalarProperty Name="Bar_Id" ColumnName="Bar_Id" />
+          <ScalarProperty Name="Price_List_Id" ColumnName="Price_List_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROCUREMENT">
+      <EntityTypeMapping TypeName="INVENTORYModel.PROCUREMENT">
+        <MappingFragment StoreEntitySet="PROCUREMENT">
+          <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
+          <ScalarProperty Name="Cleared" ColumnName="Cleared" />
+          <ScalarProperty Name="Receipt_Number" ColumnName="Receipt_Number" />
+          <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+          <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+          <ScalarProperty Name="Oustanding" ColumnName="Oustanding" />
+          <ScalarProperty Name="Amount_Paid" ColumnName="Amount_Paid" />
+          <ScalarProperty Name="Staff_Id" ColumnName="Staff_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PRODUCT">
       <EntityTypeMapping TypeName="INVENTORYModel.PRODUCT">
         <MappingFragment StoreEntitySet="PRODUCT">
-          <ScalarProperty Name="Happy_Hour_Price" ColumnName="Happy_Hour_Price" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Barcode_No" ColumnName="Barcode_No" />
-          <ScalarProperty Name="Selling_Price" ColumnName="Selling_Price" />
           <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
           <ScalarProperty Name="Re_Order_Qty" ColumnName="Re_Order_Qty" />
-          <ScalarProperty Name="Cost_Price" ColumnName="Cost_Price" />
           <ScalarProperty Name="Photo_Url" ColumnName="Photo_Url" />
-          <ScalarProperty Name="Brand" ColumnName="Brand" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
           <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
@@ -208,6 +291,8 @@
     <EntitySetMapping Name="PRODUCT_UNIT">
       <EntityTypeMapping TypeName="INVENTORYModel.PRODUCT_UNIT">
         <MappingFragment StoreEntitySet="PRODUCT_UNIT">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="active" ColumnName="active" />
           <ScalarProperty Name="Unit_Id" ColumnName="Unit_Id" />
           <ScalarProperty Name="Items" ColumnName="Items" />
           <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
@@ -339,10 +424,24 @@
     <EntitySetMapping Name="STOCK">
       <EntityTypeMapping TypeName="INVENTORYModel.STOCK">
         <MappingFragment StoreEntitySet="STOCK">
-          <ScalarProperty Name="Last_Update_Time" ColumnName="Last_Update_Time" />
-          <ScalarProperty Name="Quantity_Left" ColumnName="Quantity_Left" />
           <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Exhausted" ColumnName="Exhausted" />
+          <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
           <ScalarProperty Name="Stock_Id" ColumnName="Stock_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STOCK_CATALOG">
+      <EntityTypeMapping TypeName="INVENTORYModel.STOCK_CATALOG">
+        <MappingFragment StoreEntitySet="STOCK_CATALOG">
+          <ScalarProperty Name="Receipt_number" ColumnName="Receipt_number" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Batch_Id" ColumnName="Batch_Id" />
+          <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Staff_Id" ColumnName="Staff_Id" />
+          <ScalarProperty Name="Stock_Catlog_Id" ColumnName="Stock_Catlog_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -360,7 +459,7 @@
           <ScalarProperty Name="Additional_Information" ColumnName="Additional_Information" />
           <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
           <ScalarProperty Name="Supplier_Name" ColumnName="Supplier_Name" />
-          <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
