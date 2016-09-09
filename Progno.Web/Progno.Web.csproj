@@ -182,7 +182,6 @@
     <Compile Include="Areas\Common\Controllers\HomePageController.cs" />
     <Compile Include="Areas\Common\ViewModel\ReservationViewModel.cs" />
     <Compile Include="Areas\Sales\Controllers\BaseController.cs" />
-    <Compile Include="Areas\Sales\Controllers\SalesController.cs" />
     <Compile Include="Areas\Sales\SalesAreaRegistration.cs" />
     <Compile Include="Areas\Sales\ViewModel\SalesViewModel.cs" />
     <Compile Include="Areas\Security\Controllers\AccountController.cs" />
